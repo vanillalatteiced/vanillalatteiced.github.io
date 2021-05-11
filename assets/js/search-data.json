@@ -1,0 +1,20 @@
+{"0": {
+    "doc": "Documentation",
+    "title": "Documentation",
+    "content": "# List of All Documentations ",
+    "url": "/docs/documentation.html",
+    "relUrl": "/docs/documentation.html"
+  },"1": {
+    "doc": "Home",
+    "title": "Home",
+    "content": "# Blood Sweat and Tears of a Novice Programmer {: .fs-8 } Personal documentation of itty bitties and all the hacky decisions I've made throughout my learning (and maybe life). {: .fs-5 .fw-300 } --- ## Intro ### Why? Learning is always fun; I love jamming new things into my head. However, I've noticed that my long-term memory is in fact not long enough to guide me back after a while. Hence, the docs: I can't do anything about the things that have already left my head, but I am hoping that I can at least keep a nice documentation of my future learnings. ### Disclaimer The information contained in this document is not necessarily correct or fair. It is biased in many ways and contains naive and pitiful approaches made by a novice. Its sole purpose is to document my footsteps. ",
+    "url": "/",
+    "relUrl": "/"
+  },"2": {
+    "doc": "Jekyll",
+    "title": "Jekyll",
+    "content": "# Jekyll {: .no_toc } And GitHub Pages {: .text-delta } 1. TOC {:toc} --- ## Ruby installation with rbenv I've decided to use `rbenv` only because I didn't want to mess with the system `ruby` that comes with OSX (I am currently using Catalina). Assuming you have [Homebrew](https://brew.sh/) installed. ```bash # Install rbenv and ruby-build brew install rbenv # Set up rbenv integration with your shell rbenv init # Then follow the instruction that appears on screen ``` ```zsh # rbenv init will ask you to add the following to .zshrc eval \"$(rbenv init -)\" ``` Now that you have installed `rbenv`, create a folder that will contain your Jekyll site. I will refer to the folder as `blog`. Once created, move into `blog`. ```zsh cd blog # List latest stable versions rbenv install -l # I chose 3.0.0 rbenv install 3.0.0 rbenv rehash # Following creates .ruby-version in cwd rbenv local 3.0.0 # Confirm ruby version in folder ruby -v ``` All the `ruby` versions are installed in `~/.rbenv`. --- ## Install Jekyll Before installing the gems, check where they are being installed via ```zsh # Refer to INSTALLATION DIRECTORY / GEM PATHS gem env # OR gem env home ``` Now, the Jekyll documentation tells you to do a local install with the `--user-install` flag. If you're not using `rbenv` this is indeed more desirable as it does not require `sudo`. However, with `rbenv` it was unnecessary for my purpose. As you'll notice by inspecting the `gem env` outputs, it will install the gems outside of the `~/.rbenv` directory to some local folder (`USER INSTALLATION DIRECTORY`). It still works, but you have to add it to `PATH` to execute the gems. With `rbenv`, \"global\" (it really isn't global anymore) installation is more convenient because it installs them in `~/.rbenv` (so no `sudo` and additional path config required). ```zsh gem install jekyll bundler ``` --- ## Create a Jekyll blog First create a new Jekyll project by ```zsh # Assuming you're still in the blog folder jekyll new . ``` It will create a default website you can test locally. ```zsh # Will generate a static html site in _site bundle exec jekyll serve ``` {: .note} If you get any errors regarding `webrick`: `cannot load such file -- webrick (LoadError)` ",
+    "url": "/docs/jekyll/jekyll.html",
+    "relUrl": "/docs/jekyll/jekyll.html"
+  }
+}
