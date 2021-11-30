@@ -83,1212 +83,1362 @@
     "url": "/docs/terraform/basics.html#destroy-infrastructure",
     "relUrl": "/docs/terraform/basics.html#destroy-infrastructure"
   },"14": {
+    "doc": "Vault Server Basics",
+    "title": "Vault Server Basics",
+    "content": ". | Vault server | Initialization . | GnuPG | Vault init | . | Unseal / Seal . | Unseal | Seal | . | Enabling authentication . | Enable userpass | . | Policies . | Create a policy | Add a policy | . | . ",
+    "url": "/docs/security/vault/basics.html",
+    "relUrl": "/docs/security/vault/basics.html"
+  },"15": {
+    "doc": "Vault Server Basics",
+    "title": "Vault server",
+    "content": "When you first start the server with vault server, you need to first initialize and unseal it. One option is to use the web UI, but you can also use the vault CLI. You can access the web UI at http://localhost:8200/ui. ",
+    "url": "/docs/security/vault/basics.html#vault-server",
+    "relUrl": "/docs/security/vault/basics.html#vault-server"
+  },"16": {
+    "doc": "Vault Server Basics",
+    "title": "Initialization",
+    "content": "In the beginning, Vault server is in a sealed state. There needs to be a master key to unseal it. Upon initialization, Vault will attempt to split this key into pieces, and you will get to decide how many pieces it’ll be. You will also have to decide the threshold of number of pieces that need to be put together in order to access the final key and unseal Vault. One security hole of Vault was that the root initializer receives a raw text of all these keys. Therefore, a recommended practice is that you encrypt these keys using a PGP key. Have a PGP key for each piece of the key. GnuPG . One way to do acquire a PGP key is with GnuPG. # Follow prompts to create a PGP key gpg --full-generate-key # Export to disk as base64 gpg --export &lt;key-id&gt; | base64 &gt; my-name.asc . Vault init . Now define a key share number and the threshold, and provide your PGP keys. vault operator init \\ -key-shares=3 \\ -key-threshold=2 \\ -pgp-keys=\"person1.asc,person2.asc,person3.asc\" -root-token-pgp-key=\"some.asc\" . Then you will get, in this example, three PGP encrypted keys and a root token in your console. Remember these encrypted keys and token. The order in which you put pgp-keys matter. The first PGP key will be used to decrypt the first unseal key, the second will be used to decrypt the second, and so on. ",
+    "url": "/docs/security/vault/basics.html#initialization",
+    "relUrl": "/docs/security/vault/basics.html#initialization"
+  },"17": {
+    "doc": "Vault Server Basics",
+    "title": "Unseal / Seal",
+    "content": "Unseal . To decrypt an unseal key, . echo \"whatever that was printed during init\" | base64 --decode | gpg -dq . The output will be the decrypted key. Then unseal vault, . vault operator unseal # Enter decrypted key on prompt . Seal . vault operator seal . ",
+    "url": "/docs/security/vault/basics.html#unseal--seal",
+    "relUrl": "/docs/security/vault/basics.html#unseal--seal"
+  },"18": {
+    "doc": "Vault Server Basics",
+    "title": "Enabling authentication",
+    "content": "You can always login with a root token, . vault login &lt;root-token&gt; . But it is generally a bad idea to persist a root token. Therefore, we instead enable different authentication methods to login to Vault. The simplest auth method is userpass. Enable userpass . # By default it is mounted to auth/userpass vault auth enable userpass # You can set your own path though vault auth enable -path=my-path-here userpass . Before you enable any other auth methods, initially you’ll have to be logged in with your root token. Then create a user by: . vault write auth/userpass/users/&lt;username&gt; \\ password=&lt;password&gt; \\ policies=\"list,of,policies,separated,by,comma\" . You can now login with the created user: . vault login -method=\"userpass\" username=\"&lt;username&gt;\" . ",
+    "url": "/docs/security/vault/basics.html#enabling-authentication",
+    "relUrl": "/docs/security/vault/basics.html#enabling-authentication"
+  },"19": {
+    "doc": "Vault Server Basics",
+    "title": "Policies",
+    "content": "Create a policy . Create an .hcl file. The name is irrelevant. Details of what goes into this file can be found here. Add a policy . To add a policy: . vault policy write &lt;policy-name&gt; some-policy.hcl . References: . | Vault Server | Vault PGP | Vault Auth Methods | Vault Policies | . ",
+    "url": "/docs/security/vault/basics.html#policies",
+    "relUrl": "/docs/security/vault/basics.html#policies"
+  },"20": {
     "doc": "Elastic Beanstalk",
     "title": "AWS Elastic Beanstalk (EB)",
     "content": ". | + What is Elastic Beanstalk? | + Elastic Beanstalk Application | + Environment Tier . | Web Server Environment | Worker Environment | . | + Deployment . | In-Place Deployment Policies . | All at once | Rolling | Rolling with additional batch | Immutable | Traffic Splitting | . | Blue/Green Deployment Policy | . | + Configuring Environments . | Order of Precedence | Configuration Files (.ebextensions) . | Option Settings | Linux Server | . | Environment Manifest (env.yaml) | . | + EB CLI | . ",
     "url": "/docs/aws/beanstalk.html#aws-elastic-beanstalk-eb",
     "relUrl": "/docs/aws/beanstalk.html#aws-elastic-beanstalk-eb"
-  },"15": {
+  },"21": {
     "doc": "Elastic Beanstalk",
     "title": "+ What is Elastic Beanstalk?",
     "content": "Elastic Beanstalk is a Platform as a Service (PaaS) that helps you deploy web apps with little knowledge about what kind of infrastructure is managed underneath. It configures its components to provide an environment for your application to run on. EB is basically a Cloudformation template with a UI. ",
     "url": "/docs/aws/beanstalk.html#-what-is-elastic-beanstalk",
     "relUrl": "/docs/aws/beanstalk.html#-what-is-elastic-beanstalk"
-  },"16": {
+  },"22": {
     "doc": "Elastic Beanstalk",
     "title": "+ Elastic Beanstalk Application",
     "content": "An Elastic Beanstalk application is a logical collection of application version and environments. ",
     "url": "/docs/aws/beanstalk.html#-elastic-beanstalk-application",
     "relUrl": "/docs/aws/beanstalk.html#-elastic-beanstalk-application"
-  },"17": {
+  },"23": {
     "doc": "Elastic Beanstalk",
     "title": "+ Environment Tier",
     "content": "When you create an EB application, you are asked to choose an environment tier. This tier determines which resources EB should provision to form your environment. When creating a web app, you often require both environment tiers. Web Server Environment . Key resources launched in the EB container: . | Elastic Load Balancer | EC2 (Auto Scaling Group, Security Group) | . A web server environment serves HTTP requests. Web server environment is given a URL of myapp.region.elasticbeanstalk.com. This environment creates an Elastic Load Balancer with a URL of of elb-id.region.elb.amazonaws.com. In Amazon Route 53, this ELB URL has a CNAME Record to the environment URL. This ELB sits in front of EC2 instances in a Auto Scaling Group (ASG). The stack on EC2 instances depends on which platform you chose (eg. Python 3.8 running on 64bit Amazon Linux 2). However, in each instance sits one common component called the host manager (HM). HM manages all sorts of monitoring, deploying, and metrics related to the instance. By default, EC2 instances are placed in a security group which allows all connection through port 80 (HTTP). Additional security groups maybe configured as needed. Worker Environment . Key resources launched in EB container: . | SQS | EC2 (Auto Scaling Group), Sqsd | Cloudwatch | . Worker environment is usually set up for long running tasks to run in the background. A worker environment sets up an Amazon SQS queue. This queue often consists of messages from a web server environment. On each EC2 instance runs a Sqsd daemon and a processing application. The daemon reads the message from the SQS queue and sends it as an HTTP POST request to the processing application. Upon a 200 OK response from the processing application, Sqsd sends a delete message call to SQS. EC2 instances publish their metrics to Amazon Cloudwatch. Auto Scaling retrieves usage data from Cloudwatch and scales instances accordingly. ",
     "url": "/docs/aws/beanstalk.html#-environment-tier",
     "relUrl": "/docs/aws/beanstalk.html#-environment-tier"
-  },"18": {
+  },"24": {
     "doc": "Elastic Beanstalk",
     "title": "+ Deployment",
     "content": "Each deployment is identified with a deployment ID which increments from 1. In-Place Deployment Policies . All at once . Every instance is killed and updated at the same time. The deployment is quick in that sense, but it results in a short loss of service. Also, it can be dangerous in case of a failure to deploy, and may be tricky to rollback. Rolling . Updates one batch of instances at a time. So a batch can be down during an update which may result in reduced availability for a short time. However, there is no downtime unlike ‘All at once’, but the entire deployment process takes a longer time. Rolling with additional batch . To avoid any reduced bandwidth in regular rolling deployment, an extra batch of instances is launched and rolling update is performed there. Hence, the number of instances up during deployment stays the same. This takes longer time. Immutable . Instead of updating instances, a complete new Auto Scaling Group set of instances is created. This is even slower. Traffic Splitting . Create a new set of instances and test it with a portion of the incoming traffic, while the rest of the traffic is still going to the old deployment version. This is as slow as ‘Immutable’. Blue/Green Deployment Policy . One additional deployment option is the Blue/Green deployment. All the other deployment policies above performs an In-Place deployment, which means the update happens within an EB environment. However, Blue/Green deployment goes beyond the instances inside the environment. To avoid downtime, your deployment is launched to a complete new set of environment and then the CNAMEs of old and new environments are swapped to redirect traffic instantly. ",
     "url": "/docs/aws/beanstalk.html#-deployment",
     "relUrl": "/docs/aws/beanstalk.html#-deployment"
-  },"19": {
+  },"25": {
     "doc": "Elastic Beanstalk",
     "title": "+ Configuring Environments",
     "content": "There are many different ways to configure environments. Order of Precedence . | Settings applied directly during create/update environment | Saved configuration objects in S3 | Configuration files (.ebextensions, env.yaml) | Default values | . Configuration Files (.ebextensions) . You can place .config files in a folder .ebextensions at the root of the application source bundle. Each .config files are applied in alphabetical order. YAML is recommended for configuration files but both YAML and JSON are supported. Option Settings . Use option_settings key to configure environment options . option_settings: - namespace: namespace option_name: option name value: option value . Linux Server . You can also configure the software running on your instances. Check these link1, link2 for details. Environment Manifest (env.yaml) . Place an env.yaml file at the root of the application source bundle to configure the environment. You can configure the name, solution stack, and links to other environments. There are some overlaps between .configs and env.yaml. It seems env.yaml is more environment specific, while .config files can handle overall configuration of the application. Check the link for details. ",
     "url": "/docs/aws/beanstalk.html#-configuring-environments",
     "relUrl": "/docs/aws/beanstalk.html#-configuring-environments"
-  },"20": {
+  },"26": {
     "doc": "Elastic Beanstalk",
     "title": "+ EB CLI",
     "content": "EB CLI is an open-source project hosted in this repository. To use the CLI application, however, clone this setup repository instead. References: . | Web Server Environment] | Worker Environment] | Deployments | Configuring Environment | EB CLI | . ",
     "url": "/docs/aws/beanstalk.html#-eb-cli",
     "relUrl": "/docs/aws/beanstalk.html#-eb-cli"
-  },"21": {
+  },"27": {
     "doc": "Elastic Beanstalk",
     "title": "Elastic Beanstalk",
     "content": " ",
     "url": "/docs/aws/beanstalk.html",
     "relUrl": "/docs/aws/beanstalk.html"
-  },"22": {
+  },"28": {
+    "doc": "SSH Certificates",
+    "title": "SSH Certificates",
+    "content": ". | SSH authentication methods | SSH certificates | Host certificate . | Configure a host CA | Sign the host key with CA | Save host CA public key on client | . | Client certificate . | Configure a client CA | Sign the client key with CA | Save client CA public key on host | . | Host sshd_config settings | Test connection | Debugging . | From the client side | From the host side | To check certificate metadata | . | SSH certificate extensions | . ",
+    "url": "/docs/security/ssh/cert.html",
+    "relUrl": "/docs/security/ssh/cert.html"
+  },"29": {
+    "doc": "SSH Certificates",
+    "title": "SSH authentication methods",
+    "content": "There are two popular ways to SSH into a server. | Use a system password | Use SSH key | . Using an SSH key adds more security layers compared to using a system password. However, even with an SSH key, there still exists a problem that once an SSH key is placed on the authorized_keys of the server, it is permanent unless someone actively removes it. This may not matter if you’re the one and only person trying to SSH into a server, but if the number of people that need to be given or revoked access increases, this can become a hassle. Using SSH certificates can alleviate these issues. ",
+    "url": "/docs/security/ssh/cert.html#ssh-authentication-methods",
+    "relUrl": "/docs/security/ssh/cert.html#ssh-authentication-methods"
+  },"30": {
+    "doc": "SSH Certificates",
+    "title": "SSH certificates",
+    "content": "SSH certificate authentication goes in both directions. The server/host presents its certificate to the user/client, and vice versa. The whole idea of a certificate is simple: . | Both parties agree on some authority and trust what it signs. | . Such authority is called a Certificate Authority (CA). Technically, our CA is just a pair of cryptographic keys. So instead of trusting each user keys, parties will decide trust the CA that will sign those keys. This eliminates having to accumulate public keys in authorized_keys. In addition, CAs can set a expiration date on their signatures. So if you decide to give someone a server access for only a single day, but don’t want to bother remembering to come back after a day to remove his/her key from your authorized_keys, you can have the CA sign the key to only be valid for a day. In the following example, I will be using Vault to manage these CAs. ",
+    "url": "/docs/security/ssh/cert.html#ssh-certificates-1",
+    "relUrl": "/docs/security/ssh/cert.html#ssh-certificates-1"
+  },"31": {
+    "doc": "SSH Certificates",
+    "title": "Host certificate",
+    "content": "Usually people dismiss the need for host certificates. However it is a good security layer to prevent SSHing into a bad machine. When you’re SSHing without a certificate, you’ve probably seen something like this. $ ssh server The authenticity of host 'badsiteindisguise.com' can't be established...cryptographic key fingerprint... Are you sure you want to continue connecting (yes/no/[fingerprint])? . Usually you just end up typing yes, which adds the fingerprint to ~/.ssh/known_hosts and you never see the prompt again. However, just like the prompt says, are you sure that this site can be trusted? Are you sure that there wasn’t a man in the middle that redirected you to one of his bad machines? . By placing a trusted host CA’s public key on the client before the first SSH, this security risk can be avoided. Configure a host CA . Create a key pair for host CA: . ssh-keygen -t ed25519 -C \"hostca\" -f hostca . Which produces hostca and hostca.pub. vault write ssh-host-signer/config/ca generate_signing_key=true currently only generates rsa keys, which is deprecated in newer OpenSSH. To use different crypto algorithms such as ed25519, you have to generate one and upload it to Vault. Mount the SSH secrets engine on Vault: . vault secrets enable -path=ssh-host-signer ssh . The path can be anything you like, just make sure you are logged in to Vault and has the policy to read/write to that path. Upload the CA key pair: . vault write ssh-host-signer/config/ca \\ private_key=@hostca \\ public_key=@hostca.pub . The @ points to the file. Use \"...\" to copy and paste the values. Extend the host key certificate TTL (time-to-live): . vault secrets tune -max-lease-ttl=87600h ssh-host-signer . 87600h is 10 years. Create a role to sign host keys: . vault write ssh-host-signer/roles/hostrole \\ key_type=ca \\ ttl=87600h \\ allow_host_certificates=true \\ allowed_domains=\"example.com,something.com\" \\ allow_bare_domains=true \\ allow_subdomains=true . Vault uses these roles to sign keys. The above configuration basically says it can sign host certificates for domains of example.com, *.example.com, something.com, *.something.com, and the certificate will be valid for 10 years. Sign the host key with CA . Sign and save the resulting certificate on the server: . vault write -field=signed_key ssh-host-signer/sign/hostrole \\ cert_type=host \\ public_key=@/etc/ssh/ssh_host_ed25519_key.pub &gt; /etc/ssh/ssh_host_ed25519_key-cert.pub . Optionally set permission on the certificate: . sudo chmod 0640 /etc/ssh/ssh_host_ed25519_key-cert.pub . If the host key doesn’t exist, create one using ssh-keygen. Update /etc/ssh/sshd_config: . HostKey /etc/ssh/ssh_ed25519_key HostCertificate /etc/ssh/ssh_ed25519_key-cert.pub . Save host CA public key on client . From the client, get the public key of ssh-host-signer CA: . # If using API endpoint curl &lt;vault-api-url&gt;/v1/ssh-host-signer/public-key . # If client has direct access to the Vault server vault read -field=public_key ssh-host-signer/config/ca . Save the result to client’s ~/.ssh/known_hosts: . @cert-authority *.example.com,*.something.com ssh-ed25519 ... If you have already logged in to the server before the host certificate was set up, remove the corresponding fingerprint in known_hosts. Try SSHing to the server with a password or a regular public key. Assuming you have never SSHed to the server before or have removed the previous fingerprint, SSH should not show you the Are you sure you want to continue prompt. If it does, the host certificate is not set up correctly. ",
+    "url": "/docs/security/ssh/cert.html#host-certificate",
+    "relUrl": "/docs/security/ssh/cert.html#host-certificate"
+  },"32": {
+    "doc": "SSH Certificates",
+    "title": "Client certificate",
+    "content": "Instead of having the client’s public key saved to host’s authorized_keys, we will have the client use a certificate to authenticate. Some of the process is actually very similar to above. Mostly the only difference is to use client or user instead of host. Configure a client CA . Create a key pair for client CA: . ssh-keygen -t ed25519 -C \"clientca\" -f clientca . Which produces clientca and clientca.pub. You can actually use the same pair of keys you used for host CA. Mount the SSH secrets engine on Vault: . vault secrets enable -path=ssh-client-signer ssh . Upload the CA key pair: . vault write ssh-host-signer/config/ca \\ private_key=@clientca \\ public_key=@clientca.pub . Create a role to sign client keys: . vault write ssh-client-signer/roles/clientrole -&lt;&lt;\"EOH\" { \"allow_user_certificates\": true, \"allowed_users\": \"my-user\", \"allowed_extensions\": \"permit-pty,permit-port-forwarding,permit-x11-forwarding,permit-agent-forwarding,permit-user-rc\", \"default_extensions\": [ { \"permit-pty\": \"\" } ], \"key_type\": \"ca\", \"default_user\": \"my-user\", \"ttl\": \"30m0s\" } EOH . | allowed_users: Comma separated list of allowed username | allowed_extensions: Comma separated list of extensions that client can request in their certificate | default_extensions: Default extensions given when this role signs a certificate | default_user: Username to use when one isn’t specified | ttl: Client certificate expires after ttl. | . Sign the client key with CA . Create an SSH key if one doesn’t already exist: . ssh-keygen -t ed25519 -C \"user@example.com\" -f client_key . Sign and save the resulting certificate on the client: . | To accept default | . vault write -field=signed_key ssh-client-signer/sign/clientrole \\ public_key=@client_key.pub &gt; client_key-cert.pub . | To customize | . vault write ssh-client-signer/sign/my-role -&lt;&lt;\"EOH\" { \"public_key\": \"ssh-ed25519 ...\", \"valid_principals\": \"my-user\", \"extensions\": { \"permit-pty\": \"\", \"permit-port-forwarding\": \"\" } } EOH . Then copy and paste the certificate to client_key-cert.pub. If your certificate ends in the &lt;same_base&gt;-cert.pub suffix, OpenSSH will automatically detect it so you won’t have to pass in your certificate as an identity file in addition to the private key. Save client CA public key on host . From the host, get the public key of ssh-client-signer CA and save it to /etc/ssh/trusted-user-ca-keys.pem: . # If using API endpoint curl -o /etc/ssh/trusted-user-ca-keys.pem http://127.0.0.1:8200/v1/ssh-client-signer/public_key . # If host has direct access to the Vault server vault read -field=public_key ssh-client-signer/config/ca &gt; /etc/ssh/trusted-user-ca-keys.pem . Now modify /etc/ssh/sshd_config on host: . # /etc/ssh/sshd_config TrustedUserCAKeys /etc/ssh/trusted-user-ca-keys.pem . ",
+    "url": "/docs/security/ssh/cert.html#client-certificate",
+    "relUrl": "/docs/security/ssh/cert.html#client-certificate"
+  },"33": {
+    "doc": "SSH Certificates",
+    "title": "Host sshd_config settings",
+    "content": "To disable SSH password authentication, . # /etc/ssh/sshd_config PasswordAuthentication no ChallengeResponseAuthentication no . ",
+    "url": "/docs/security/ssh/cert.html#host-sshd_config-settings",
+    "relUrl": "/docs/security/ssh/cert.html#host-sshd_config-settings"
+  },"34": {
+    "doc": "SSH Certificates",
+    "title": "Test connection",
+    "content": "Now the client should be able to authenticate to the server with certificates: . # If the certificate ends in '-cert.pub' with the same base name ssh -i ~/.ssh/client_key my-user@example.com . # If the certificate has a different naming scheme ssh -i ~/.ssh/client-certificate.pub -i ~/.ssh/client_key my-user@example.com . Connection is a success if you don’t see any fingerprint validation prompt and was able to connect without adding client_key.pub to host’s authorized_keys. ",
+    "url": "/docs/security/ssh/cert.html#test-connection",
+    "relUrl": "/docs/security/ssh/cert.html#test-connection"
+  },"35": {
+    "doc": "SSH Certificates",
+    "title": "Debugging",
+    "content": "From the client side . Add -vvv to get a verbose log output: . ssh -vvv -i ~/.ssh/client_key my-user@example.com . From the host side . Linux . Set the LogLevel in /etc/ssh/sshd_config to VERBOSE. Then inspect /var/log/auth.log. macOS . log show --process sshd --last &lt;num&gt; --debug --info . See log show help for details. To check certificate metadata . ssh-keygen -Lf ssh_key-cert.pub . ",
+    "url": "/docs/security/ssh/cert.html#debugging",
+    "relUrl": "/docs/security/ssh/cert.html#debugging"
+  },"36": {
+    "doc": "SSH Certificates",
+    "title": "SSH certificate extensions",
+    "content": "Some of the basic extensions (names are self explanatory): . | permit-pty: Allow interactive shell | permit-port-forwarding: Allow SSH tunnels | permit-x11-forwarding | permit-agent-forwarding | permit-user-rc | . References: . | Vault: Signed SSH Certificates | . ",
+    "url": "/docs/security/ssh/cert.html#ssh-certificate-extensions",
+    "relUrl": "/docs/security/ssh/cert.html#ssh-certificate-extensions"
+  },"37": {
     "doc": "Chalice",
     "title": "Chalice",
     "content": ". | Chalice . | What is Chalice? | Install Chalice | Create a new project | Deploy / Delete | Multifiles | Configuration File . | Environment Variables | . | Deploying with Terraform | . | . ",
     "url": "/docs/aws/chalice.html",
     "relUrl": "/docs/aws/chalice.html"
-  },"23": {
+  },"38": {
     "doc": "Chalice",
     "title": "What is Chalice?",
     "content": "It is a python serverless microframework. What it essentially does is combine AWS API Gateway and associated Lambda functions to help you quickly deploy a microservice. Everything you can do in Chalice you can do in the AWS console, but it is easier to manage via code. The syntax and the concept is very much similar to Flask if you’re familiar with it. ",
     "url": "/docs/aws/chalice.html#what-is-chalice",
     "relUrl": "/docs/aws/chalice.html#what-is-chalice"
-  },"24": {
+  },"39": {
     "doc": "Chalice",
     "title": "Install Chalice",
     "content": ". pip3 install chalice . As of now (2021-05), chalice best supports Python 3.8. There may be issues if you use versions more recent than 3.8. ",
     "url": "/docs/aws/chalice.html#install-chalice",
     "relUrl": "/docs/aws/chalice.html#install-chalice"
-  },"25": {
+  },"40": {
     "doc": "Chalice",
     "title": "Create a new project",
     "content": "To create a new project, . chalice new-project myproj . This will create a myproj directory . myproj ├── .chalice ├── app.py └── requirements.txt . ",
     "url": "/docs/aws/chalice.html#create-a-new-project",
     "relUrl": "/docs/aws/chalice.html#create-a-new-project"
-  },"26": {
+  },"41": {
     "doc": "Chalice",
     "title": "Deploy / Delete",
     "content": "The AWS credentials must already be set in ~/.aws/config. To deploy, simply . chalice deploy . To delete, . chalice delete . ",
     "url": "/docs/aws/chalice.html#deploy--delete",
     "relUrl": "/docs/aws/chalice.html#deploy--delete"
-  },"27": {
+  },"42": {
     "doc": "Chalice",
     "title": "Multifiles",
     "content": "If you want to have multiple .py files apart from the app.py (which you will), place all the lib or utils related file in a folder called chalicelib. Anything you add to this directory is recursively added to the deployment. myproj ├── .chalice ├── app.py ├── chalicelib └── requirements.txt . ",
     "url": "/docs/aws/chalice.html#multifiles",
     "relUrl": "/docs/aws/chalice.html#multifiles"
-  },"28": {
+  },"43": {
     "doc": "Chalice",
     "title": "Configuration File",
     "content": "In .chalice, there is a file called config.json. This folder contains all the configurations related to this package. You can set app name, deploment stages, environment variables, etc. Environment Variables . For general environment variables, add the following syntax to .chalice/config.json . { \"environment_variables\": { \"ENV_VAR\": \"value\", \"ENV_VAR2\": \"value2\" } } . You can also set stage specific environment variables by, . { \"stages\": { \"dev\": { \"environment_variables\": { \"MY_ENV\": \"value\" } }, \"prod\": { \"environment_variables\": { \"MY_PROD_ENV\": \"value\" } } } } . ",
     "url": "/docs/aws/chalice.html#configuration-file",
     "relUrl": "/docs/aws/chalice.html#configuration-file"
-  },"29": {
+  },"44": {
     "doc": "Chalice",
     "title": "Deploying with Terraform",
     "content": ". # Will generate deployment.zip and chalice.tf.json chalice package --pkg-format terraform output_dir . chalice package will generate the Lambda deployments and Terraform configuration files. You can then use Terraform CLI to deploy. See here for details. References: . | Chalice: Quickstart | Chalice: Terraform Support | Chalice: Multifile | Chalice: Configuration File | . ",
     "url": "/docs/aws/chalice.html#deploying-with-terraform",
     "relUrl": "/docs/aws/chalice.html#deploying-with-terraform"
-  },"30": {
+  },"45": {
     "doc": "Cognito",
     "title": "AWS Cognito",
     "content": ". | Token: Hosted UI / AWS SDK . | Hosted UI | AWS SDK | . | How to use a custom domain | . ",
     "url": "/docs/aws/cognito.html#aws-cognito",
     "relUrl": "/docs/aws/cognito.html#aws-cognito"
-  },"31": {
+  },"46": {
     "doc": "Cognito",
     "title": "Token: Hosted UI / AWS SDK",
     "content": "Hosted UI . Cognito hosts a login portal and an authorization server by default. This UI is hosted on the /login enpoint. After user types in their credentials, a request is automatically made to the /oauth2/authorize endpoint. Upon successful authentication, client is redirected to a URL configured for the user pool client. If you’re using an implicit flow (not recommended), you will be redirected with a token directly. If you’re using an authorization code flow, you will be redirected with a code parameter which you can exchange later to a token at the /oauth2/token endpoint. AWS SDK . Although the hosted UI option is convenient, one downside of it is that customization is limited. ",
     "url": "/docs/aws/cognito.html#token-hosted-ui--aws-sdk",
     "relUrl": "/docs/aws/cognito.html#token-hosted-ui--aws-sdk"
-  },"32": {
+  },"47": {
     "doc": "Cognito",
     "title": "How to use a custom domain",
     "content": ". ",
     "url": "/docs/aws/cognito.html#how-to-use-a-custom-domain",
     "relUrl": "/docs/aws/cognito.html#how-to-use-a-custom-domain"
-  },"33": {
+  },"48": {
     "doc": "Cognito",
     "title": "Cognito",
     "content": " ",
     "url": "/docs/aws/cognito.html",
     "relUrl": "/docs/aws/cognito.html"
-  },"34": {
+  },"49": {
     "doc": "Docker Compose",
     "title": "Docker Compose",
-    "content": ". ",
+    "content": ". | Why use Docker Compose? | Dockerfile / docker-compose.yml . | Dockerfile | docker-compose.yml | . | Example usage | Useful commands | Itty Bitties . | Build context | Default network | . | . ",
     "url": "/docs/docker/compose.html",
     "relUrl": "/docs/docker/compose.html"
-  },"35": {
+  },"50": {
+    "doc": "Docker Compose",
+    "title": "Why use Docker Compose?",
+    "content": "Compose is a tool to help define and run containers/services. It basically packs all those docker bulid ..., docker run ... commands into a single yaml. ",
+    "url": "/docs/docker/compose.html#why-use-docker-compose",
+    "relUrl": "/docs/docker/compose.html#why-use-docker-compose"
+  },"51": {
+    "doc": "Docker Compose",
+    "title": "Dockerfile / docker-compose.yml",
+    "content": "Dockerfile . Dockerfile defines the recipe to create an image. docker-compose.yml . docker-compose.yml defines services or containers that run images. ",
+    "url": "/docs/docker/compose.html#dockerfile--docker-composeyml",
+    "relUrl": "/docs/docker/compose.html#dockerfile--docker-composeyml"
+  },"52": {
+    "doc": "Docker Compose",
+    "title": "Example usage",
+    "content": "version: '3.9' services: my-service: container_name: my-container build: context: ./src dockerfile: Dockerfile ports: - 1234:1234 volumes: - ./src:/www . For ports and volumes the order of syntax is &lt;host&gt;:&lt;container&gt;. ",
+    "url": "/docs/docker/compose.html#example-usage",
+    "relUrl": "/docs/docker/compose.html#example-usage"
+  },"53": {
+    "doc": "Docker Compose",
+    "title": "Useful commands",
+    "content": "# Create and start containers docker-compose up # Build images and start containers docker-compose up --build # Start the containers in detached mode docker-compose up --d # Stop and remove containers and default networks docker-compose down # Lists containers (even the ones that are exited) docker-compose ps . ",
+    "url": "/docs/docker/compose.html#useful-commands",
+    "relUrl": "/docs/docker/compose.html#useful-commands"
+  },"54": {
+    "doc": "Docker Compose",
+    "title": "Itty Bitties",
+    "content": "Suppose the project root directory is called proj. proj ├── docker-compose.yml └── src ├── Dockerfile └── ... # docker-compose.yml services: my-service: container_name: my-container build: context: ./src dockerfile: Dockerfile . Build context . With docker build -f ../Dockerfile ., it is possible for the Dockerfile to be outside of the build context. However, it seems that with Compose, the Dockerfile must be within the build context. So in the example case Dockerfile must be under src, otherwise it will produce an error: . failed to solve: rpc error: code = Unknown desc = failed to solve with frontend dockerfile.v0: failed to read dockerfile: open /var/lib/docker/tmp/your-build-context/Dockerfile: no such file or directory . Default network . Compose automatically creates a bridge network of name proj_default, and adds all service containers to it. Check that is is true by, . # Locate the created default network docker network ls # Inspect the containers in it docker inspect proj_default . Then you will see my-container listed under network proj_default. ",
+    "url": "/docs/docker/compose.html#itty-bitties",
+    "relUrl": "/docs/docker/compose.html#itty-bitties"
+  },"55": {
     "doc": "Conda",
     "title": "Conda",
     "content": ". | Conda . | Advantage to other virtual environments | Install Conda (miniconda) | Typical usage | Create environment | Activate / Deactivate | Install packages | List and export dependencies | . | . ",
     "url": "/docs/python/envs/conda.html",
     "relUrl": "/docs/python/envs/conda.html"
-  },"36": {
+  },"56": {
     "doc": "Conda",
     "title": "Advantage to other virtual environments",
     "content": "Unlike some other virtual environments that are dependent on a preinstalled Python, conda is both a Python version manager and a virtual environment manager. conda makes using different Python versions in different environments easier. ",
     "url": "/docs/python/envs/conda.html#advantage-to-other-virtual-environments",
     "relUrl": "/docs/python/envs/conda.html#advantage-to-other-virtual-environments"
-  },"37": {
+  },"57": {
     "doc": "Conda",
     "title": "Install Conda (miniconda)",
     "content": "Conda can be installed through installers. Just follow the prompt to install. Whatever you do, don’t forget to run conda init zsh. If you don’t want the base environment activated all the time, . conda config --set auto_activate_base false . ",
     "url": "/docs/python/envs/conda.html#install-conda-miniconda",
     "relUrl": "/docs/python/envs/conda.html#install-conda-miniconda"
-  },"38": {
+  },"58": {
     "doc": "Conda",
     "title": "Typical usage",
     "content": "To create an environment for a project: . conda create -n myenv python=3.x conda activate myenv . ",
     "url": "/docs/python/envs/conda.html#typical-usage",
     "relUrl": "/docs/python/envs/conda.html#typical-usage"
-  },"39": {
+  },"59": {
     "doc": "Conda",
     "title": "Create environment",
     "content": "Simplest method is . conda create -n myenv . To use a specific Python version . conda create --name myenv python=3.8 . Created environments are located in ~/anaconda3/env or ~/miniconda3/env. If you installed conda via GUI installer, the conda folder may be in /opt. Confirm environment creation via . conda env list # OR conda info --envs . ",
     "url": "/docs/python/envs/conda.html#create-environment",
     "relUrl": "/docs/python/envs/conda.html#create-environment"
-  },"40": {
+  },"60": {
     "doc": "Conda",
     "title": "Activate / Deactivate",
     "content": "conda activate myenv . conda deactivate . ",
     "url": "/docs/python/envs/conda.html#activate--deactivate",
     "relUrl": "/docs/python/envs/conda.html#activate--deactivate"
-  },"41": {
+  },"61": {
     "doc": "Conda",
     "title": "Install packages",
     "content": "To install packages in current active environment, . conda install pkg-name # OR for a specific version conda install pkg-name=1.0.0 . To install packages in some other environment, . conda install pkg-name -n myenv . ",
     "url": "/docs/python/envs/conda.html#install-packages",
     "relUrl": "/docs/python/envs/conda.html#install-packages"
-  },"42": {
+  },"62": {
     "doc": "Conda",
     "title": "List and export dependencies",
     "content": ". conda list . To export dependencies (like pip3 freeze &gt; requirements.txt), . conda list --export &gt; requirements.txt . To duplicate an environment using the list (like pip3 install -r requirements.txt), . conda create -n myenv --file requirements.txt . References: . | Conda: Managing Environments | Conda: Install Packages | . ",
     "url": "/docs/python/envs/conda.html#list-and-export-dependencies",
     "relUrl": "/docs/python/envs/conda.html#list-and-export-dependencies"
-  },"43": {
+  },"63": {
     "doc": "Docker Container",
     "title": "Docker Container",
     "content": ". | Show running containers | Execute command in container . | Open a container shell | . | Start an existing container in background (detached) | Attach container | . ",
     "url": "/docs/docker/container.html",
     "relUrl": "/docs/docker/container.html"
-  },"44": {
+  },"64": {
     "doc": "Docker Container",
     "title": "Show running containers",
     "content": "docker ps . ",
     "url": "/docs/docker/container.html#show-running-containers",
     "relUrl": "/docs/docker/container.html#show-running-containers"
-  },"45": {
+  },"65": {
     "doc": "Docker Container",
     "title": "Execute command in container",
     "content": "docker exec -it my-container &lt;command&gt; . Open a container shell . docker exec -it my-container sh . ",
     "url": "/docs/docker/container.html#execute-command-in-container",
     "relUrl": "/docs/docker/container.html#execute-command-in-container"
-  },"46": {
+  },"66": {
     "doc": "Docker Container",
     "title": "Start an existing container in background (detached)",
     "content": "The container will run in background and you will not see its stdout/stderr . docker start my-container . ",
     "url": "/docs/docker/container.html#start-an-existing-container-in-background-detached",
     "relUrl": "/docs/docker/container.html#start-an-existing-container-in-background-detached"
-  },"47": {
+  },"67": {
     "doc": "Docker Container",
     "title": "Attach container",
     "content": "If you want to see outputs from the container in your terminal (ie. logging), you would want to run the container in attached mode. You can either run it in attached mode to begin with by . docker start my-container --attach # OR docker start my-container -a . Or you can attach a running container later . docker attach my-container . ",
     "url": "/docs/docker/container.html#attach-container",
     "relUrl": "/docs/docker/container.html#attach-container"
-  },"48": {
+  },"68": {
     "doc": "Dangling Images",
     "title": "Docker Dangling Images",
     "content": ". | What are dangling images? | Docker Image / Images . | Docker Image | Docker Images | . | . ",
     "url": "/docs/docker/dangling.html#docker-dangling-images",
     "relUrl": "/docs/docker/dangling.html#docker-dangling-images"
-  },"49": {
+  },"69": {
     "doc": "Dangling Images",
     "title": "What are dangling images?",
     "content": "When you do . docker images -a | grep '&lt;none&gt;' # OR docker image ls -a | grep '&lt;none&gt;' . Or check the Images tab in Docker Desktop, you may see a bunch of images with the name and tag of &lt;none&gt;. This is a residue / intermediate image created from previous image builds. It seems they exist as a cached layer for subsequent builds. But it is safe to delete them. You can remove these dangling images by . docker image prune . docker image prune -a not only removes dangling images but also any unused images. This can come in handy, but if you’re keeping any pulled Docker registry images (unused in containers at the moment) in your local storage for some reason, this is not what you want. ",
     "url": "/docs/docker/dangling.html#what-are-dangling-images",
     "relUrl": "/docs/docker/dangling.html#what-are-dangling-images"
-  },"50": {
+  },"70": {
     "doc": "Dangling Images",
     "title": "Docker Image / Images",
     "content": "You may have noticed that there are two Docker CLI commands that seem similar . | docker image | docker images | . There is a bit of a difference between the two. Docker Image . Actually builds, pulls, and removes images. This command is used to physically manage the images. You can of course list images as well. docker image ls . Docker Images . This has to do with displaying in a high-level fashion what kind of images exist. Primary purpose is to display image metadata. docker images . ",
     "url": "/docs/docker/dangling.html#docker-image--images",
     "relUrl": "/docs/docker/dangling.html#docker-image--images"
-  },"51": {
+  },"71": {
     "doc": "Dangling Images",
     "title": "Dangling Images",
     "content": " ",
     "url": "/docs/docker/dangling.html",
     "relUrl": "/docs/docker/dangling.html"
-  },"52": {
-    "doc": "With docker-compose",
-    "title": "With docker-compose",
-    "content": "To be added. ",
-    "url": "/docs/demo/flask-login-app/docker-compose.html",
-    "relUrl": "/docs/demo/flask-login-app/docker-compose.html"
-  },"53": {
+  },"72": {
     "doc": "DynamoDB",
     "title": "DynamoDB",
     "content": ". | Local Setup | NoSQL Workbench for DynamoDB | Key design / Data model . | Primary Key | Design | . | Itty Bitties | . ",
     "url": "/docs/aws/dynamodb.html",
     "relUrl": "/docs/aws/dynamodb.html"
-  },"54": {
+  },"73": {
     "doc": "DynamoDB",
     "title": "Local Setup",
     "content": "Detailed documentation is provided here. Docker option is available as well. ",
     "url": "/docs/aws/dynamodb.html#local-setup",
     "relUrl": "/docs/aws/dynamodb.html#local-setup"
-  },"55": {
+  },"74": {
     "doc": "DynamoDB",
     "title": "NoSQL Workbench for DynamoDB",
     "content": "This will be a great lifesaver while designing data models and testing connection. You can download it here. ",
     "url": "/docs/aws/dynamodb.html#nosql-workbench-for-dynamodb",
     "relUrl": "/docs/aws/dynamodb.html#nosql-workbench-for-dynamodb"
-  },"56": {
+  },"75": {
     "doc": "DynamoDB",
     "title": "Key design / Data model",
     "content": "If you are used to relational database schemas, it is easy to end up designing your database to use multiple tables, to structure logical joins using foreign key-like attribute and what not, or to use multi-level nested structure. However, in NoSQL, all these familiar patterns are not only inefficient, but also almost impossible to manage. There really is no such thing as a schema design in DynamoDB but a careful design of primary key is useful. Primary Key . There are two types of keys that can consist a primary key in DynamoDB: partition (hash) key and sort (range) key. A primary key could just consist of a partition key or be a compound of partition and sort key. Because each item is identified by a unique primary key, you must use a unique partition key if your primary key only consists of it. However, if you also use the sort key, the partition key may overlap but the sort key must be unique. Partition key and sort key are also called hash and range keys. The naming indicates that the partition key serves as a hashed index to a physical storage internal unit called a partition. The sort key sorts the items within a partition into groups of similar items, effectively providing an efficient way to query for a range. Hence, design of primary key has an impact on the performance of the DB. Design . In relational databases, primary keys are usually a single attribute (like StudentID) of a homogeneous type. However, in DynamoDB it is common to use a multi-purpose (or heterogeneous) key attributes. Typically, every item is given an attribute called PK and SK for partition and sort key. This way the key attributes may contain any information without restriction. ",
     "url": "/docs/aws/dynamodb.html#key-design--data-model",
     "relUrl": "/docs/aws/dynamodb.html#key-design--data-model"
-  },"57": {
+  },"76": {
     "doc": "DynamoDB",
     "title": "Itty Bitties",
     "content": ". | Compared to SQL statements, querying in DynamoDB can be a real pain in the xxx… | . ",
     "url": "/docs/aws/dynamodb.html#itty-bitties",
     "relUrl": "/docs/aws/dynamodb.html#itty-bitties"
-  },"58": {
+  },"77": {
     "doc": "Frontend Web",
     "title": "Frontend Web",
     "content": ". | SPA vs SSR vs Static Site . | Single-Page Application (SPA) | Server-Side Rendering | Static Site | . | . ",
     "url": "/docs/learned/frontend-web.html",
     "relUrl": "/docs/learned/frontend-web.html"
-  },"59": {
+  },"78": {
     "doc": "Frontend Web",
     "title": "SPA vs SSR vs Static Site",
     "content": "Here is an attempt to understand the exact differences between the three. Single-Page Application (SPA) . An SPA uses CSR (client-side rendering). Just by that I can already see the glaring difference to SSR (server-side rendering). In CSR, as the name suggests the client (browser) dynamically renders the web app. All the HTML, CSS, and Javascript are loaded in the beginning of the app’s lifecycle. Script makes AJAX calls to the API when it needs new data and dynamically integrates it. So technically, there really is only one page that is being presented to the user, it’s just that the contents within the page change to meet your needs. One advantage of SPA is that it provides better UX, because there is little to no lag time during navigation within the app. This comes from the fact that SPA does not require duplicate resources again and again after each click unlike MPA (Multiple-Page Application)/SSR. Things that always stay static on a website, like the general frame or style can stay as is and only new data are fetched from server. One disadvantage is that it is generally considered to have poor SEO (Search-Engine Optimization) compared to server-side apps. This is because without JS rendering, the HTML of an SPA is pretty much empty. If you check the source code of an SPA (not from the console), you will see that it does not contain much other than all the scripts that are sitting and waiting to execute upon interaction. In addition, SPAs might not have unique URLs for each content delivered. In many cases the URL stays the same throughout the entire site. Therefore crawling and indexing becomes slow and difficult. Server-Side Rendering . With all that being said about SPA, SSR is easier to understand. When navigation happens (e.g via click), the server builds the page and hands it over to the browser. Within a browser, you will only see the resources that consist the current page that you are on. You can already see why this could be slow, since it’s like asking the chef to dip your nachos every single bite when you could’ve just had the chips and cheese in front of you and dip it yourself. Due to this nature of SSR, you will see the page flicker upon navigation unlike the smooth UX of SPA. However, the benefit of SSR compared to SPA is that it is more secure, less heavy on the browser (and no memory leaks), and better SEO. Static Site . Static sites do not have dynamic content and consist of only the static files (HTML, CSS, JS). You could think of this as if the SSR had already rendered every single page that the client might request and had it prepared for you. There is no backend component to static sites and no rendering is involved. ",
     "url": "/docs/learned/frontend-web.html#spa-vs-ssr-vs-static-site",
     "relUrl": "/docs/learned/frontend-web.html#spa-vs-ssr-vs-static-site"
-  },"60": {
+  },"79": {
     "doc": "Home",
     "title": "Online Long-Term Memory of a Novice Programmer",
     "content": "Personal documentation of itty bitties and all the hacky decisions I’ve made throughout my learning (and maybe life). ",
     "url": "/#online-long-term-memory-of-a-novice-programmer",
     "relUrl": "/#online-long-term-memory-of-a-novice-programmer"
-  },"61": {
+  },"80": {
     "doc": "Home",
     "title": "Intro",
     "content": "Why? . Learning is always fun; I love jamming new things into my head. However, I’ve noticed that my long-term memory is in fact not long enough to guide me back after a while. Hence, the docs. I can’t do anything about the things that have already left my head, but I am hoping that I can at least keep an itty bitty documentation of my future learnings. Disclaimer . The information contained in this document is not necessarily correct or comprehensive. It will be biased in many ways and may contain naive and pitiful approaches made by a novice. Its sole purpose is to document my footsteps. ",
     "url": "/#intro",
     "relUrl": "/#intro"
-  },"62": {
+  },"81": {
     "doc": "Home",
     "title": "Home",
     "content": " ",
     "url": "/",
     "relUrl": "/"
-  },"63": {
+  },"82": {
     "doc": "Demo",
     "title": "Demo",
     "content": " ",
     "url": "/docs/demo/",
     "relUrl": "/docs/demo/"
-  },"64": {
+  },"83": {
     "doc": "Flask",
     "title": "Flask",
     "content": " ",
     "url": "/docs/flask/",
     "relUrl": "/docs/flask/"
-  },"65": {
+  },"84": {
     "doc": "Terraform",
     "title": "Terraform",
     "content": " ",
     "url": "/docs/terraform/",
     "relUrl": "/docs/terraform/"
-  },"66": {
+  },"85": {
     "doc": "Terraform",
     "title": "What is Terraform?",
     "content": "Infrastructure as Code (IaC): Terraform is a software tool that codes the infrastructure with a declarative configuration language. Your entire infrastructure is managed through a set of declarations. The benefit of IaC is that everything is collected within a single tool. This gets rid of the pain of having to jump to different tools every time you want to configure your resources. ",
     "url": "/docs/terraform/#what-is-terraform",
     "relUrl": "/docs/terraform/#what-is-terraform"
-  },"67": {
+  },"86": {
     "doc": "Network",
     "title": "Network Basics",
     "content": ". | IP Address . | Private IP Address . | IPv4: RFC1918 | . | . | . ",
     "url": "/docs/learned/network/#network-basics",
     "relUrl": "/docs/learned/network/#network-basics"
-  },"68": {
+  },"87": {
     "doc": "Network",
     "title": "IP Address",
     "content": "IP (Internet Protocol) address is a unique address that identifies a device on a network using an Internet Protocol. Private IP Address . Reserved range for private networks . IPv4: RFC1918 . | [24-bit block] CIDR: 10.0.0.0/8, Subnet mask: 255.0.0.0 | [20-bit block] CIDR: 172.16.0.0/12, Subnet mask: 255.240.0.0 | [16-bit block] CIDR: 192.168.0.0/16, Subnet mask: 255.255.0.0 | . ",
     "url": "/docs/learned/network/#ip-address",
     "relUrl": "/docs/learned/network/#ip-address"
-  },"69": {
+  },"88": {
     "doc": "Network",
     "title": "Network",
     "content": " ",
     "url": "/docs/learned/network/",
     "relUrl": "/docs/learned/network/"
-  },"70": {
+  },"89": {
     "doc": "OAuth 2.0",
     "title": "OAuth 2.0",
     "content": ". | What is an OAuth 2.0 protocol? . | OpenID | . | Client types . | Client secret | Public clients | Confidential clients | . | Authorization flow . | Implicit flow | Authorization code flow | Authorization code flow with PKCE | . | Authorization server API . | Authorize | Token | . | PKCE Code Challenge . | Code verifier | Code challenge | . | . ",
     "url": "/docs/learned/oauth2/",
     "relUrl": "/docs/learned/oauth2/"
-  },"71": {
+  },"90": {
     "doc": "OAuth 2.0",
     "title": "What is an OAuth 2.0 protocol?",
     "content": "According to Google, it is an ‘open standard for access delegation’. While it sounds intimidating, it is essentially made to ‘let this application access my Google photos’, ‘let this site use my Facebook contacts’, etc. So it was developed as method for authorization to a 3rd party resource. Some terms: . | Resource owner: that’s the user (you) wanting to grant access | Resource server: the API you want to access | Client: application requesting access | User Agent: the thing user is using to talk to client (browser, mobile app) | Authorization server: authorizes and grants access tokens to client | . OpenID . One thing to note is the word authorization, and you shoud not to confuse it with authentication. When I first read about OAuth, I thought, “Well isn’t this the ‘Sign in with Google/Facebook’ button that I see quite a lot on websites these days?”. It sort of is, because the protocol behind that button is OpenID which is built on top of OAuth 2.0. So the way they operate are very similar, but it is good to know the difference that OAuth is for authorization and OpenID builds a layer on top of OAuth for authentication. ",
     "url": "/docs/learned/oauth2/#what-is-an-oauth-20-protocol",
     "relUrl": "/docs/learned/oauth2/#what-is-an-oauth-20-protocol"
-  },"72": {
+  },"91": {
     "doc": "OAuth 2.0",
     "title": "Client types",
     "content": "There are two different types of clients in OAuth. One is a public client and the other is a confidential client. To understand the difference, you need to know the term client secret. Client secret . A client secret is nothing more than a random string generated. It is usually created by generating a secure random string of 256-bit (32 bytes) and then converting it to hex. This value should never be revealed to the outside except for the authorizing server and the client app. Hence the name ‘client secret’. Inside your code, client secret will be used to successfully authorize users. But the issue that arises is where should the client store this secret. Public clients . If the client cannot keep the client secret a secret, it is called a public client. For example, single-page apps that expose everything on the browser with no backend or mobile apps that can have their HTTPS request intercepted and revealed are considered public clients. In case of an SPA, everything is exposed on the browser. Chrome inspect will reveal the source code, local storage, session, and cookies. So storing client secret is infeasible. For a mobile app, apparently it is possible to provide a fake HTTPS certificate that goes to your own API. So you can catch an HTTPS leaving the phone, route it to a different API, have that API make a request to the initial intended API, and return the response to phone as if it would normally, while the proxy API in the middle can inspect all the requests (which may contain the client secret at some point). Confidential clients . This is typically a traditional web server or anything backed by a server where nobody can take a peek at the source code or have the requests intercepted. ",
     "url": "/docs/learned/oauth2/#client-types",
     "relUrl": "/docs/learned/oauth2/#client-types"
-  },"73": {
+  },"92": {
     "doc": "OAuth 2.0",
     "title": "Authorization flow",
     "content": "There are a few different flows, but I will only document three of them: implicit flow, authorization code flow, authorization code flow with PKCE. The general process is as below: . | Client sends request to autorization server | Client gets an authorization code back | Client sends request to a token endpoint | Client gets an access token | Client places this token in a header when sending a request to resource server | . Implicit flow . Implicit flow is much more simplified. After step 1, implicit flow skips right to step 4. Because the access token is revealed on the browser url, this is considered an insecure lecay method. Authorization code flow . Client gets an authorization code back as a request parameter embedded in the url. The client then uses this code to exchange it for an access token. Usually secure random strings such as state and client secret are used to validate the process. Authorization code flow with PKCE . For public clients that cannot keep any secret strings, PKCE (Proof Key for Code Exchange) is implemented. This step includes an additional code challenge and verifying step. ",
     "url": "/docs/learned/oauth2/#authorization-flow",
     "relUrl": "/docs/learned/oauth2/#authorization-flow"
-  },"74": {
+  },"93": {
     "doc": "OAuth 2.0",
     "title": "Authorization server API",
     "content": "Typically there are two endpoints during the process. Authorize . Typical request is an HTTPS GET to a path that often looks like oauth/authorize. Parameters . | response_type: code for authorization code flow and token for implicit flow | client_id: client app id | redirect_uri: absolute uri to be redirected after authorization | state: a random value that will be returned back in redirect. This is a protection against CSRF. | scope: the scope of resources you want to protect | code_challenge_method (PKCE only): the encryption used in code challenge; typically S256 for SHA256 | code_challenge (PKCE only): the generated challenge from code_verifier | . Token . After extracting the authorization code from the redirect url, you make an HTTPS POST request to oauth/token. Header: . | Authorization: Basic Base64_url_encode('client_id:client_secret') | Content-Type: application/x-www-form-urlencoded | . Body: . | grant_type: authorization_code, refresh_token, client_credentials | client_id | redirect_uri: should be the same as the one used for authorization request | scope | code: extracted from url | code_verifier: proof key for the code_challenge | . Response: . { \"id_token\": \"~\", \"access_token\": \"~\", \"refresh_token\": \"~\", \"token_type\": \"Bearer\", \"expires_in\": 10000 } . ",
     "url": "/docs/learned/oauth2/#authorization-server-api",
     "relUrl": "/docs/learned/oauth2/#authorization-server-api"
-  },"75": {
+  },"94": {
     "doc": "OAuth 2.0",
     "title": "PKCE Code Challenge",
     "content": "Code verifier . According to here it is a ‘cryptographically random string using the characters A-Z, a-z, 0-9, and the punctuation characters -._~ (hyphen, period, underscore, and tilde), between 43 and 128 characters long’. Code challenge . Code challenge is created by hashing the code_verifier with SHA256 and then encoding as a BASE6-URL string. References: . | OAuth: PKCE | AWS Cognito: AUTHORIZE | AWS Cognito: TOKEN | Auth0: PKCE | . ",
     "url": "/docs/learned/oauth2/#pkce-code-challenge",
     "relUrl": "/docs/learned/oauth2/#pkce-code-challenge"
-  },"76": {
+  },"95": {
     "doc": "Things I Learned",
     "title": "Things I Learned",
     "content": "List of itty bitty things that I want to keep a note of, but couldn’t quite find a category to place yet. Contents listed here may be moved or grouped with other pages if more related contents are produced. ",
     "url": "/docs/learned/",
     "relUrl": "/docs/learned/"
-  },"77": {
+  },"96": {
     "doc": "Docker",
     "title": "Docker",
     "content": " ",
     "url": "/docs/docker/",
     "relUrl": "/docs/docker/"
-  },"78": {
+  },"97": {
     "doc": "Docker",
     "title": "Explained in a really dumb way",
     "content": "You build an image that contains all the resources that compose a project. This packaging makes porting really easy because all the resources that made your project run at one time is now completely captured in it. You could think of this as a snapshot of your project. This image can be run in a docker container. A container is basically a process isolated from your computer. Think of it as a mini sandbox that mimics your system. Inside a container resources will be downloaded, installed, and copied just as you would normally, but whatever that happened during a container execution will not meddle with your actual computer (unless you specifically configure it to). ",
     "url": "/docs/docker/#explained-in-a-really-dumb-way",
     "relUrl": "/docs/docker/#explained-in-a-really-dumb-way"
-  },"79": {
+  },"98": {
     "doc": "Python Environments",
     "title": "Python Environments",
     "content": ". | Python Environments . | Why do you need them? | Python version manager vs Virtual environments . | Typical use case | . | Notes / sanity check | . | . ",
     "url": "/docs/python/envs/",
     "relUrl": "/docs/python/envs/"
-  },"80": {
+  },"99": {
     "doc": "Python Environments",
     "title": "Why do you need them?",
     "content": "Every Python project comes with different requirements. For example: . |   | Python | Library1 | Library2 | Library3 | . | Project A | 3.6 | x | 1.1.2 | 2.3.0 | . | Project B | 3.10 | x | 2.3.1 | 3.0.1 | . | Project C | 2.7 | 1.4.0 | 1.1.2 | x | . As the number of projects grow, managing different versions of Python and their packages are going to be increasingly difficult. Switching between them and resolving conflicts is one hassle, but removing them after use is also a pain. Environments, however, remembers the context of a project, and keeps them independent of other project’s context. Hence, project collaboration and management becomes much easier with environments. ",
     "url": "/docs/python/envs/#why-do-you-need-them",
     "relUrl": "/docs/python/envs/#why-do-you-need-them"
-  },"81": {
+  },"100": {
     "doc": "Python Environments",
     "title": "Python version manager vs Virtual environments",
     "content": "It can be confusing because they all go by the name environment. Long story short, . | Version manager: manages Python versions | Virtual environment: manages libraries | . You’ll probably end up needing both. Typical use case . You install and select a Python version to use with a version manager. Then create a virtual environment for a project using that Python version. For example (not comprehensive): . | pyenv: version manager | Conda: version manager + virtual environment | venv: virtual environment | Pipenv: virtual environment | Poetry: virtual environment | . ",
     "url": "/docs/python/envs/#python-version-manager-vs-virtual-environments",
     "relUrl": "/docs/python/envs/#python-version-manager-vs-virtual-environments"
-  },"82": {
+  },"101": {
     "doc": "Python Environments",
     "title": "Notes / sanity check",
     "content": ". | which python / which python3 will point to the python binary | which pip / which pip3 will point the pip binary | pip -V / pip3 -V will point to the site-packages | conda run which python / conda run python -V does the expected for the base conda env or the active env | pipenv run which python / pipenv run python -V does the expected for the current root directory env | However, pipenv run pip -V will create an env for the cwd and add pip to the Pipfile for cwd | . ",
     "url": "/docs/python/envs/#notes--sanity-check",
     "relUrl": "/docs/python/envs/#notes--sanity-check"
-  },"83": {
+  },"102": {
     "doc": "Python",
     "title": "Python",
     "content": " ",
     "url": "/docs/python/",
     "relUrl": "/docs/python/"
-  },"84": {
+  },"103": {
+    "doc": "SSH",
+    "title": "SSH",
+    "content": " ",
+    "url": "/docs/security/ssh/",
+    "relUrl": "/docs/security/ssh/"
+  },"104": {
+    "doc": "PGP Key",
+    "title": "PGP Key",
+    "content": ". | PGP Key . | OpenPGP | GnuPG . | Basic usage | Editing a key | Encrypt and decrypt | Error | . | Key ID | . | . ",
+    "url": "/docs/security/pgp/",
+    "relUrl": "/docs/security/pgp/"
+  },"105": {
+    "doc": "PGP Key",
+    "title": "OpenPGP",
+    "content": "To be added . ",
+    "url": "/docs/security/pgp/#openpgp",
+    "relUrl": "/docs/security/pgp/#openpgp"
+  },"106": {
+    "doc": "PGP Key",
+    "title": "GnuPG",
+    "content": "Basic usage . # Follow prompt to create keys gpg --full-generate-key # List public keys gpg --list-keys # List secret keys gpg --list-secret-keys . Editing a key . gpg --edit-key &lt;key-id&gt; . To fix the expiration setting, for example, do: . gpg&gt; expire ...prompt... Then save the settings by: . gpg&gt; save . Related files will be stored in ~/.gnupg. Encrypt and decrypt . To be added . The last % of decrypted output is unused. Error . In case you get any error of the following: . $ gpg: public key decryption failed: Inappropriate ioctl for device $ gpg: decryption failed: Inappropriate ioctl for device . Try: . export GPG_TTY=$(tty) . You can place them in your shell configuration file. ",
+    "url": "/docs/security/pgp/#gnupg",
+    "relUrl": "/docs/security/pgp/#gnupg"
+  },"107": {
+    "doc": "PGP Key",
+    "title": "Key ID",
+    "content": "The key ID is calculated from your public key and the creation timestamp. The long hex printed with gpg --list-keys is the fingerprint of the key. If you take the last 16 hex, that is the the long key ID. If you only take the last 8, that is the short key ID. You can provide either one of the three for a key ID. ",
+    "url": "/docs/security/pgp/#key-id",
+    "relUrl": "/docs/security/pgp/#key-id"
+  },"108": {
     "doc": "Vault",
     "title": "Vault",
-    "content": ". | Vault . | Installation . | With Homebrew | With Docker | . | Server configuration file . | storage | listener | log level | ttl (Time-To-Live) | ui | . | . | . ",
+    "content": ". | Installation . | With Homebrew | With Docker | . | Server configuration file . | storage | listener | log level | ttl (Time-To-Live) | ui | . | . ",
     "url": "/docs/security/vault/",
     "relUrl": "/docs/security/vault/"
-  },"85": {
+  },"109": {
     "doc": "Vault",
     "title": "Installation",
     "content": "With Homebrew . brew tap hashicorp/tap . brew install hashicorp/tap/vault . With Docker . Official docker image is vault. Three volumes can be mounted. | /vault/logs to persist logs | /vault/file to persist data when file is the storage backnd for Vault | /vault/config for Vault server configuration file | . By default, Vault will run in container as a development server (vault server -dev). Vault entrypoint checks for a command and uses it as a subcommand to vault. If you do not wish to run in development mode, set command to server. To prevent memory leaking information to disk through swaps, container must be run with cap-add set to IPC_LOCK. To disable memory locking due to setcap issues, set SKIP_SETCAP environment variable to a non-empty value. In non-development environment, you must add disable_mlock: true to the configuration file to disable this functionality. Place a configuration file (either using .hcl or .json) for the Vault server in /vault/config. Vault will automatically read it. ",
     "url": "/docs/security/vault/#installation",
     "relUrl": "/docs/security/vault/#installation"
-  },"86": {
+  },"110": {
     "doc": "Vault",
     "title": "Server configuration file",
-    "content": "You can use either HCL or JSON, but I will use HCL because I prefer its syntax. The entire set of configuration can be found here. The following are some of the most basic configurations to run a Vault server. storage . The list of all storage backends can be found here. The simplest storage backend is the filesystem. Example: . storage \"file\" { path = \"/vault/file\" } . listener . listener configures where Vault should listen for requests. There is only one configuration right now which is TCP. listener \"tcp\" { address = \"127.0.0.1:8200\" # You must explicitly disable tls if you're not using it tls_disable = \"false\" | \"true\" (string) # Else tls_cert_file = \"...\" tls_key_file = \"...\" } . Make sure to secure your connection with tls (Let’s Encrypt or so) if you expect your Vault server to have non-local http requests, which usually is the case when being used for production. log level . Specifies log level. log_level = \"trace\" | \"debug\" | \"error\" | \"warn\" | \"info\" . ttl (Time-To-Live) . max_lease_ttl = \"768h\" (string) default_least_ttl = \"700h\" (string) . These set the lease expiration time for non-root tokens and secrets. default_least_ttl cannot be greater than max_lease_ttl. max_lease_ttl can be overriden later for different token lease methods. ui . ui = false | true (boolean) . Set to true to enable web UI. ",
+    "content": "You can use either HCL or JSON, but I will use HCL because I prefer its syntax. The entire set of configuration can be found here. The following are some of the most basic configurations to run a Vault server. storage . The list of all storage backends can be found here. The simplest storage backend is the filesystem. Example: . storage \"file\" { path = \"/vault/file\" } . listener . listener configures where Vault should listen for requests. There is only one configuration right now which is TCP. listener \"tcp\" { # If you're using docker, and you want to access the web UI # Use address = \"0.0.0.0:8200\" address = \"127.0.0.1:8200\" # You must explicitly disable tls if you're not using it tls_disable = \"false\" | \"true\" (string) # Else tls_cert_file = \"...\" tls_key_file = \"...\" } . Make sure to secure your connection with tls (Let’s Encrypt or so) if you expect your Vault server to have non-local http requests, which usually is the case when being used for production. log level . Specifies log level. log_level = \"trace\" | \"debug\" | \"error\" | \"warn\" | \"info\" . ttl (Time-To-Live) . max_lease_ttl = \"768h\" (string) default_least_ttl = \"700h\" (string) . These set the lease expiration time for non-root tokens and secrets. default_least_ttl cannot be greater than max_lease_ttl. max_lease_ttl can be overriden later for different token lease methods. ui . ui = false | true (boolean) . Set to true to enable web UI. ",
     "url": "/docs/security/vault/#server-configuration-file",
     "relUrl": "/docs/security/vault/#server-configuration-file"
-  },"87": {
+  },"111": {
     "doc": "Security",
     "title": "Security",
     "content": " ",
     "url": "/docs/security/",
     "relUrl": "/docs/security/"
-  },"88": {
+  },"112": {
     "doc": "GitHub",
     "title": "GitHub",
     "content": " ",
     "url": "/docs/git-hub/github/",
     "relUrl": "/docs/git-hub/github/"
-  },"89": {
+  },"113": {
     "doc": "Git",
     "title": "Git",
     "content": " ",
     "url": "/docs/git-hub/git/",
     "relUrl": "/docs/git-hub/git/"
-  },"90": {
+  },"114": {
     "doc": "Git/GitHub",
     "title": "Git/GitHub",
     "content": " ",
     "url": "/docs/git-hub/",
     "relUrl": "/docs/git-hub/"
-  },"91": {
+  },"115": {
     "doc": "Git/GitHub",
     "title": "You probably already know what this is",
     "content": "Version control system; awesome stuff. ",
     "url": "/docs/git-hub/#you-probably-already-know-what-this-is",
     "relUrl": "/docs/git-hub/#you-probably-already-know-what-this-is"
-  },"92": {
+  },"116": {
     "doc": "Vue",
     "title": "Vue",
     "content": " ",
     "url": "/docs/vue/",
     "relUrl": "/docs/vue/"
-  },"93": {
+  },"117": {
     "doc": "Jekyll",
     "title": "Jekyll",
     "content": "And GitHub Pages . | Jekyll . | Ruby installation with rbenv | Install Jekyll | Create a Jekyll blog | Bundler / Gemfile . | Install gems listed in Gemfile | Adding gems to project | Removing gems | Execute a command in the context of the bundle | . | . | . ",
     "url": "/docs/others/jekyll/",
     "relUrl": "/docs/others/jekyll/"
-  },"94": {
+  },"118": {
     "doc": "Jekyll",
     "title": "Ruby installation with rbenv",
     "content": "I’ve decided to use rbenv only because I didn’t want to mess with the system ruby that comes with macOS (I am currently using Catalina). Assuming you have Homebrew installed. # Install rbenv and ruby-build brew install rbenv # Set up rbenv integration with your shell rbenv init # Then follow the instruction that appears on screen . # rbenv init will ask you to add the following to .zshrc eval \"$(rbenv init - zsh)\" . Now that you have installed rbenv, create a folder that will contain your Jekyll site. I will refer to the folder as blog. Once created, move into blog. cd blog # List latest stable versions rbenv install -l # I chose 3.0.2 rbenv install 3.0.2 rbenv rehash # Following creates .ruby-version in cwd rbenv local 3.0.2 # Confirm ruby version in folder ruby -v . All the ruby versions are installed in ~/.rbenv. ",
     "url": "/docs/others/jekyll/#ruby-installation-with-rbenv",
     "relUrl": "/docs/others/jekyll/#ruby-installation-with-rbenv"
-  },"95": {
+  },"119": {
     "doc": "Jekyll",
     "title": "Install Jekyll",
     "content": "Before installing the gems, check where they are being installed via . # Refer to INSTALLATION DIRECTORY / GEM PATHS gem env # OR gem env home . Rest of the stuff are just my preferences/me being a clean freak. Now, the Jekyll documentation tells you to do a local install with the --user-install flag. If you’re not using rbenv this is indeed more desirable as it installs your gems to your home directory (like ~/.gem). However, for my purpose and with rbenv it was unnecessary. As you’ll notice by inspecting the gem env outputs, the global install directory (INSTALLATION DIRECTORY) is already in your home directory (~/.rbenv/versions/...). On the other hand, the user install directory (USER INSTALLATION DIRECTORY) is set to some local folder (~/.local/share/gem/ruby/...). I personally prefer having all the packages contained in ~/.rbenv, so I simply chose to omit --user-install and do: . End of me being a freak. gem install jekyll bundler . ",
     "url": "/docs/others/jekyll/#install-jekyll",
     "relUrl": "/docs/others/jekyll/#install-jekyll"
-  },"96": {
+  },"120": {
     "doc": "Jekyll",
     "title": "Create a Jekyll blog",
     "content": "First create a new Jekyll project by . # Assuming you're still in the blog folder jekyll new . It will create a default website you can test locally. # Will generate a static html site in _site bundle exec jekyll serve # With live-reloading bundle exec jekyll serve --livereload . If you get any errors regarding webrick: cannot load such file -- webrick (LoadError), add webrick by bundle add webrick. This is due to ruby 3 excluding webrick as a default bundled gem. ",
     "url": "/docs/others/jekyll/#create-a-jekyll-blog",
     "relUrl": "/docs/others/jekyll/#create-a-jekyll-blog"
-  },"97": {
+  },"121": {
     "doc": "Jekyll",
     "title": "Bundler / Gemfile",
     "content": "Think of the bundler as the npm/yarn of Ruby and Gemfile as the package.json of Node projects. When you create a new Jekyll project with jekyll new, a Gemfile is automatically created. This Gemfile will list the basic gem dependencies to create a basic Jekyll site. Install gems listed in Gemfile . If there already exists a Gemfile, you can download all the necessary gems for this project by: . bundle install . These gems are usually installed in the same place they would be when you call gem install. Exact location can be confirmed by bundle show &lt;gem-name&gt;. Adding gems to project . When you need to add another gem for your project, you can either: . | Type it out yourself in Gemfile | . # Gemfile gem \"just-the-docs\" . Then, . bundle install . OR . | Use bundle add | . bundle add just-the-docs . If the gems already exist in system, it’ll just use that. If they don’t already, it will download the gem for you. Removing gems . When you no longer need a gem for the project, . bundle remove just-the-docs . This doesn’t remove the gem from the system. Only removes it from your project’s Gemfile. Execute a command in the context of the bundle . Every bundled gem will be made available in the context of the command you wish to execute even if these gems are not in the executable path. bundle exec jekyll build . ",
     "url": "/docs/others/jekyll/#bundler--gemfile",
     "relUrl": "/docs/others/jekyll/#bundler--gemfile"
-  },"98": {
+  },"122": {
     "doc": "Homebrew",
     "title": "Homebrew",
     "content": "Package manager for macOS . Official Page . | Homebrew . | Installation . | Opt-out of Homebrew analytics | . | Useful commands . | brew install | brew uninstall | brew list | brew deps | brew info | brew update | brew upgrade | brew doctor | brew autoremove | . | Notes . | keg-only | . | . | . ",
     "url": "/docs/others/homebrew/",
     "relUrl": "/docs/others/homebrew/"
-  },"99": {
+  },"123": {
     "doc": "Homebrew",
     "title": "Installation",
     "content": "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\" . Then follow the instructions. In my case, I had to add /opt/homebrew/bin to PATH. echo 'eval \"$(/opt/homebrew/bin/brew shellenv)\"' &gt;&gt; ~/.zprofile eval \"$(/opt/hombrew/bin/brew shellenv)\" # Or just open a new tab . Opt-out of Homebrew analytics . brew analytics off . ",
     "url": "/docs/others/homebrew/#installation",
     "relUrl": "/docs/others/homebrew/#installation"
-  },"100": {
+  },"124": {
     "doc": "Homebrew",
     "title": "Useful commands",
     "content": "brew install . brew install git brew install --cask visual-studio-code . cask is for GUI applications . brew uninstall . brew uninstall git . brew uninstall won’t let you remove a package if it is a dependency of another package. You could force uninstall, but you generally don’t wanna do this. brew list . brew list brew list --versions . brew deps . brew deps git brew deps --installed brew deps --installed --tree . Shows dependencies. brew info . brew info git . Shows a summary of information of a formula/cask. Summary includes dependencies, current stable version, install status, etc. brew update . brew update . Updates brew itself. brew upgrade . brew upgrade # Upgrade all brew upgrade git . Upgrades installed packages that are outdated. brew doctor . brew doctor . Diagnoses problems or errors regarding, but not limited to, brew. Possible warnings or errors may include, interruption during brew install, failure to symlink binary, deprecated Xcode, etc. brew autoremove . brew autoremove . This removes dangling dependencies that were not removed with the parent package. ",
     "url": "/docs/others/homebrew/#useful-commands",
     "relUrl": "/docs/others/homebrew/#useful-commands"
-  },"101": {
+  },"125": {
     "doc": "Homebrew",
     "title": "Notes",
     "content": "keg-only . By default, brew installed binaries are symlinked to /usr/local/bin, but keg-only formulae are not. This is usually due to the preexistence of an older OS shipped default version, typically in /usr/bin. Although not symlinked in /usr/local/bin, keg-only or not, every brew formula is kept in /usr/local/Cellar and every formula is symlinked in /usr/local/opt. Which means you can add /usr/local/opt/&lt;formula&gt;/bin to PATH (just making sure it goes in the front of /usr/bin so that it is found first). All of the information here can be found during install or brew info Caveats. ",
     "url": "/docs/others/homebrew/#notes",
     "relUrl": "/docs/others/homebrew/#notes"
-  },"102": {
+  },"126": {
     "doc": "Volta",
     "title": "Volta",
     "content": "Javascript command-line tool manager . Official Guide . | Volta . | Why Volta? | Installation . | Using Homebrew | Using installation script | . | Usage example . | Install | . | curl SSL certificate problem . | Workaround (Not Recommended) | Fix | . | . | . ",
     "url": "/docs/others/volta/",
     "relUrl": "/docs/others/volta/"
-  },"103": {
+  },"127": {
     "doc": "Volta",
     "title": "Why Volta?",
     "content": "If you’ve ever tried uninstalling Node or installing a newer version of Node for a project, you may have found that it can get quite ugly. Volta keeps all of the binaries in your home directory, and makes it easy to install and uninstall different versions. You can also use Volta to pin a specified Node version for each project, much like the Python virtual environments. ",
     "url": "/docs/others/volta/#why-volta",
     "relUrl": "/docs/others/volta/#why-volta"
-  },"104": {
+  },"128": {
     "doc": "Volta",
     "title": "Installation",
     "content": "Using Homebrew . brew install volta . Add to ~/.zshrc: . export VOLTA_HOME=\"$HOME/.volta\" export PATH=\"$VOLTA_HOME/bin:$PATH\" . Using installation script . curl https://get.volta.sh | bash . Necessary PATH will be added to .zshrc. If you get a curl: (60) SSL certificate problem: certificate has expired error, you may be using an old version of OpenSSL or LibreSSL. Workaround/Fix . ",
     "url": "/docs/others/volta/#installation",
     "relUrl": "/docs/others/volta/#installation"
-  },"105": {
+  },"129": {
     "doc": "Volta",
     "title": "Usage example",
     "content": "Install . volta install node volta install yarn . ",
     "url": "/docs/others/volta/#usage-example",
     "relUrl": "/docs/others/volta/#usage-example"
-  },"106": {
+  },"130": {
     "doc": "Volta",
     "title": "curl SSL certificate problem",
     "content": "This is a known issue (as of Sep. 2021). The issue is not due to Volta but is related to an older version of OpenSSL/LibreSSL. See here for details, but long story short: . | Update to OpenSSL 1.1 for secure connection using LetsEncrypt certificates. | . Workaround (Not Recommended) . As suggested by this comment, one hacky workaround is to just use an insecure (-k) curl: . curl -k https://get.volta.sh &gt; volta.sh . Then change line 10 of volta.sh to use an insecure curl as well: . 9| get_latest_release() { 10| curl -k --silent \"https://volta.sh/latest-version\" 11| } . Then run: . bash volta.sh . It works, but defeats the whole purpose of certificates. Fix . Better approach is to install the brew packaged curl, as it uses OpenSSL 1.1 while the shipped curl uses an older version of LibreSSL. ",
     "url": "/docs/others/volta/#curl-ssl-certificate-problem",
     "relUrl": "/docs/others/volta/#curl-ssl-certificate-problem"
-  },"107": {
+  },"131": {
     "doc": "MongoDB",
     "title": "MongoDB",
     "content": "On-prem community edition . | Install MongoDB (locally) | Run and stop MongoDB (locally) | . ",
     "url": "/docs/others/mongodb/",
     "relUrl": "/docs/others/mongodb/"
-  },"108": {
+  },"132": {
     "doc": "MongoDB",
     "title": "Install MongoDB (locally)",
     "content": "brew tap mongodb/brew brew install mongodb-community@4.4 . This installs . | mongod server | mongos sharded cluster query router | mongo shell | . And also . | /usr/local/etc/mongod.conf configuration file | /usr/local/var/log/mongodb log directory | /usr/local/var/mongodb data directory | . And finally MongoDB Database Tools . Location varies by system. Check with brew --prefix. ",
     "url": "/docs/others/mongodb/#install-mongodb-locally",
     "relUrl": "/docs/others/mongodb/#install-mongodb-locally"
-  },"109": {
+  },"133": {
     "doc": "MongoDB",
     "title": "Run and stop MongoDB (locally)",
     "content": "Run MongoDB as a macOS service (recommended) . brew services start mongodb-community@4.4 # Verify it is running (should be in started status) brew service list | grep mongodb-community . You can then use the mongo shell via . mongo . Stop MongoDB . brew services stop mongodb-community@4.4 . References: . | MongoDB: Install | . ",
     "url": "/docs/others/mongodb/#run-and-stop-mongodb-locally",
     "relUrl": "/docs/others/mongodb/#run-and-stop-mongodb-locally"
-  },"110": {
+  },"134": {
     "doc": "zsh",
     "title": "zsh &amp; Shell setup",
     "content": ". | zsh &amp; Shell setup . | Install zsh | Change to zsh | Install oh-my-zsh | Change Theme | Recommended plugins . | zsh-syntax-highlighting | zsh-autosuggestions | fzf | fasd | . | Preferred Iterm2/Gnome Terminal color schemes | . | . ",
     "url": "/docs/others/zsh/#zsh--shell-setup",
     "relUrl": "/docs/others/zsh/#zsh--shell-setup"
-  },"111": {
+  },"135": {
     "doc": "zsh",
     "title": "Install zsh",
     "content": "OS X . brew install zsh . Ubuntu . sudo apt install zsh . ",
     "url": "/docs/others/zsh/#install-zsh",
     "relUrl": "/docs/others/zsh/#install-zsh"
-  },"112": {
+  },"136": {
     "doc": "zsh",
     "title": "Change to zsh",
     "content": "Make zsh the default shell . chsh -s $(which zsh) . Confirm shell has changed . echo $SHELL . In Ubuntu, if echo $SHELL or echo $0 still shows bash, try logging out and log back in. Hopefully, shell would have been changed and zsh-newuser-install will pop up. ",
     "url": "/docs/others/zsh/#change-to-zsh",
     "relUrl": "/docs/others/zsh/#change-to-zsh"
-  },"113": {
+  },"137": {
     "doc": "zsh",
     "title": "Install oh-my-zsh",
     "content": "Assuming you have curl installed, . sh -c \"$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\" . In case of a change refer to here for a new link. ",
     "url": "/docs/others/zsh/#install-oh-my-zsh",
     "relUrl": "/docs/others/zsh/#install-oh-my-zsh"
-  },"114": {
+  },"138": {
     "doc": "zsh",
     "title": "Change Theme",
     "content": "My preferred theme is Powerlevel10k. To install it as an Oh My Zsh theme, . git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k . Then in ~/.zshrc, set ZSH_THEME . ZSH_THEME=\"powerlevel10k/powerlevel10k\" . When using Iterm2, the recommended fonts are automatically installed. Otherwise, install the fonts from here. ",
     "url": "/docs/others/zsh/#change-theme",
     "relUrl": "/docs/others/zsh/#change-theme"
-  },"115": {
+  },"139": {
     "doc": "zsh",
     "title": "Recommended plugins",
     "content": "zsh-syntax-highlighting . See here for details. git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting . To activate the plugin, go to .zshrc and add zsh-syntax-highlighting to plugins. zsh-autosuggestions . See here for details. git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions . To activate the plugin, go to .zshrc and add zsh-autosuggestions to plugins. fzf . See here for details. # OS X brew install fzf # Ubuntu sudo apt install fzf . Then activate the plugin in .zshrc. fasd . See here for details. # OS X brew install fasd # Ubuntu sudo apt install fasd . Then activate the plugin in .zshrc. ",
     "url": "/docs/others/zsh/#recommended-plugins",
     "relUrl": "/docs/others/zsh/#recommended-plugins"
-  },"116": {
+  },"140": {
     "doc": "zsh",
     "title": "Preferred Iterm2/Gnome Terminal color schemes",
     "content": "Look for the following themes in Iterm2 / Gough: . | Snazzy | Tomorrow Night | . ",
     "url": "/docs/others/zsh/#preferred-iterm2gnome-terminal-color-schemes",
     "relUrl": "/docs/others/zsh/#preferred-iterm2gnome-terminal-color-schemes"
-  },"117": {
+  },"141": {
     "doc": "zsh",
     "title": "zsh",
     "content": " ",
     "url": "/docs/others/zsh/",
     "relUrl": "/docs/others/zsh/"
-  },"118": {
+  },"142": {
     "doc": "Others",
     "title": "List of All Documentations",
     "content": " ",
     "url": "/docs/others/#list-of-all-documentations",
     "relUrl": "/docs/others/#list-of-all-documentations"
-  },"119": {
+  },"143": {
     "doc": "Others",
     "title": "Others",
     "content": " ",
     "url": "/docs/others/",
     "relUrl": "/docs/others/"
-  },"120": {
+  },"144": {
     "doc": "Linux",
     "title": "Linux",
     "content": " ",
     "url": "/docs/linux/",
     "relUrl": "/docs/linux/"
-  },"121": {
+  },"145": {
     "doc": "AWS",
     "title": "AWS",
     "content": " ",
     "url": "/docs/aws/",
     "relUrl": "/docs/aws/"
-  },"122": {
+  },"146": {
     "doc": "Vue Project Setup",
     "title": "Vue Project Setup",
     "content": ". | Start project directory | Install Tailwind CSS . | Remove unused styles in production builds | Include Tailwind CSS | . | Add path alias | Desktop App with Electron (Optional) | Install ESLint and Prettier (Optional) | . ",
     "url": "/docs/vue/init.html",
     "relUrl": "/docs/vue/init.html"
-  },"123": {
+  },"147": {
     "doc": "Vue Project Setup",
     "title": "Start project directory",
     "content": "Details are listed here. yarn create vite &lt;app-name&gt; --template vue-ts # Init project cd &lt;app-name&gt; yarn # Install packages yarn dev # Check build . ",
     "url": "/docs/vue/init.html#start-project-directory",
     "relUrl": "/docs/vue/init.html#start-project-directory"
-  },"124": {
+  },"148": {
     "doc": "Vue Project Setup",
     "title": "Install Tailwind CSS",
     "content": "Details are listed here. But for the brief summary: . yarn add tailwindcss@latest postcss@latest autoprefixer@latest --dev npx tailwindcss init -p . npx tailwind init -p generates two files tailwind.config.js and postcss.config.js. Remove unused styles in production builds . In tailwind.config.js, replace the purge to following line, . purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'] . Include Tailwind CSS . Create a file src/index.css. Then add the following to the file, . @tailwind base; @tailwind components; @tailwind utilities; . Then in src/main.js, import src/index.css. import { createApp } from 'vue' import App from './App.vue' import './index.css' createApp(App).mount('#app') . ",
     "url": "/docs/vue/init.html#install-tailwind-css",
     "relUrl": "/docs/vue/init.html#install-tailwind-css"
-  },"125": {
+  },"149": {
     "doc": "Vue Project Setup",
     "title": "Add path alias",
     "content": "Unlike webpack, Vite does not automatically provide the @ path alias to src. To enable this alias go to vite.config.ts and import path from 'path'. If import path from 'path' shows a type warning: yarn add @types/node --dev. Then add the following to defineConfig in vite.config.ts: . // vite.config.ts resolve:{ alias: [ { find: '@', replacement: path.resolve(__dirname, './src') } ] } . ",
     "url": "/docs/vue/init.html#add-path-alias",
     "relUrl": "/docs/vue/init.html#add-path-alias"
-  },"126": {
+  },"150": {
     "doc": "Vue Project Setup",
     "title": "Desktop App with Electron (Optional)",
     "content": "Really nice detail in this blog. Don’t forget to yarn add concurrently cross-end wait-on electron-buider --dev. They are needed to run the package.json scripts. ",
     "url": "/docs/vue/init.html#desktop-app-with-electron-optional",
     "relUrl": "/docs/vue/init.html#desktop-app-with-electron-optional"
-  },"127": {
+  },"151": {
     "doc": "Vue Project Setup",
     "title": "Install ESLint and Prettier (Optional)",
     "content": ". yarn add eslint prettier eslint-plugin-vue eslint-config-prettier --dev . Then create two files .eslintrc.js and .prettierrc.js in the project root directory, . // .eslintrc.js module.exports = { extends: [ 'plugin:vue/vue3-essential', 'prettier', ], rules: { // override/add rules settings here, such as: 'vue/no-unused-vars': 'error', }, } . // .prettierrc.js module.exports = { semi: false, tabWidth: 2, useTabs: false, printWidth: 80, endOfLine: 'auto', singleQuote: true, trailingComma: 'es5', bracketSpacing: true, arrowParens: 'always', } . ",
     "url": "/docs/vue/init.html#install-eslint-and-prettier-optional",
     "relUrl": "/docs/vue/init.html#install-eslint-and-prettier-optional"
-  },"128": {
+  },"152": {
     "doc": "Basic Linux Setup",
     "title": "Basic Linux Setup",
     "content": "Personal note for myself. | Basic Linux Setup . | Update packages | Install packages | Change to zsh | Color schemes | Little bit of customization . | GNOME Shell Integration | Dash to Panel | . | . | . ",
     "url": "/docs/linux/init.html",
     "relUrl": "/docs/linux/init.html"
-  },"129": {
+  },"153": {
     "doc": "Basic Linux Setup",
     "title": "Update packages",
-    "content": ". sudo apt update &amp;&amp; sudo apt upgrade . ",
+    "content": "sudo apt update &amp;&amp; sudo apt upgrade . ",
     "url": "/docs/linux/init.html#update-packages",
     "relUrl": "/docs/linux/init.html#update-packages"
-  },"130": {
+  },"154": {
     "doc": "Basic Linux Setup",
     "title": "Install packages",
-    "content": "List of packages I frequently use. To be added. sudo apt install &lt;package-name&gt; . | vim | net-tools | git | gnome-tweaks | htop | neofetch | nautilus | curl | tree | tmux | fasd | fzf | bat | fd | exa | . ",
+    "content": "List of packages I frequently use. To be added . sudo apt install &lt;package-name&gt; . | vim | net-tools | git | gnome-tweaks | htop | neofetch | nautilus | curl | tree | tmux | fasd | fzf | bat | fd | exa | . ",
     "url": "/docs/linux/init.html#install-packages",
     "relUrl": "/docs/linux/init.html#install-packages"
-  },"131": {
+  },"155": {
     "doc": "Basic Linux Setup",
     "title": "Change to zsh",
     "content": "See here. ",
     "url": "/docs/linux/init.html#change-to-zsh",
     "relUrl": "/docs/linux/init.html#change-to-zsh"
-  },"132": {
+  },"156": {
     "doc": "Basic Linux Setup",
     "title": "Color schemes",
     "content": "See here for details. First install the following, . sudo apt-get install dconf-cli uuid-runtime . Then, . bash -c \"$(curl -sLo- https://git.io/vQgMr)\" . Recommended color schemes are: . | Snazzy (174) | Tomorrow Night (204) | . ",
     "url": "/docs/linux/init.html#color-schemes",
     "relUrl": "/docs/linux/init.html#color-schemes"
-  },"133": {
+  },"157": {
     "doc": "Basic Linux Setup",
     "title": "Little bit of customization",
     "content": "GNOME Shell Integration . Download the following extension from chrome. https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep . Dash to Panel . Download the following extension form chrome. https://extensions.gnome.org/extension/1160/dash-to-panel/ . ",
     "url": "/docs/linux/init.html#little-bit-of-customization",
     "relUrl": "/docs/linux/init.html#little-bit-of-customization"
-  },"134": {
+  },"158": {
     "doc": "JS/TS Cheatsheet",
     "title": "Javascript/Typescript Cheatsheet",
     "content": ". | Javascript/Typescript Cheatsheet . | Installation | Typescript compiler | Basic typing . | Primitive types | Array and tuple types | Union and enum types | Object types and type alias | Function types | Literal types | . | Type assertions | Interface . | Object interface | Function interface | . | Undefined values . | Non-null assertions (!) | . | Index signature | Generics | Classes | Readonly arrays and tuples | Symbol type | Computed property names | Template strings | . | . ",
     "url": "/docs/vue/jsts.html#javascripttypescript-cheatsheet",
     "relUrl": "/docs/vue/jsts.html#javascripttypescript-cheatsheet"
-  },"135": {
+  },"159": {
     "doc": "JS/TS Cheatsheet",
     "title": "Installation",
     "content": "I personally prefer to install typescript compiler per project directory. npm i typescript --save-dev # or -D # OR yarn add typescript --dev . ",
     "url": "/docs/vue/jsts.html#installation",
     "relUrl": "/docs/vue/jsts.html#installation"
-  },"136": {
+  },"160": {
     "doc": "JS/TS Cheatsheet",
     "title": "Typescript compiler",
     "content": "Basic usage: . tsc &lt;filename&gt; # One-time compile tsc --watch &lt;filename&gt; # Livereloading . When specifiying the filename for tsc you may include or leave out the .ts extension. tsc --init . init creates the tsconfig.json file. With a tsconfig.json file, you can leave out the filename when runnig tsc. ",
     "url": "/docs/vue/jsts.html#typescript-compiler",
     "relUrl": "/docs/vue/jsts.html#typescript-compiler"
-  },"137": {
+  },"161": {
     "doc": "JS/TS Cheatsheet",
     "title": "Basic typing",
     "content": "Primitive types . Primitives are all lowercase. let a: number = 1; let b: string = \"a\"; let c: boolean = true; // Lowercase let d: any = { x: 0 }; . Unless declared without initialization, these are usually inferred. Array and tuple types . Simply add brackets: . let a: number[] = [1, 2, 3, 4]; // You can also use Array&lt;number&gt; let b: [number, string] = [1, \"a\"]; let c: [number, string][] = [[1, \"a\"], [2, \"b\"]]; . Union and enum types . Union: . let id: string | number; . Enum: . enum MyEnum { Up = 1, // Default is 0 Down, Left, Right } . The first constant in an enum always has the value of 0. If you set it to 1, the rest will have an ascending value of 2, 3, and 4. You can also give string values to enums. Object types and type alias . Object typing without the type alias can be messy: . const obj: { a: number, b?: string, readonly c: boolean, } = { a: 1, c: true } . Using type: . type MyObj = { a: number, b?: string, readonly c: boolean }; const obj: MyObj = { a: 1, c: true } . The ? means it is an optional property or an optional parameter if used in functions. Function types . function f(x: number, y: string): void { ... } . Literal types . You can use this like a constant or quicky enum: . function f(x: number, y: \"a\" | \"b\"): -1 | 0 | 1 { ... } . To change an object to a literal type use as const: . const x = { a: \"hello\", b: \"world\" } as const . ",
     "url": "/docs/vue/jsts.html#basic-typing",
     "relUrl": "/docs/vue/jsts.html#basic-typing"
-  },"138": {
+  },"162": {
     "doc": "JS/TS Cheatsheet",
     "title": "Type assertions",
     "content": "To give any variables explicit types: . let a: any = 1; let b = a as number // OR let c = &lt;number&gt;a . ",
     "url": "/docs/vue/jsts.html#type-assertions",
     "relUrl": "/docs/vue/jsts.html#type-assertions"
-  },"139": {
+  },"163": {
     "doc": "JS/TS Cheatsheet",
     "title": "Interface",
     "content": "Object interface . interface MyInterface { a: number, b?: string } . Function interface . interface FuncInterface { (x: number, y: string): void } . While it is similar to type aliasing, there are some differences: . | You cannot use union types with an interface. | . type MyType = string | number; // OK // interface MyType2 = string | number; // NO . | You can add new fields to existing interfaces but not in type aliasing. | . interface MyInterface{ a: number } interface MyInterface{ b: string } . ",
     "url": "/docs/vue/jsts.html#interface",
     "relUrl": "/docs/vue/jsts.html#interface"
-  },"140": {
+  },"164": {
     "doc": "JS/TS Cheatsheet",
     "title": "Undefined values",
     "content": "Use null or undefined. function f(x: number | null): void{ ... } . Non-null assertions (!) . someObj!.runFunction(); . ",
     "url": "/docs/vue/jsts.html#undefined-values",
     "relUrl": "/docs/vue/jsts.html#undefined-values"
-  },"141": {
+  },"165": {
     "doc": "JS/TS Cheatsheet",
     "title": "Index signature",
     "content": ". ",
     "url": "/docs/vue/jsts.html#index-signature",
     "relUrl": "/docs/vue/jsts.html#index-signature"
-  },"142": {
+  },"166": {
     "doc": "JS/TS Cheatsheet",
     "title": "Generics",
     "content": ". ",
     "url": "/docs/vue/jsts.html#generics",
     "relUrl": "/docs/vue/jsts.html#generics"
-  },"143": {
+  },"167": {
     "doc": "JS/TS Cheatsheet",
     "title": "Classes",
     "content": ". ",
     "url": "/docs/vue/jsts.html#classes",
     "relUrl": "/docs/vue/jsts.html#classes"
-  },"144": {
+  },"168": {
     "doc": "JS/TS Cheatsheet",
     "title": "Readonly arrays and tuples",
     "content": ". ",
     "url": "/docs/vue/jsts.html#readonly-arrays-and-tuples",
     "relUrl": "/docs/vue/jsts.html#readonly-arrays-and-tuples"
-  },"145": {
+  },"169": {
     "doc": "JS/TS Cheatsheet",
     "title": "Symbol type",
     "content": ". ",
     "url": "/docs/vue/jsts.html#symbol-type",
     "relUrl": "/docs/vue/jsts.html#symbol-type"
-  },"146": {
+  },"170": {
     "doc": "JS/TS Cheatsheet",
     "title": "Computed property names",
     "content": ". ",
     "url": "/docs/vue/jsts.html#computed-property-names",
     "relUrl": "/docs/vue/jsts.html#computed-property-names"
-  },"147": {
+  },"171": {
     "doc": "JS/TS Cheatsheet",
     "title": "Template strings",
     "content": ". let a = `Put ${variableName} here.` . ",
     "url": "/docs/vue/jsts.html#template-strings",
     "relUrl": "/docs/vue/jsts.html#template-strings"
-  },"148": {
+  },"172": {
     "doc": "JS/TS Cheatsheet",
     "title": "JS/TS Cheatsheet",
     "content": " ",
     "url": "/docs/vue/jsts.html",
     "relUrl": "/docs/vue/jsts.html"
-  },"149": {
+  },"173": {
     "doc": "Docker Networks",
     "title": "Docker Networks",
-    "content": ". | Some useful commands | How do I talk to the container? | How can containers talk to each other? . | Default bridge network | User-defined bridge network . | With Docker-compose | Or via Terminal | . | . | . ",
+    "content": ". | Some useful commands | How do I talk to the container? | How can containers talk to each other? . | Default bridge network | User-defined bridge network | . | . ",
     "url": "/docs/docker/networks.html",
     "relUrl": "/docs/docker/networks.html"
-  },"150": {
+  },"174": {
     "doc": "Docker Networks",
     "title": "Some useful commands",
     "content": "# List all networks docker network ls . docker network inspect network-name . # Disconnect any containers using this network docker network disconnect network-name my-container docker network rm network-name . # Remove unused networks docker network prune . Link to documentation. ",
     "url": "/docs/docker/networks.html#some-useful-commands",
     "relUrl": "/docs/docker/networks.html#some-useful-commands"
-  },"151": {
+  },"175": {
     "doc": "Docker Networks",
     "title": "How do I talk to the container?",
     "content": ". When a container is created, none of the ports inside the container are exposed. In order for the Docker host (your computer) or other containers to talk to it, it must first publish a port. The following maps a port 1234 inside a container to 4321 on Docker host. docker create -p 1234:4321 . Now you can communicate with the container via http://localhost:4321. ",
     "url": "/docs/docker/networks.html#how-do-i-talk-to-the-container",
     "relUrl": "/docs/docker/networks.html#how-do-i-talk-to-the-container"
-  },"152": {
+  },"176": {
     "doc": "Docker Networks",
     "title": "How can containers talk to each other?",
-    "content": "If the containers are running on the same Docker daemon host (ie. all running on your computer), then the easiest way is to put them on the same bridge network. Default bridge network . Check the existing docker networks with . docker network ls . You will see a network with the name bridge. That is the default bridge network. Every started container is automatically added to the default bridge network if you didn’t specify anything else. With the default bridge you talk to other containers by using their IP Address. docker inspect my-container | grep IPAddress . Downsides to using the default bridge network: . | Using an IP address sucks: it is not immediate which container I’m referring to. | Every container can talk to every other container, which may cause security issues. | . User-defined bridge network . You can instead add a user-defined bridge network. It still uses the same bridge driver, but unlike the default bridge not everyone is invited to it. With Docker-compose . services: my-container: image: some-image . Compose automatically creates a bridge network of name &lt;proj-root&gt;_default, and adds all service containers to it. Check that is is true by, . # Locate the created default network docker network ls # Inspect the containers in it docker inspect &lt;proj-root&gt;_default . Or via Terminal . docker network create my-bridge # You can add after container creation docker network connect my-bridge my-container # Or when you create it docker create --network my-bridge . In user-defined bridge network, containers can talk to each other by using the container names as hostnames. So if my container was named my-db with port published at 1234, then the API would be: . http://my-db:1234 . References: . | Docker Networking | . ",
+    "content": "If the containers are running on the same Docker daemon host (ie. all running on your computer), then the easiest way is to put them on the same bridge network. Default bridge network . Check the existing docker networks with . docker network ls . You will see a network with the name bridge. That is the default bridge network. Every started container is automatically added to the default bridge network if you didn’t specify anything else. With the default bridge you talk to other containers by using their IP Address. docker inspect my-container | grep IPAddress . Downsides to using the default bridge network: . | Using an IP address sucks: it is not immediate which container I’m referring to. | Every container can talk to every other container, which may cause security issues. | . User-defined bridge network . You can instead add a user-defined bridge network. It still uses the same bridge driver, but unlike the default bridge not everyone is invited to it. docker network create my-bridge # You can add after container creation docker network connect my-bridge my-container # Or when you create it docker create --network my-bridge . In user-defined bridge network, containers can talk to each other by using the container names as hostnames. So if my container was named my-db with port published at 1234, then the API would be: . http://my-db:1234 . References: . | Docker Networking | . ",
     "url": "/docs/docker/networks.html#how-can-containers-talk-to-each-other",
     "relUrl": "/docs/docker/networks.html#how-can-containers-talk-to-each-other"
-  },"153": {
+  },"177": {
     "doc": "Pipenv",
     "title": "Pipenv",
     "content": ". | Pipenv . | Advantage to venv | Basic usage . | Install | Create environment and install | Activate and deactivate environment . | Activate | Deactivate | . | Create Pipfile.lock | Delete environment | . | Use pipenv with a specific Python version | . | . ",
     "url": "/docs/python/envs/pipenv.html",
     "relUrl": "/docs/python/envs/pipenv.html"
-  },"154": {
+  },"178": {
     "doc": "Pipenv",
     "title": "Advantage to venv",
     "content": "Pipenv’s Pipfile serves as an upgrade to requirements.txt. It allows you to separately mark production and development dependencies. ",
     "url": "/docs/python/envs/pipenv.html#advantage-to-venv",
     "relUrl": "/docs/python/envs/pipenv.html#advantage-to-venv"
-  },"155": {
+  },"179": {
     "doc": "Pipenv",
     "title": "Basic usage",
     "content": "Install . brew install pipenv . Create environment and install . Go to the desired project folder. To create and use a virtual environment for this root: . pipenv pipenv install &lt;package-name&gt; # Install specific package . If there’s already a Pipfile, create env and install listed requirements: . pipenv install # With Pipfile . All the pipenv environments are in ~/.local/share/virtualenvs/root-dir-name-hash/ by default. Activate and deactivate environment . Activate . pipenv shell . Deactivate . exit . Do not use deactivate. Create Pipfile.lock . pipenv lock . Delete environment . To delete the environment for current directory: . pipenv --rm . ",
     "url": "/docs/python/envs/pipenv.html#basic-usage",
     "relUrl": "/docs/python/envs/pipenv.html#basic-usage"
-  },"156": {
+  },"180": {
     "doc": "Pipenv",
     "title": "Use pipenv with a specific Python version",
     "content": "You can set a specific version of Python when creating a pipenv virtual environment. pipenv --python 3.x . However, it requires that Python 3.x is already installed on your local machine unlike conda create -n myenv python=3.x. You can either, . | (Not recommended) brew install the desired Python 3.x | (Recommended) Use pyenv | (Meh..) Create a conda environment with the desired version and only use the binary | . Then navigate to the root of the project and make Pipenv use the active Python: . pipenv --python=$(which python) --site-packages # Creates an env in cwd pipenv run which python # It will point to a binary in `~/.local/share/virtualenvs/some-root-dir-hash/bin/python` pipenv run python -V # Check that it is indeed 3.x . ",
     "url": "/docs/python/envs/pipenv.html#use-pipenv-with-a-specific-python-version",
     "relUrl": "/docs/python/envs/pipenv.html#use-pipenv-with-a-specific-python-version"
-  },"157": {
+  },"181": {
     "doc": "Poetry",
     "title": "Poetry",
     "content": "Yet another Python virtual environment &amp; package manager! . | Poetry . | Installation . | Uninstall | . | Enable tab completion | Using Poetry with a specific Python version . | Set Python binary | . | Managing environments . | See all virtual envs associated with this directory/project | Delete environments | . | Basic usage . | Activate environment | Deactivate environment | Add dependencies | Install dependencies | Remove dependencies | . | . | . ",
     "url": "/docs/python/envs/poetry.html",
     "relUrl": "/docs/python/envs/poetry.html"
-  },"158": {
+  },"182": {
     "doc": "Poetry",
     "title": "Installation",
     "content": "Fetch and install the script: . curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py python3 install-poetry.py . Check installation via . poetry --version . In my case, poetry was installed in ~/Library/Python/3.9/bin. So I had to add export PATH=~/Library/Python/3.9/bin:$PATH to my shell config. Uninstall . To uninstall: . python3 install-poetry.py --uninstall # OR POETRY_UNINSTALL=1 python3 install-poetry.py . ",
     "url": "/docs/python/envs/poetry.html#installation",
     "relUrl": "/docs/python/envs/poetry.html#installation"
-  },"159": {
+  },"183": {
     "doc": "Poetry",
     "title": "Enable tab completion",
     "content": "You can enable poetry tab completion for various shells. Check poetry help completions for other shells. For Oh-My-Zsh: . mkdir $ZSH_CUSTOM/plugins/poetry poetry completions zsh &gt; $ZSH_CUSTOM/plugins/poetry/_poetry . Then go to ~/.zshrc and add the following plugin: . # ~/.zshrc plugins( ... poetry ) . ",
     "url": "/docs/python/envs/poetry.html#enable-tab-completion",
     "relUrl": "/docs/python/envs/poetry.html#enable-tab-completion"
-  },"160": {
+  },"184": {
     "doc": "Poetry",
     "title": "Using Poetry with a specific Python version",
     "content": "Have the Python version you want ready. Always check that you do indeed have the version you want by which python . You can set the version you want . | With pyenv (Recommended) | With conda | . Now init Poetry in project to create a pyproject.toml file. cd &lt;project-dir&gt; poetry init . By default, Poetry uses the currently active Python. Poetry virtual environments are created in ~/Library/Caches/pypoetry/virtualenvs. Set Python binary . If you’d like to change a version after init, activate a new Python binary and do: . poetry env use `which python` . ",
     "url": "/docs/python/envs/poetry.html#using-poetry-with-a-specific-python-version",
     "relUrl": "/docs/python/envs/poetry.html#using-poetry-with-a-specific-python-version"
-  },"161": {
+  },"185": {
     "doc": "Poetry",
     "title": "Managing environments",
     "content": "See all virtual envs associated with this directory/project . poetry env list . Delete environments . poetry env remove &lt;proj-hash--py3.x&gt; ## Check exact name with poetry env list . ",
     "url": "/docs/python/envs/poetry.html#managing-environments",
     "relUrl": "/docs/python/envs/poetry.html#managing-environments"
-  },"162": {
+  },"186": {
     "doc": "Poetry",
     "title": "Basic usage",
     "content": "Activate environment . poetry shell # Creates a new child shell # OR source `poetry env info --path`/bin/activate # Does not open a child shell . Deactivate environment . exit # If in child shell # OR deactivate # If activated with source &lt;path&gt;/bin/activate . Add dependencies . poetry add &lt;package&gt; # OR poetry add &lt;package&gt; --dev . Install dependencies . poetry install # OR poetry install --no-dev . Remove dependencies . poetry remove &lt;package&gt; # OR poetry remove &lt;package&gt; --dev . References: . | Poetry | Poetry Commands | . ",
     "url": "/docs/python/envs/poetry.html#basic-usage",
     "relUrl": "/docs/python/envs/poetry.html#basic-usage"
-  },"163": {
+  },"187": {
     "doc": "pyenv",
     "title": "pyenv",
     "content": "Python version manager . GitHub . | pyenv . | What is pyenv | Installation | Typical usage | Basic commands . | Check activated Python version | List installed Python versions | List all available Python for install | Install a Python version | Uninstall a Python version | Show installed directory | Set global version | . | Uninstall pyenv . | Remove all shell startup configuration | Remove all Python versions | Remove pyenv | . | . | . ",
     "url": "/docs/python/envs/pyenv.html",
     "relUrl": "/docs/python/envs/pyenv.html"
-  },"164": {
+  },"188": {
     "doc": "pyenv",
     "title": "What is pyenv",
     "content": "pyenv is a version manager for Python. As it started off as a fork of rbenv, the syntax and usage are very similar. It is a Python version manager not a virtual environment manager. To manage a virtual environment for Python libraries, use in junction with venv, poetry, pipenv, etc. ",
     "url": "/docs/python/envs/pyenv.html#what-is-pyenv",
     "relUrl": "/docs/python/envs/pyenv.html#what-is-pyenv"
-  },"165": {
+  },"189": {
     "doc": "pyenv",
     "title": "Installation",
     "content": "Easiest way is to use Homebrew: . brew install pyenv . Then, . echo 'eval \"$(pyenv init --path)\"' &gt;&gt; ~/.zprofile echo 'eval \"$(pyenv init -)\"' &gt;&gt; ~/.zshrc . Terminal app should run shell as login shell (because of .zprofile). Restart shell and install Python build dependencies: . brew install openssl readline sqlite3 xz zlib . ",
     "url": "/docs/python/envs/pyenv.html#installation",
     "relUrl": "/docs/python/envs/pyenv.html#installation"
-  },"166": {
+  },"190": {
     "doc": "pyenv",
     "title": "Typical usage",
     "content": "To install a specific Python version for a project, navigate to your project root and do: . pyenv intall -l # Decide a version number pyenv install -s 3.x.x # -s means skip installation if it already exists pyenv rehash # Makes all Python binaries available to system pyenv local 3.x.x # Make sure you're in project root . ",
     "url": "/docs/python/envs/pyenv.html#typical-usage",
     "relUrl": "/docs/python/envs/pyenv.html#typical-usage"
-  },"167": {
+  },"191": {
     "doc": "pyenv",
     "title": "Basic commands",
     "content": "Full commands are listed here . Check activated Python version . pyenv version . Do not confuse with below. Notice the plural. List installed Python versions . pyenv versions . List all available Python for install . pyenv install -l . Install a Python version . pyenv install 3.x.x pyenv rehash . Uninstall a Python version . pyenv uninstall 3.x.x . Show installed directory . pyenv prefix 3.x.x . Set global version . pyenv global 3.x.x pyenv local 3.x.x . ",
     "url": "/docs/python/envs/pyenv.html#basic-commands",
     "relUrl": "/docs/python/envs/pyenv.html#basic-commands"
-  },"168": {
+  },"192": {
     "doc": "pyenv",
     "title": "Uninstall pyenv",
     "content": "Remove all shell startup configuration . Remove the following from .zprofile and .zshrc: . # ~/.zprofile echo 'eval \"$(pyenv init --path)\"' . # ~/.zshrc echo 'eval \"$(pyenv init -)\"' . Remove all Python versions . rm -rf $(pyenv root) . Remove pyenv . brew uninstall pyenv . ",
     "url": "/docs/python/envs/pyenv.html#uninstall-pyenv",
     "relUrl": "/docs/python/envs/pyenv.html#uninstall-pyenv"
-  },"169": {
+  },"193": {
     "doc": "Vue Quick Notes",
     "title": "Vue Quick Notes",
     "content": "Quick notes for dummies. Using &lt;script setup lang=\"ts\"&gt;. | Vue Quick Notes . | Props . | To use props in child component . | Without default values | With default values | . | . | Ref / Reactive | Computed / Watch | Event / Emits . | To use emits | . | v-model . | Parent-Child usage example | . | Provide / Inject | Etc . | $keyword equivalent in the script tag | . | . | . ",
     "url": "/docs/vue/quick-notes.html",
     "relUrl": "/docs/vue/quick-notes.html"
-  },"170": {
+  },"194": {
     "doc": "Vue Quick Notes",
     "title": "Props",
     "content": ". | Props are reactive by default | You don’t explicitly import defineProps; it is a compiler macro for &lt;script setup&gt; | If you don’t pass optional props, they have a value of undefined | In the template, you can access the props without having to do props.someVarName, just use someVarName. | Even if you toRef a prop, they will not become a copy. If you modify the toRef-ed prop, it will affect the original. | . To use props in child component . Without default values . const props = defineProps&lt;{ a: string b: number }&gt;() . With default values . interface MyProps { a: strings b?: number } const props = withDefaults(defineProps&lt;MyProps&gt;(), { b: 0 }) . ",
     "url": "/docs/vue/quick-notes.html#props",
     "relUrl": "/docs/vue/quick-notes.html#props"
-  },"171": {
+  },"195": {
     "doc": "Vue Quick Notes",
     "title": "Ref / Reactive",
     "content": ". | You can use ref with primitive types like string and number but not with reactive | You access refs by refObj.value and reactives by reactiveObj | Everything that belonged in the data part before the Composition API should be wrapped with ref or reactive. (Unless they’re nonchanging in value.) | . ",
     "url": "/docs/vue/quick-notes.html#ref--reactive",
     "relUrl": "/docs/vue/quick-notes.html#ref--reactive"
-  },"172": {
+  },"196": {
     "doc": "Vue Quick Notes",
     "title": "Computed / Watch",
     "content": "See details here. | watch watches for a specific set of changes, and runs a function. | With watch you can also get the prev and new value. | You can watch ref like a normal variable, but you gotta use () =&gt; reactiveObj instead for reactive objects. | watchEffect watches for all change in every variable used in its function. | watchEffect is kinda more like computed except it’s purpose is not to to get or set a variable. | computed with a single arrow function creates a getter (so immutable). If you give it instead an object with get and set, it will be writable. | If you store watch and watchEffect in a variable named myVar for example, you can stop its watch behavior by calling myVar(). | There exists, onTrack and onTrigger for debugging. | . ",
     "url": "/docs/vue/quick-notes.html#computed--watch",
     "relUrl": "/docs/vue/quick-notes.html#computed--watch"
-  },"173": {
+  },"197": {
     "doc": "Vue Quick Notes",
     "title": "Event / Emits",
     "content": "To use emits . const emits = defineEmits&lt;{ (e: 'myEvent', valueImGivingBack: string): void }&gt;( // Then later function onEvent(e: Event) { const newVal = (e.target as HTMLTextAreaElement).value emits('myEvent', newVal) } . ",
     "url": "/docs/vue/quick-notes.html#event--emits",
     "relUrl": "/docs/vue/quick-notes.html#event--emits"
-  },"174": {
+  },"198": {
     "doc": "Vue Quick Notes",
     "title": "v-model",
     "content": ". | Syntax changed since Vue2, see here for details. | v-model is a syntactic sugar: you can always do the same thing with regular propping and emitting. | Basically, if you use the vanilla v-model as is, the name of the prop and the event will have to be modelValue and update:modelValue. | If you give it a name like v-model:childProp, it will be childProp and update:childProp. | You can use multiple v-models with a child component; just give it different names. | Remember, v-model needs to be used with ref or reactive variable | . Parent-Child usage example . // Parent.vue &lt;template&gt; &lt;Child v-model:childProp=\"parentVar\"&gt; &lt;/template&gt; &lt;script setup lang=\"ts\"&gt; const parentVar = ref('hey child') &lt;/script&gt; . // Child.vue &lt;template&gt; &lt;input @keyup.enter=\"onEnterPressed\"&gt; &lt;/template&gt; &lt;script setup lang=\"ts\"&gt; const defineProps&lt;{ childProp: string }&gt;() const emits = defineEmits&lt;{ (e: 'update:childProp', childProp: string): void }&gt;() function onEnterPressed(e: Event) { const someVal = 'sup' emits('update:childProp', someVal) } &lt;/script&gt; . ",
     "url": "/docs/vue/quick-notes.html#v-model",
     "relUrl": "/docs/vue/quick-notes.html#v-model"
-  },"175": {
+  },"199": {
     "doc": "Vue Quick Notes",
     "title": "Provide / Inject",
     "content": ". | To make typing work, you gotta use the InjectionKey&lt;T&gt;. See here for details. | To update provided reactive props, make the parent component provide mutation functions as well. Always recommended to have the root (providing) component to be in charge of mutations. | . ",
     "url": "/docs/vue/quick-notes.html#provide--inject",
     "relUrl": "/docs/vue/quick-notes.html#provide--inject"
-  },"176": {
+  },"200": {
     "doc": "Vue Quick Notes",
     "title": "Etc",
     "content": ". | You can use $event, $router, $route, $slots, $attrs, $emit in the template tag, but not in the script tag. | ref, reactive, toRef, toRefs, computed, watch, watchEffect are all in vue | attrs are basically all the stuff passed down to a child naturally from being an HTML element, but not actually a Vue prop. Ex) class | You can use the normal &lt;script&gt; tag along with the &lt;script setup&gt;. Two things you’ll have to do within the normal &lt;script&gt; tag is setting name and inheritAttrs. | . $keyword equivalent in the script tag . See here for details. But basically: . import { useSlots, useAttrs } from 'vue import { useRouter, useRoute } from 'vue-router' const slots = useSlots() const attrs = useAttrs() const router = useRouter() const route = useRoute() . ",
     "url": "/docs/vue/quick-notes.html#etc",
     "relUrl": "/docs/vue/quick-notes.html#etc"
-  },"177": {
+  },"201": {
     "doc": "Storybook UI",
     "title": "Storybook UI",
     "content": ". | Install and add Storybook UI | Start Storybook locally | Error: PostCSS plugin tailwindcss requires PostCSS 8 | . ",
     "url": "/docs/vue/sb.html",
     "relUrl": "/docs/vue/sb.html"
-  },"178": {
+  },"202": {
     "doc": "Storybook UI",
     "title": "Install and add Storybook UI",
     "content": "Inside the Vue project root, . npx sb init . ",
     "url": "/docs/vue/sb.html#install-and-add-storybook-ui",
     "relUrl": "/docs/vue/sb.html#install-and-add-storybook-ui"
-  },"179": {
+  },"203": {
     "doc": "Storybook UI",
     "title": "Start Storybook locally",
     "content": "yarn storybook . ",
     "url": "/docs/vue/sb.html#start-storybook-locally",
     "relUrl": "/docs/vue/sb.html#start-storybook-locally"
-  },"180": {
+  },"204": {
     "doc": "Storybook UI",
     "title": "Error: PostCSS plugin tailwindcss requires PostCSS 8",
     "content": "Tailwind CSS depends on PostCSS 8. As of now, Storybook have not yet been updated to support PostCSS 8. Therefore, you must install a compatibility build of Tailwind to use it with Storybook. See here for detail. If you already have Tailwind installed, remove by . yarn remove tailwindcss postcss autoprefixer . ",
     "url": "/docs/vue/sb.html#error-postcss-plugin-tailwindcss-requires-postcss-8",
     "relUrl": "/docs/vue/sb.html#error-postcss-plugin-tailwindcss-requires-postcss-8"
-  },"181": {
+  },"205": {
     "doc": "Terraform Configuration",
     "title": "Terraform Configuration",
     "content": "With AWS (As of now) . | Terraform Block | Provider | Resource | Using variables | . ",
     "url": "/docs/terraform/terraform-config.html",
     "relUrl": "/docs/terraform/terraform-config.html"
-  },"182": {
+  },"206": {
     "doc": "Terraform Configuration",
     "title": "Terraform Block",
     "content": "It contains the Terraform settings and has the basic structure of the following . terraform { required_providers { mylocalname = { source = \"source/address\" version = \"~&gt; 1.0\" } } required_version = \"&gt;= 0.14.9\" } . Throughout the module, Terraform refers to providers using a local name. Here I’ve given it a name of mylocalname. Source address takes the form of [Hostname/]Namespace/Type. If Hostname is ommitted, it defaults to registry.terraform.io which is Terraform’s default provider install source. hashicorp/aws is a shorthand for registry.terraform.io/hashicorp/aws. For the version constraint syntax, refer to Version Constraint Syntax. ",
     "url": "/docs/terraform/terraform-config.html#terraform-block",
     "relUrl": "/docs/terraform/terraform-config.html#terraform-block"
-  },"183": {
+  },"207": {
     "doc": "Terraform Configuration",
     "title": "Provider",
     "content": "You can configure each provider using the local name you have provided in the required_providers of the Terraform block. For example, . provider \"mylocalname\" { # ... } . Reference Provider Configuration for details. ",
     "url": "/docs/terraform/terraform-config.html#provider",
     "relUrl": "/docs/terraform/terraform-config.html#provider"
-  },"184": {
+  },"208": {
     "doc": "Terraform Configuration",
     "title": "Resource",
     "content": "Basic syntax is as follows, . resource \"aws_instance\" \"my_server\" { ami = \"ami-a1b2c3d4\" instance_type = \"t2.micro\" } . The example block above declares a resource type \"aws_instance\" and gives it a local name of \"my_server\". Just like the provider local name, resource local name is used to refer to this resource throughout the module. In addition, the unique ID for the resource becomes aws_instance.my_server. The resource configuration arguments within the block body are specific to each resource type. For example, refer to documentation here for aws_instance. ",
     "url": "/docs/terraform/terraform-config.html#resource",
     "relUrl": "/docs/terraform/terraform-config.html#resource"
-  },"185": {
+  },"209": {
     "doc": "Terraform Configuration",
     "title": "Using variables",
     "content": "To avoid using hard-coded values in configuration, create a new file variables.tf (name of the file can be anything you want) with the following, . variable \"variable_name\" { description = \"Some description of what this is\" type = string default = \"This is the value of the variable\" } . You can then use the variables in other .tf files as, . var.variable_name . You can also pass in a new variable value for testing by . terraform apply -var 'variable_name=SomeOtherValue' . It will modify the state so that all the variables use the new value. This does not update the original variable declaration. If you run terraform apply again without the -var flag, the state will be modified using the original value. References: . | Terraform: Terraform Settings | Terraform: Providers | Terraform: Resources | Terraform: Version Constraint Syntax | . ",
     "url": "/docs/terraform/terraform-config.html#using-variables",
     "relUrl": "/docs/terraform/terraform-config.html#using-variables"
-  },"186": {
+  },"210": {
     "doc": "Terraform Module",
     "title": "Terraform Module",
     "content": ". | What is a Terraform module | Typical file structure | Module structure | Module input variables | How to call a module | Itty Bitties | . ",
     "url": "/docs/terraform/terraform-module.html",
     "relUrl": "/docs/terraform/terraform-module.html"
-  },"187": {
+  },"211": {
     "doc": "Terraform Module",
     "title": "What is a Terraform module",
     "content": "It is sort of like a class in programming. Given input variables, it can be reused to create multiple instances of the infra described in the module. For example, when you’re creating an AWS lambda resource, there are typically some other resources associated with it, such as the REST API, IAM role, etc. If you think you’re going to be using this pattern often, you can create a module containing all the common resources and only expose some input variables that need to be configured at the top level. ",
     "url": "/docs/terraform/terraform-module.html#what-is-a-terraform-module",
     "relUrl": "/docs/terraform/terraform-module.html#what-is-a-terraform-module"
-  },"188": {
+  },"212": {
     "doc": "Terraform Module",
     "title": "Typical file structure",
     "content": "The main Terraform execution point is called the root module. This is often the main.tf file in the top level driectory. Modules are often placed in a folder called modules. ├── README.md ├── main.tf ├── modules ├── outputs.tf └── variables.tf . ",
     "url": "/docs/terraform/terraform-module.html#typical-file-structure",
     "relUrl": "/docs/terraform/terraform-module.html#typical-file-structure"
-  },"189": {
+  },"213": {
     "doc": "Terraform Module",
     "title": "Module structure",
     "content": "Inside modules directory, create a child directory with a name of your module: e.g. mymodule. ├── main.tf ├── modules │   └── mymodule │      ├── main.tf │      ├── outputs.tf │      └── variables.tf ├── outputs.tf └── variables.tf . The structure inside mymodule is optional. They can be separated as above or smashed into a single file. ",
     "url": "/docs/terraform/terraform-module.html#module-structure",
     "relUrl": "/docs/terraform/terraform-module.html#module-structure"
-  },"190": {
+  },"214": {
     "doc": "Terraform Module",
     "title": "Module input variables",
     "content": "Unless you plan to reuse your module as-is every single time, you typically provide input variables to modules. Any variables defined with variable must be provided by the calling module or an error will be raised. ",
     "url": "/docs/terraform/terraform-module.html#module-input-variables",
     "relUrl": "/docs/terraform/terraform-module.html#module-input-variables"
-  },"191": {
+  },"215": {
     "doc": "Terraform Module",
     "title": "How to call a module",
     "content": "All you need to do is feed the necessary input variables. In main.tf, . # main.tf module \"module_a\" { source = \"./modules/mymodule\" my_input_var = \"Here you go\" } . Notice that the source attribute points the the directory of the module, not any specific files . If you defined any output variables in the module with output, you can access them by . module.module_a.my_output_var . ",
     "url": "/docs/terraform/terraform-module.html#how-to-call-a-module",
     "relUrl": "/docs/terraform/terraform-module.html#how-to-call-a-module"
-  },"192": {
+  },"216": {
     "doc": "Terraform Module",
     "title": "Itty Bitties",
     "content": ". | Although you can nest your modules in multiple levels, it is recommended to keep the entire Terraform module as flat as possible. | Even if you don’t access them, module output variables is always output after terraform apply. | Think about whether a module is absolutely necessary. Sometimes you may end up feeding in as many input variables as the original resource. | . ",
     "url": "/docs/terraform/terraform-module.html#itty-bitties",
     "relUrl": "/docs/terraform/terraform-module.html#itty-bitties"
-  },"193": {
+  },"217": {
     "doc": "Provision with Terraform",
     "title": "Provision with Terraform",
     "content": ". | Configuration | . ",
     "url": "/docs/demo/flask-login-app/terraform.html",
     "relUrl": "/docs/demo/flask-login-app/terraform.html"
-  },"194": {
+  },"218": {
     "doc": "Provision with Terraform",
     "title": "Configuration",
     "content": "Folder structure . flask-mongodb ├── backend │   ├── .gitignore │   ├── .dockerignore │   ├── app.py │   ├── back.dev.Dockerfile │   ├── requirements.txt │   └── venv │   └── flaskmongo └── terraform ├── main.tf └── providers.tf . We are going to be using a docker provider. # flask-mongodb/terraform/main.tf terraform { required_providers { docker = { source = \"kreuzwerker/docker\" version = \"~&gt; 2.11.0\" } } required_version = \"~&gt; 0.15.3\" } . # flask-mongodb/terraform/providers.tf provider \"docker\" { host = \"unix:///var/run/docker.sock\" } resource \"docker_container\" \"backend_tf\" { name = \"backend-tf\" image = docker_image.flask_back.latest volumes { container_path = \"/www\" host_path = \"/full/path/to/flask-mongodb/backend\" read_only = true } ports { internal = 5000 external = 5000 } } resource \"docker_image\" \"flask_back\" { name = \"flask-back:latest\" build { path = \"../backend\" dockerfile = \"back.dev.Dockerfile\" force_remove = true } } . Now initialize to download and install providers in .terraform and apply to create . terraform init terraform apply --auto-approve . To verify that docker image has been built and container is running . docker images | grep flask-back docker ps | grep backend-tf . Because volume is mounted, any change in directory backend will be reflected in the container. To destroy all resources created . terraform destroy . ",
     "url": "/docs/demo/flask-login-app/terraform.html#configuration",
     "relUrl": "/docs/demo/flask-login-app/terraform.html#configuration"
-  },"195": {
+  },"219": {
     "doc": "Useful Commands",
     "title": "Useful Commands",
-    "content": ". | Useful Commands . | Configuration . | See current configuration | Global config | Local config | Command alias | . | Fix previous commit | . | . ",
+    "content": ". | Configuration . | See current configuration | Global config | Local config | Command alias | . | Fix previous commit | Rebase | . ",
     "url": "/docs/git-hub/git/useful.html",
     "relUrl": "/docs/git-hub/git/useful.html"
-  },"196": {
+  },"220": {
     "doc": "Useful Commands",
     "title": "Configuration",
     "content": "See current configuration . git config --list . Global config . git config --global user.name \"myname\" git config --global user.email \"myemail@example.com\" . Local config . Useful when you need to use different identity per project, . git config --local user.name \"anothername\" git config --local user.email \"anotheremail@example.com\" . Command alias . If you’re tired of writing long git commands that you frequently use, . git config --global alias.youralias \"command to shorten (without 'git')\" . ",
     "url": "/docs/git-hub/git/useful.html#configuration",
     "relUrl": "/docs/git-hub/git/useful.html#configuration"
-  },"197": {
+  },"221": {
     "doc": "Useful Commands",
     "title": "Fix previous commit",
     "content": "This comes in handy when you make a small change in your code after you’ve committed, but you realize you probably wanted it included in your last commit. # Modify commit message as well git commit --amend . # Keep the commit message git commit --amend --no-edit . If you already pushed the commit to a remote before the ammend, then you need to force push the new changes by git push -f origin master. ",
     "url": "/docs/git-hub/git/useful.html#fix-previous-commit",
     "relUrl": "/docs/git-hub/git/useful.html#fix-previous-commit"
-  },"198": {
+  },"222": {
+    "doc": "Useful Commands",
+    "title": "Rebase",
+    "content": "To rebase from a remote, . git fetch git rebase origin/main . Or simply . git pull --rebase . ",
+    "url": "/docs/git-hub/git/useful.html#rebase",
+    "relUrl": "/docs/git-hub/git/useful.html#rebase"
+  },"223": {
     "doc": "Useful Commands",
     "title": "Useful Commands",
     "content": ". | Useful Commands . | lsbom | networksetup | netstat | ifconfig | system_profiler | fzf (+ Oh-My-Zsh) . | Usage example | . | fasd (+ Oh-My-Zsh) | . | . ",
     "url": "/docs/learned/useful.html",
     "relUrl": "/docs/learned/useful.html"
-  },"199": {
+  },"224": {
     "doc": "Useful Commands",
     "title": "lsbom",
     "content": "Lists the contents of an installer’s bom (bill of materials) file, which contains information on what files were added to the system. My preferred usage: . lsbom -f -l -s -pf /var/db/receipts/&lt;some-package-name&gt;.bom &gt;&gt; package-bom.txt # Inspect manually vim package-bom.txt # Then pipe it to some rm code, etc. # cat package-bom.txt | while read f; do ...; done . ",
     "url": "/docs/learned/useful.html#lsbom",
     "relUrl": "/docs/learned/useful.html#lsbom"
-  },"200": {
+  },"225": {
     "doc": "Useful Commands",
     "title": "networksetup",
     "content": "To see all hardware ports (Wi-Fi, Bluetooth, Thunderbolt, etc.) . networksetup -listallhardwareports . ",
     "url": "/docs/learned/useful.html#networksetup",
     "relUrl": "/docs/learned/useful.html#networksetup"
-  },"201": {
+  },"226": {
     "doc": "Useful Commands",
     "title": "netstat",
     "content": "To see all current in/outbound network connections . netstat -i . ",
     "url": "/docs/learned/useful.html#netstat",
     "relUrl": "/docs/learned/useful.html#netstat"
-  },"202": {
+  },"227": {
     "doc": "Useful Commands",
     "title": "ifconfig",
     "content": "To see all network devices on machine . ifconfig . ",
     "url": "/docs/learned/useful.html#ifconfig",
     "relUrl": "/docs/learned/useful.html#ifconfig"
-  },"203": {
+  },"228": {
     "doc": "Useful Commands",
     "title": "system_profiler",
     "content": "Command line version of the GUI System Profiler on macOS. To list USB devices, . system_profiler SPUSBDataType . ",
     "url": "/docs/learned/useful.html#system_profiler",
     "relUrl": "/docs/learned/useful.html#system_profiler"
-  },"204": {
+  },"229": {
     "doc": "Useful Commands",
     "title": "fzf (+ Oh-My-Zsh)",
     "content": "Usage example . vim $(fzf) . ",
     "url": "/docs/learned/useful.html#fzf--oh-my-zsh",
     "relUrl": "/docs/learned/useful.html#fzf--oh-my-zsh"
-  },"205": {
+  },"230": {
     "doc": "Useful Commands",
     "title": "fasd (+ Oh-My-Zsh)",
-    "content": "TBA . ",
+    "content": "To be added . ",
     "url": "/docs/learned/useful.html#fasd--oh-my-zsh",
     "relUrl": "/docs/learned/useful.html#fasd--oh-my-zsh"
-  },"206": {
+  },"231": {
     "doc": "Useful Notes",
     "title": "Useful Notes",
     "content": ". | Useful Notes . | Use multiple GitHub accounts with SSH . | Generate a new SSH key | Add the new SSH key to GitHub account | Modify config | Local config per repository | Add remote | . | . | . ",
     "url": "/docs/git-hub/github/useful.html",
     "relUrl": "/docs/git-hub/github/useful.html"
-  },"207": {
+  },"232": {
     "doc": "Useful Notes",
     "title": "Use multiple GitHub accounts with SSH",
     "content": "First navigate to ~/.ssh. For organization, create a directory and name it github. All private and public keys for GitHub connection will be placed here. Generate a new SSH key . Follow the ssh-keygen prompt. It will ask you to decide on a name for the file, passphrase, etc. # If Ed25519 algorithm is supported ssh-keygen -t ed25519 -C \"your_github@email.com\" . # Legacy RSA ssh-keygen -t rsa -b 4096 -C \"your_github@email.com\" . Add the new SSH key to GitHub account . Easiest part. Refer to GitHub documentation for step-by-step screencaps. Modify config . Suppose I have two GitHub accounts each associated with personal_email@address.com and work_email@address.com. I’ll assume the private keys are named github-personal and github-work respectively. Now append the following to ~/.ssh/config . Host github-personal HostName github.com User git IdentityFile ~/.ssh/github/github-personal Host github-work HostName github.com User git IdentityFile ~/.ssh/github/github-work . You can define custom host for both as such or have one of them keep the default github.com. Local config per repository . First start a local repo with . git init . Then config local name and email that will be used for that repo . git config --local user.name \"work_name\" git config --local user.email \"work_email@address.com\" . Add remote . Normally you would add an ssh remote by . git remote add origin git@github.com:github_username:repo_name # OR git remote add origin github.com:github_username:repo_name . But this time, . git remote add origin github-work:work_username:repo_name . References: . | GitHub: SSH | . ",
     "url": "/docs/git-hub/github/useful.html#use-multiple-github-accounts-with-ssh",
     "relUrl": "/docs/git-hub/github/useful.html#use-multiple-github-accounts-with-ssh"
-  },"208": {
+  },"233": {
     "doc": "venv",
     "title": "venv",
     "content": ". | venv . | What is venv | Basic usage . | Create environment | Activate environment | Deactivate environment | . | . | . ",
     "url": "/docs/python/envs/venv.html",
     "relUrl": "/docs/python/envs/venv.html"
-  },"209": {
+  },"234": {
     "doc": "venv",
     "title": "What is venv",
     "content": "venv is Python’s default virtual environment tool. ",
     "url": "/docs/python/envs/venv.html#what-is-venv",
     "relUrl": "/docs/python/envs/venv.html#what-is-venv"
-  },"210": {
+  },"235": {
     "doc": "venv",
     "title": "Basic usage",
     "content": "Create environment . venv creates a virtual environment for the Python version used to invoke it. # If you only need one environment for the project python -m venv venv # If you are going to need multiple environments python -m venv venv/myenv # Creates a nested dir . python -m venv &lt;name-of-env&gt; creates a directory in cwd. The &lt;name-of-env&gt; can be anything you like, but venv is used the most by convention. Just like node_modules, because venv exists within the project root, it is almost always added to .gitignore. Activate environment . Assuming cwd is project root where venv directory exists, . source venv/bin/activate . Once activated, which python will point to . /Path/To/Project/venv/bin/python . Deactivate environment . deactivate . ",
     "url": "/docs/python/envs/venv.html#basic-usage",
     "relUrl": "/docs/python/envs/venv.html#basic-usage"
-  },"211": {
+  },"236": {
     "doc": "Docker Volumes",
     "title": "Docker Volumes",
     "content": ". | What is a Docker volume | Cases where Docker volume comes in handy . | You want some live-reloading features | You want to persist data upon container shutdown | . | . ",
     "url": "/docs/docker/volumes.html",
     "relUrl": "/docs/docker/volumes.html"
-  },"212": {
+  },"237": {
     "doc": "Docker Volumes",
     "title": "What is a Docker volume",
     "content": "In short, it maps the volume inside a container with some local directory on your computer. If you set the volume to read-only, every change in local directory will be reflected in the container but not vice versa. If you set read-only to false, the contents inside the container and the local directory will remain same throughout the container execution. ",
     "url": "/docs/docker/volumes.html#what-is-a-docker-volume",
     "relUrl": "/docs/docker/volumes.html#what-is-a-docker-volume"
-  },"213": {
+  },"238": {
     "doc": "Docker Volumes",
     "title": "Cases where Docker volume comes in handy",
     "content": "You want some live-reloading features . During development, it is really painful if you have to rebuild or rerun everytime you make a change. By mapping your container volume to a local build context, the container will update itself everytime you make a change to your local code. You want to persist data upon container shutdown . For example if you’re running a DB as a container without a volume mapped, each time the container restarts, the contents of the DB will be erased. However, if you map your container volume to a local directory, the data will be kept even after shutdown. ",
     "url": "/docs/docker/volumes.html#cases-where-docker-volume-comes-in-handy",
     "relUrl": "/docs/docker/volumes.html#cases-where-docker-volume-comes-in-handy"
-  },"214": {
+  },"239": {
     "doc": "Homebrew x86_64",
     "title": "Homebrew x86_64",
     "content": ". | Homebrew x86_64 . | Installing Homebrew for both arm and x86 . | Install for x86 | Set alias | Opt out of analytics (Optional) | . | . | . ",
     "url": "/docs/others/homebrew/x86.html",
     "relUrl": "/docs/others/homebrew/x86.html"
-  },"215": {
+  },"240": {
     "doc": "Homebrew x86_64",
     "title": "Installing Homebrew for both arm and x86",
     "content": "Install for x86 . After having installed Homebrew natively, install for x86: . arch -x86_64 /bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\" . x86 Homebrew will be located in /usr/local/Homebrew while native Homebrew is in /opt/homebrew. Set alias . In your .zshrc, . # .zshrc alias xbrew='arch -x86_64 /usr/local/Homebrew/bin/brew' . Opt out of analytics (Optional) . xbrew analytics off . ",
