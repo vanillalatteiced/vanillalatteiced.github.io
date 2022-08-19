@@ -1717,7 +1717,7 @@
   },"286": {
     "doc": "Useful Git Commands",
     "title": "Useful Commands",
-    "content": ". | Configuration . | See current configuration | Global user config | Local user config | Command alias | Global ignore | . | Untrack file | Fix previous commit | Rebase | . ",
+    "content": ". | Configuration . | See current configuration | Global user config | Local user config | Command alias | Global ignore | . | Untrack file | Fix previous commit | Rebase | Cherry Pick | Remove or modify a commit with rebase | . ",
     "url": "/docs/git-hub/git/useful.html#useful-commands",
     "relUrl": "/docs/git-hub/git/useful.html#useful-commands"
   },"287": {
@@ -1746,125 +1746,137 @@
     "relUrl": "/docs/git-hub/git/useful.html#rebase"
   },"291": {
     "doc": "Useful Git Commands",
+    "title": "Cherry Pick",
+    "content": "To cherry pick a single commit from anothe branch, first check the hash of the commit. Then, . git cherry-pick &lt;hash&gt; . ",
+    "url": "/docs/git-hub/git/useful.html#cherry-pick",
+    "relUrl": "/docs/git-hub/git/useful.html#cherry-pick"
+  },"292": {
+    "doc": "Useful Git Commands",
+    "title": "Remove or modify a commit with rebase",
+    "content": "To modify a commit from the past, first check the number of commits you must go back to find the commit you want to modify. Then, . git rebase -i HEAD~&lt;num-commits-to-target-inclusive&gt; . Then you can choose an action for each commit by editing the text editor which looks like: . pick &lt;hash&gt; A Commit Message4 pick &lt;hash&gt; A Commit Message3 pick &lt;hash&gt; A Commit Message2 pick &lt;hash&gt; A Commit Message1 . Modify pick to a command listed in the editor comments. ",
+    "url": "/docs/git-hub/git/useful.html#remove-or-modify-a-commit-with-rebase",
+    "relUrl": "/docs/git-hub/git/useful.html#remove-or-modify-a-commit-with-rebase"
+  },"293": {
+    "doc": "Useful Git Commands",
     "title": "Useful Git Commands",
     "content": " ",
     "url": "/docs/git-hub/git/useful.html",
     "relUrl": "/docs/git-hub/git/useful.html"
-  },"292": {
+  },"294": {
     "doc": "Useful Notes",
     "title": "Useful Notes",
     "content": ". | Use multiple GitHub accounts with SSH . | Generate a new SSH key | Add the new SSH key to GitHub account | Modify config | Local config per repository | Add remote | . | . ",
     "url": "/docs/git-hub/github/useful.html",
     "relUrl": "/docs/git-hub/github/useful.html"
-  },"293": {
+  },"295": {
     "doc": "Useful Notes",
     "title": "Use multiple GitHub accounts with SSH",
     "content": "First navigate to ~/.ssh. For organization, create a directory and name it github. All private and public keys for GitHub connection will be placed here. Generate a new SSH key . Follow the ssh-keygen prompt. It will ask you to decide on a name for the file, passphrase, etc. # If Ed25519 algorithm is supported ssh-keygen -t ed25519 -C \"your_github@email.com\" . # Legacy RSA ssh-keygen -t rsa -b 4096 -C \"your_github@email.com\" . Add the new SSH key to GitHub account . Easiest part. Refer to GitHub documentation for step-by-step screencaps. Modify config . Suppose I have two GitHub accounts each associated with personal_email@address.com and work_email@address.com. I’ll assume the private keys are named github-personal and github-work respectively. Now append the following to ~/.ssh/config . Host github-personal HostName github.com User git IdentityFile ~/.ssh/github/github-personal Host github-work HostName github.com User git IdentityFile ~/.ssh/github/github-work . You can define custom host for both as such or have one of them keep the default github.com. Local config per repository . First start a local repo with . git init . Then config local name and email that will be used for that repo . git config --local user.name \"work_name\" git config --local user.email \"work_email@address.com\" . Add remote . Normally you would add an ssh remote by . git remote add origin git@github.com:github_username:repo_name # OR git remote add origin github.com:github_username:repo_name . But this time, . git remote add origin github-work:work_username:repo_name . References: . | GitHub: SSH | . ",
     "url": "/docs/git-hub/github/useful.html#use-multiple-github-accounts-with-ssh",
     "relUrl": "/docs/git-hub/github/useful.html#use-multiple-github-accounts-with-ssh"
-  },"294": {
+  },"296": {
     "doc": "Useful Commands",
     "title": "Useful CLI Commands",
     "content": ". | lsbom | networksetup | netstat | ifconfig | system_profiler | fzf (+ Oh-My-Zsh) . | Usage example | . | fasd (+ Oh-My-Zsh) | . ",
     "url": "/docs/learned/useful.html#useful-cli-commands",
     "relUrl": "/docs/learned/useful.html#useful-cli-commands"
-  },"295": {
+  },"297": {
     "doc": "Useful Commands",
     "title": "lsbom",
     "content": "Lists the contents of an installer’s bom (bill of materials) file, which contains information on what files were added to the system. My preferred usage: . lsbom -f -l -s -pf /var/db/receipts/&lt;some-package-name&gt;.bom &gt;&gt; package-bom.txt # Inspect manually vim package-bom.txt # Then pipe it to some rm code, etc. # cat package-bom.txt | while read f; do ...; done . ",
     "url": "/docs/learned/useful.html#lsbom",
     "relUrl": "/docs/learned/useful.html#lsbom"
-  },"296": {
+  },"298": {
     "doc": "Useful Commands",
     "title": "networksetup",
     "content": "To see all hardware ports (Wi-Fi, Bluetooth, Thunderbolt, etc.) . networksetup -listallhardwareports . ",
     "url": "/docs/learned/useful.html#networksetup",
     "relUrl": "/docs/learned/useful.html#networksetup"
-  },"297": {
+  },"299": {
     "doc": "Useful Commands",
     "title": "netstat",
     "content": "To see all current in/outbound network connections . netstat -i . ",
     "url": "/docs/learned/useful.html#netstat",
     "relUrl": "/docs/learned/useful.html#netstat"
-  },"298": {
+  },"300": {
     "doc": "Useful Commands",
     "title": "ifconfig",
     "content": "To see all network devices on machine . ifconfig . ",
     "url": "/docs/learned/useful.html#ifconfig",
     "relUrl": "/docs/learned/useful.html#ifconfig"
-  },"299": {
+  },"301": {
     "doc": "Useful Commands",
     "title": "system_profiler",
     "content": "Command line version of the GUI System Profiler on macOS. To list USB devices, . system_profiler SPUSBDataType . ",
     "url": "/docs/learned/useful.html#system_profiler",
     "relUrl": "/docs/learned/useful.html#system_profiler"
-  },"300": {
+  },"302": {
     "doc": "Useful Commands",
     "title": "fzf (+ Oh-My-Zsh)",
     "content": "Usage example . vim $(fzf) . ",
     "url": "/docs/learned/useful.html#fzf--oh-my-zsh",
     "relUrl": "/docs/learned/useful.html#fzf--oh-my-zsh"
-  },"301": {
+  },"303": {
     "doc": "Useful Commands",
     "title": "fasd (+ Oh-My-Zsh)",
     "content": "To be added . ",
     "url": "/docs/learned/useful.html#fasd--oh-my-zsh",
     "relUrl": "/docs/learned/useful.html#fasd--oh-my-zsh"
-  },"302": {
+  },"304": {
     "doc": "Useful Commands",
     "title": "Useful Commands",
     "content": " ",
     "url": "/docs/learned/useful.html",
     "relUrl": "/docs/learned/useful.html"
-  },"303": {
+  },"305": {
     "doc": "venv",
     "title": "venv",
     "content": ". | What is venv | Basic usage . | Create environment | Activate environment | Deactivate environment | . | . ",
     "url": "/docs/python/envs/venv.html",
     "relUrl": "/docs/python/envs/venv.html"
-  },"304": {
+  },"306": {
     "doc": "venv",
     "title": "What is venv",
     "content": "venv is Python’s default virtual environment tool. ",
     "url": "/docs/python/envs/venv.html#what-is-venv",
     "relUrl": "/docs/python/envs/venv.html#what-is-venv"
-  },"305": {
+  },"307": {
     "doc": "venv",
     "title": "Basic usage",
     "content": "Create environment . venv creates a virtual environment for the Python version used to invoke it. # If you only need one environment for the project python -m venv venv # If you are going to need multiple environments python -m venv venv/myenv # Creates a nested dir . python -m venv &lt;name-of-env&gt; creates a directory in cwd. The &lt;name-of-env&gt; can be anything you like, but venv is used the most by convention. Just like node_modules, because venv exists within the project root, it is almost always added to .gitignore. Activate environment . Assuming cwd is project root where venv directory exists, . source venv/bin/activate . Once activated, which python will point to . /Path/To/Project/venv/bin/python . Deactivate environment . deactivate . ",
     "url": "/docs/python/envs/venv.html#basic-usage",
     "relUrl": "/docs/python/envs/venv.html#basic-usage"
-  },"306": {
+  },"308": {
     "doc": "vim-plug",
     "title": "vim-plug",
     "content": "To be added . vim-plug Tutorial . ",
     "url": "/docs/others/vim/vim-plug.html",
     "relUrl": "/docs/others/vim/vim-plug.html"
-  },"307": {
+  },"309": {
     "doc": "Docker Volumes",
     "title": "Docker Volumes",
     "content": ". | What is a Docker volume | Cases where Docker volume comes in handy . | You want some live-reloading features | You want to persist data upon container shutdown | . | . ",
     "url": "/docs/docker/volumes.html",
     "relUrl": "/docs/docker/volumes.html"
-  },"308": {
+  },"310": {
     "doc": "Docker Volumes",
     "title": "What is a Docker volume",
     "content": "In short, it maps the volume inside a container with some local directory on your computer. If you set the volume to read-only, every change in local directory will be reflected in the container but not vice versa. If you set read-only to false, the contents inside the container and the local directory will remain same throughout the container execution. ",
     "url": "/docs/docker/volumes.html#what-is-a-docker-volume",
     "relUrl": "/docs/docker/volumes.html#what-is-a-docker-volume"
-  },"309": {
+  },"311": {
     "doc": "Docker Volumes",
     "title": "Cases where Docker volume comes in handy",
     "content": "You want some live-reloading features . During development, it is really painful if you have to rebuild or rerun everytime you make a change. By mapping your container volume to a local build context, the container will update itself everytime you make a change to your local code. You want to persist data upon container shutdown . For example if you’re running a DB as a container without a volume mapped, each time the container restarts, the contents of the DB will be erased. However, if you map your container volume to a local directory, the data will be kept even after shutdown. ",
     "url": "/docs/docker/volumes.html#cases-where-docker-volume-comes-in-handy",
     "relUrl": "/docs/docker/volumes.html#cases-where-docker-volume-comes-in-handy"
-  },"310": {
+  },"312": {
     "doc": "Homebrew x86_64",
     "title": "Homebrew x86_64",
     "content": ". | Installing Homebrew for both arm and x86 . | Install for x86 | Set alias | Opt out of analytics (Optional) | . | . ",
     "url": "/docs/others/homebrew/x86.html",
     "relUrl": "/docs/others/homebrew/x86.html"
-  },"311": {
+  },"313": {
     "doc": "Homebrew x86_64",
     "title": "Installing Homebrew for both arm and x86",
     "content": "Install for x86 . After having installed Homebrew natively, install for x86: . arch -x86_64 /bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\" . x86 Homebrew will be located in /usr/local/Homebrew while native Homebrew is in /opt/homebrew. Set alias . In your .zshrc, . # .zshrc alias xbrew='arch -x86_64 /usr/local/Homebrew/bin/brew' . Opt out of analytics (Optional) . xbrew analytics off . ",
