@@ -485,59 +485,59 @@
     "url": "/docs/python/envs/conda.html#clone-environment",
     "relUrl": "/docs/python/envs/conda.html#clone-environment"
   },"81": {
-    "doc": "Terraform Configuration",
-    "title": "Terraform Configuration",
-    "content": "With AWS (As of now) . | Terraform Block | Provider | Resource | Using variables | . ",
-    "url": "/docs/terraform/config.html",
-    "relUrl": "/docs/terraform/config.html"
-  },"82": {
-    "doc": "Terraform Configuration",
-    "title": "Terraform Block",
-    "content": "It contains the Terraform settings and has the basic structure of the following . terraform { required_providers { mylocalname = { source = \"source/address\" version = \"~&gt; 1.0\" } } required_version = \"&gt;= 0.14.9\" } . Throughout the module, Terraform refers to providers using a local name. Here I’ve given it a name of mylocalname. Source address takes the form of [Hostname/]Namespace/Type. If Hostname is ommitted, it defaults to registry.terraform.io which is Terraform’s default provider install source. hashicorp/aws is a shorthand for registry.terraform.io/hashicorp/aws. For the version constraint syntax, refer to Version Constraint Syntax. ",
-    "url": "/docs/terraform/config.html#terraform-block",
-    "relUrl": "/docs/terraform/config.html#terraform-block"
-  },"83": {
-    "doc": "Terraform Configuration",
-    "title": "Provider",
-    "content": "You can configure each provider using the local name you have provided in the required_providers of the Terraform block. For example, . provider \"mylocalname\" { # ... } . Reference Provider Configuration for details. ",
-    "url": "/docs/terraform/config.html#provider",
-    "relUrl": "/docs/terraform/config.html#provider"
-  },"84": {
-    "doc": "Terraform Configuration",
-    "title": "Resource",
-    "content": "Basic syntax is as follows, . resource \"aws_instance\" \"my_server\" { ami = \"ami-a1b2c3d4\" instance_type = \"t2.micro\" } . The example block above declares a resource type \"aws_instance\" and gives it a local name of \"my_server\". Just like the provider local name, resource local name is used to refer to this resource throughout the module. In addition, the unique ID for the resource becomes aws_instance.my_server. The resource configuration arguments within the block body are specific to each resource type. For an example, refer to documentation here for aws_instance. ",
-    "url": "/docs/terraform/config.html#resource",
-    "relUrl": "/docs/terraform/config.html#resource"
-  },"85": {
-    "doc": "Terraform Configuration",
-    "title": "Using variables",
-    "content": "To avoid using hard-coded values in configuration, create a new file variables.tf (name of the file can be anything you want) with the following: . variable \"variable_name\" { description = \"Some description of what this is\" type = string default = \"This is the value of the variable\" } . You can then use the variables in other .tf files as, . var.variable_name . You can also pass in a new variable value for testing by . terraform apply -var 'variable_name=SomeOtherValue' . It will modify the state so that all the variables use the new value. This does not update the original variable declaration. If you run terraform apply again without the -var flag, the state will be modified using the original value. References: . | Terraform: Terraform Settings | Terraform: Providers | Terraform: Resources | Terraform: Version Constraint Syntax | . ",
-    "url": "/docs/terraform/config.html#using-variables",
-    "relUrl": "/docs/terraform/config.html#using-variables"
-  },"86": {
     "doc": "SSH Config",
     "title": "SSH Config",
     "content": ". | Useful SSH CLI Flags | SSH (Client) Config | SSHD (SSH Daemon) Config | . ",
     "url": "/docs/security/ssh/config.html",
     "relUrl": "/docs/security/ssh/config.html"
-  },"87": {
+  },"82": {
     "doc": "SSH Config",
     "title": "Useful SSH CLI Flags",
     "content": "Man page . -i: Identity file -F: Specify a config file (if omitted, default is ~/.ssh/config) -J [user@]host[:port]: Proxy jump -p: Port -T: Disable pseudo-tty allocation -L local_socket:remote_host:remote_port: Local forwarding . Flags are case sensitive . ",
     "url": "/docs/security/ssh/config.html#useful-ssh-cli-flags",
     "relUrl": "/docs/security/ssh/config.html#useful-ssh-cli-flags"
-  },"88": {
+  },"83": {
     "doc": "SSH Config",
     "title": "SSH (Client) Config",
     "content": "Client configuration man page . Host DECLARATION_SCOPE_NAME User USERNAME Hostname HOSTNAME/IP Port SSH_PORT IdentityFile PRIV_KEY LocalForward LOCAL_PORT REMOTE_HOST:REMOTE_PORT ProxyJump JUMP_SERVER_HOST RequestTTY yes/no ForwardX11 yes/no . | Blank lines are ignored. Use # for comments. | To use spaces in a value, surround it with \". | . ",
     "url": "/docs/security/ssh/config.html#ssh-client-config",
     "relUrl": "/docs/security/ssh/config.html#ssh-client-config"
-  },"89": {
+  },"84": {
     "doc": "SSH Config",
     "title": "SSHD (SSH Daemon) Config",
     "content": "To be added . Daemon configuration man page . References: . | SSH Academy | . ",
     "url": "/docs/security/ssh/config.html#sshd-ssh-daemon-config",
     "relUrl": "/docs/security/ssh/config.html#sshd-ssh-daemon-config"
+  },"85": {
+    "doc": "Terraform Configuration",
+    "title": "Terraform Configuration",
+    "content": "With AWS (As of now) . | Terraform Block | Provider | Resource | Using variables | . ",
+    "url": "/docs/terraform/config.html",
+    "relUrl": "/docs/terraform/config.html"
+  },"86": {
+    "doc": "Terraform Configuration",
+    "title": "Terraform Block",
+    "content": "It contains the Terraform settings and has the basic structure of the following . terraform { required_providers { mylocalname = { source = \"source/address\" version = \"~&gt; 1.0\" } } required_version = \"&gt;= 0.14.9\" } . Throughout the module, Terraform refers to providers using a local name. Here I’ve given it a name of mylocalname. Source address takes the form of [Hostname/]Namespace/Type. If Hostname is ommitted, it defaults to registry.terraform.io which is Terraform’s default provider install source. hashicorp/aws is a shorthand for registry.terraform.io/hashicorp/aws. For the version constraint syntax, refer to Version Constraint Syntax. ",
+    "url": "/docs/terraform/config.html#terraform-block",
+    "relUrl": "/docs/terraform/config.html#terraform-block"
+  },"87": {
+    "doc": "Terraform Configuration",
+    "title": "Provider",
+    "content": "You can configure each provider using the local name you have provided in the required_providers of the Terraform block. For example, . provider \"mylocalname\" { # ... } . Reference Provider Configuration for details. ",
+    "url": "/docs/terraform/config.html#provider",
+    "relUrl": "/docs/terraform/config.html#provider"
+  },"88": {
+    "doc": "Terraform Configuration",
+    "title": "Resource",
+    "content": "Basic syntax is as follows, . resource \"aws_instance\" \"my_server\" { ami = \"ami-a1b2c3d4\" instance_type = \"t2.micro\" } . The example block above declares a resource type \"aws_instance\" and gives it a local name of \"my_server\". Just like the provider local name, resource local name is used to refer to this resource throughout the module. In addition, the unique ID for the resource becomes aws_instance.my_server. The resource configuration arguments within the block body are specific to each resource type. For an example, refer to documentation here for aws_instance. ",
+    "url": "/docs/terraform/config.html#resource",
+    "relUrl": "/docs/terraform/config.html#resource"
+  },"89": {
+    "doc": "Terraform Configuration",
+    "title": "Using variables",
+    "content": "To avoid using hard-coded values in configuration, create a new file variables.tf (name of the file can be anything you want) with the following: . variable \"variable_name\" { description = \"Some description of what this is\" type = string default = \"This is the value of the variable\" } . You can then use the variables in other .tf files as, . var.variable_name . You can also pass in a new variable value for testing by . terraform apply -var 'variable_name=SomeOtherValue' . It will modify the state so that all the variables use the new value. This does not update the original variable declaration. If you run terraform apply again without the -var flag, the state will be modified using the original value. References: . | Terraform: Terraform Settings | Terraform: Providers | Terraform: Resources | Terraform: Version Constraint Syntax | . ",
+    "url": "/docs/terraform/config.html#using-variables",
+    "relUrl": "/docs/terraform/config.html#using-variables"
   },"90": {
     "doc": "Confusion Matrix",
     "title": "Confusion Matrix",
@@ -725,719 +725,719 @@
     "url": "/docs/ai/notes/f1-score.html",
     "relUrl": "/docs/ai/notes/f1-score.html"
   },"121": {
+    "doc": "filter-repo",
+    "title": "git filter-repo",
+    "content": ". | Installation | Set subdirectory as root of its own repo . | Clone a fresh copy of the repo | Set the contents of subdirectory as the content of new repo | Create a new remote and push | . | Move multiple subdirectories to a new repo | Delete files from all commit history | . ",
+    "url": "/docs/git-hub/git/filter-repo.html#git-filter-repo",
+    "relUrl": "/docs/git-hub/git/filter-repo.html#git-filter-repo"
+  },"122": {
+    "doc": "filter-repo",
+    "title": "Installation",
+    "content": "Install via Homebrew: . brew install git-filter-repo . ",
+    "url": "/docs/git-hub/git/filter-repo.html#installation",
+    "relUrl": "/docs/git-hub/git/filter-repo.html#installation"
+  },"123": {
+    "doc": "filter-repo",
+    "title": "Set subdirectory as root of its own repo",
+    "content": "You could technically just copy over the directory and create a new repo. However, if you’d like to carry over commits that are relevant to the subdirectory to the new reoo, you can use git filter-repo to do so. Suppose you have a repo named test-repo with the following structure: . ├── dir1 ├── dir2 └── dir3 . And you want to move the contents of dir1 into a new repo named dir1-repo. Clone a fresh copy of the repo . Cloning a fresh copy before running git filter-repo is a recommended practice. git clone ${https_or_ssh_to_test_repo} dir1-repo . Set the contents of subdirectory as the content of new repo . cd dir1-repo git filter-repo --subdirectory-filter dir1 . Relevant commits should have been cherry picked as well. Create a new remote and push . Create a new repo on GitHub. Suppose its name is dir1-repo. First check if you still have the remote pointing to the original test-repo: . git remote -v . If you do, modify it: . Assuming origin is the name of the main upstream remote. git remote set-url origin ${https_or_ssh_to_dir1_repo} # OR if the remote settings were already purged git add remote origin ${https_or_ssh_to_dir1_repo} . Verify that a new remote origin has been set and push: . git push -u origin ${branch} . ",
+    "url": "/docs/git-hub/git/filter-repo.html#set-subdirectory-as-root-of-its-own-repo",
+    "relUrl": "/docs/git-hub/git/filter-repo.html#set-subdirectory-as-root-of-its-own-repo"
+  },"124": {
+    "doc": "filter-repo",
+    "title": "Move multiple subdirectories to a new repo",
+    "content": "Suppose you have a repo named test-repo with the following structure: . ├── dir1 ├── dir2 ├── dir3 └── dir4 . And you want to move dir1 and dir2 to a new repo named new-repo: . ├── dir1 └── dir2 . Steps are similar to above, except for the git filter-repo command: . git filter-repo --path dir1 --path dir2 . ",
+    "url": "/docs/git-hub/git/filter-repo.html#move-multiple-subdirectories-to-a-new-repo",
+    "relUrl": "/docs/git-hub/git/filter-repo.html#move-multiple-subdirectories-to-a-new-repo"
+  },"125": {
+    "doc": "filter-repo",
+    "title": "Delete files from all commit history",
+    "content": "To remove certain files from all commit history, use the following command: . git filter-repo --invert-paths --path &lt;file1&gt; --path &lt;file2&gt; . References . | git-filter-repo | GitHub: Splitting a subfolder out into a new repository | . ",
+    "url": "/docs/git-hub/git/filter-repo.html#delete-files-from-all-commit-history",
+    "relUrl": "/docs/git-hub/git/filter-repo.html#delete-files-from-all-commit-history"
+  },"126": {
+    "doc": "filter-repo",
+    "title": "filter-repo",
+    "content": " ",
+    "url": "/docs/git-hub/git/filter-repo.html",
+    "relUrl": "/docs/git-hub/git/filter-repo.html"
+  },"127": {
     "doc": "Frontend Web",
     "title": "Frontend Web",
     "content": ". | SPA vs SSR vs Static Site . | Single-Page Application (SPA) | Server-Side Rendering | Static Site | . | . ",
     "url": "/docs/learned/frontend-web.html",
     "relUrl": "/docs/learned/frontend-web.html"
-  },"122": {
+  },"128": {
     "doc": "Frontend Web",
     "title": "SPA vs SSR vs Static Site",
     "content": "Here is an attempt to understand the exact differences between the three. Single-Page Application (SPA) . An SPA uses CSR (client-side rendering). Just by that I can already see the glaring difference to SSR (server-side rendering). In CSR, as the name suggests the client (browser) dynamically renders the web app. All the HTML, CSS, and Javascript are loaded in the beginning of the app’s lifecycle. Script makes AJAX calls to the API when it needs new data and dynamically integrates it. So technically, there really is only one page that is being presented to the user, it’s just that the contents within the page change to meet your needs. One advantage of SPA is that it provides better UX, because there is little to no lag time during navigation within the app. This comes from the fact that SPA does not require duplicate resources again and again after each click unlike MPA (Multiple-Page Application)/SSR. Things that always stay static on a website, like the general frame or style can stay as is and only new data are fetched from server. One disadvantage is that it is generally considered to have poor SEO (Search-Engine Optimization) compared to server-side apps. This is because without JS rendering, the HTML of an SPA is pretty much empty. If you check the source code of an SPA (not from the console), you will see that it does not contain much other than all the scripts that are sitting and waiting to execute upon interaction. In addition, SPAs might not have unique URLs for each content delivered. In many cases the URL stays the same throughout the entire site. Therefore crawling and indexing becomes slow and difficult. Server-Side Rendering . With all that being said about SPA, SSR is easier to understand. When navigation happens (e.g via click), the server builds the page and hands it over to the browser. Within a browser, you will only see the resources that consist the current page that you are on. You can already see why this could be slow, since it’s like asking the chef to dip your nachos every single bite when you could’ve just had the chips and cheese in front of you and dip it yourself. Due to this nature of SSR, you will see the page flicker upon navigation unlike the smooth UX of SPA. However, the benefit of SSR compared to SPA is that it is more secure, less heavy on the browser (and no memory leaks), and better SEO. Static Site . Static sites do not have dynamic content and consist of only the static files (HTML, CSS, JS). You could think of this as if the SSR had already rendered every single page that the client might request and had it prepared for you. There is no backend component to static sites and no rendering is involved. ",
     "url": "/docs/learned/frontend-web.html#spa-vs-ssr-vs-static-site",
     "relUrl": "/docs/learned/frontend-web.html#spa-vs-ssr-vs-static-site"
-  },"123": {
+  },"129": {
     "doc": "GitHub Integration",
     "title": "Github Integration",
     "content": ". | Setup | Deployment key for Github repo . | Generate a key pair in Jenkins container | Add private key to Jenkins credentials | Add public key to Github repo | . | GitHub webhook for Jenkins | Create a Jenkins item . | No ECDSA error | . | . ",
     "url": "/docs/jenkins/github.html#github-integration",
     "relUrl": "/docs/jenkins/github.html#github-integration"
-  },"124": {
+  },"130": {
     "doc": "GitHub Integration",
     "title": "Setup",
     "content": "One way to install and experiment with Jenkins locally is to use Docker. Necessary steps are well documented and thoroughly explained in the official documentation. It is easier to manage the containers if you transcribe the commands in the docs to a docker-compose file. ",
     "url": "/docs/jenkins/github.html#setup",
     "relUrl": "/docs/jenkins/github.html#setup"
-  },"125": {
+  },"131": {
     "doc": "GitHub Integration",
     "title": "Deployment key for Github repo",
     "content": "Generate a key pair in Jenkins container . Suppose you have a Jenkins container named jenkins running locally, . exec a shell in the container and generate a key pair in /var/jenkins_home/.ssh: . docker exec -it jenkins bash mkdir -p /var/jenkins_home/.ssh ssh-keygen -t ed25519 -f /var/jenkins_home/.ssh/jenkins_github . You will now have a key pair named jenkins_github in /var/jenkins_home/.ssh. Add private key to Jenkins credentials . Now log in to Jenkins Dashboard and navigate to Manage Jenkins &gt; Manage Credentials. Click on Add Credentials and select SSH Username with private key from the dropdown. Copy the contents of jenkins_github and paste it in the Private Key field. Add public key to Github repo . Go to your Github repo and navigate to Settings &gt; Deploy keys. Copy the contents of jenkins_github.pub and paste it in the Key field. ",
     "url": "/docs/jenkins/github.html#deployment-key-for-github-repo",
     "relUrl": "/docs/jenkins/github.html#deployment-key-for-github-repo"
-  },"126": {
+  },"132": {
     "doc": "GitHub Integration",
     "title": "GitHub webhook for Jenkins",
     "content": "If you have not chosen to Install suggested plugins during the Jenkins setup, you may need to install Git plugin and GitHub plugin manually. To create a GitHub webhook, you need a working public URL. If you do not have one, you can use ngrok, etc. to create a forwarding URL for your Jenkins exposed port. Go to your Github repo and navigate to Settings &gt; Webhooks &gt; Add webhook. | Payload URL: Must be appended with /github-webhook/ to work with the GitHub plugin. | Content type: Must be set to application/json. | . ",
     "url": "/docs/jenkins/github.html#github-webhook-for-jenkins",
     "relUrl": "/docs/jenkins/github.html#github-webhook-for-jenkins"
-  },"127": {
+  },"133": {
     "doc": "GitHub Integration",
     "title": "Create a Jenkins item",
     "content": "TBA . No ECDSA error . If you encounter the following error while configuring the URL for the repo, . No ECDSA host key is known for github.com and you have requested strict checking. Navigate to Manage Jenkins &gt; Configure Global Security, . Find Git Host Key Verification Configuration and set Host Key Verification Strategy to Accept first connection. ",
     "url": "/docs/jenkins/github.html#create-a-jenkins-item",
     "relUrl": "/docs/jenkins/github.html#create-a-jenkins-item"
-  },"128": {
+  },"134": {
     "doc": "GitHub Integration",
     "title": "GitHub Integration",
     "content": " ",
     "url": "/docs/jenkins/github.html",
     "relUrl": "/docs/jenkins/github.html"
-  },"129": {
+  },"135": {
     "doc": "Docker Images",
     "title": "Docker Images",
     "content": ". | Docker Image / Images . | Image | Images | . | Dangling images . | Remove dangling images | . | . ",
     "url": "/docs/docker/images.html",
     "relUrl": "/docs/docker/images.html"
-  },"130": {
+  },"136": {
     "doc": "Docker Images",
     "title": "Docker Image / Images",
     "content": "You may have noticed that there are two Docker CLI commands that seem similar . | docker image | docker images | . There is a bit of a difference between the two. Image . Actually builds, pulls, and removes images. This command is used to physically manage the images. You can of course list images as well. docker image ls . Images . This has to do with displaying in a high-level fashion what kind of images exist. Primary purpose is to display image metadata. docker images . ",
     "url": "/docs/docker/images.html#docker-image--images",
     "relUrl": "/docs/docker/images.html#docker-image--images"
-  },"131": {
+  },"137": {
     "doc": "Docker Images",
     "title": "Dangling images",
     "content": "When you do . docker images -a | grep '&lt;none&gt;' # OR docker image ls -a | grep '&lt;none&gt;' . Or check the Images tab in Docker Desktop, you may see a bunch of images with the name and tag of &lt;none&gt;. This is a residue / intermediate image created from previous image builds. It seems they exist as a cached layer for subsequent builds. But it is safe to delete them. Remove dangling images . You can remove these dangling images by . docker image prune . docker image prune -a not only removes dangling images but also any unused images. This can come in handy, but if you’re keeping any pulled Docker registry images (unused in containers at the moment) in your local storage for some reason, this is not what you want. ",
     "url": "/docs/docker/images.html#dangling-images",
     "relUrl": "/docs/docker/images.html#dangling-images"
-  },"132": {
-    "doc": "AWS",
-    "title": "AWS",
-    "content": " ",
-    "url": "/docs/aws/",
-    "relUrl": "/docs/aws/"
-  },"133": {
-    "doc": "Vim",
-    "title": "Vim",
-    "content": "To be added . | Window | Key mapping | NerdTree | . ",
-    "url": "/docs/others/vim/",
-    "relUrl": "/docs/others/vim/"
-  },"134": {
-    "doc": "Vim",
-    "title": "Window",
-    "content": "To split, . :sp # Split window horizontally :vsp # Split window vertically . To navigate between windows, . &lt;Ctrl&gt; + w + w # Navigate between viewports &lt;Ctrl&gt; + w + h/j/k/l # Navigate to respective direction . ",
-    "url": "/docs/others/vim/#window",
-    "relUrl": "/docs/others/vim/#window"
-  },"135": {
-    "doc": "Vim",
-    "title": "Key mapping",
-    "content": "There are 6 types of mapping commands: . :map # Recursive / Works in normal, visual, select and operator modes :noremap # Non-recursive version :nmap # Recursive / Works in normal mode :nnoremap :vmap # Recursive / Works in visual mode :vnoremap . Type one of the above to list the current key mappings. To set new mappings, add them to ~/.vim/vimrc: . \"Example nnoremap &lt;C-n&gt; :&lt;NERDTreeToggle&lt;CR&gt; . ",
-    "url": "/docs/others/vim/#key-mapping",
-    "relUrl": "/docs/others/vim/#key-mapping"
-  },"136": {
-    "doc": "Vim",
-    "title": "NerdTree",
-    "content": "Set shortcut to toggle NerdTree: . nnoremap nerd :&lt;NERDTreeToggle&lt;CR&gt; . In NerdTree, type ? to toggle help. References: . | Key Mapping | . ",
-    "url": "/docs/others/vim/#nerdtree",
-    "relUrl": "/docs/others/vim/#nerdtree"
-  },"137": {
-    "doc": "ngrok",
-    "title": "ngrok",
-    "content": "Official Guide . | Installation | Setup | Forward a local port to a public URL | . ",
-    "url": "/docs/others/ngrok/",
-    "relUrl": "/docs/others/ngrok/"
   },"138": {
-    "doc": "ngrok",
-    "title": "Installation",
-    "content": "brew install ngrok/ngrok/ngrok # OR brew install --cask ngrok . Check installation via: . ngrok -h . ",
-    "url": "/docs/others/ngrok/#installation",
-    "relUrl": "/docs/others/ngrok/#installation"
-  },"139": {
-    "doc": "ngrok",
-    "title": "Setup",
-    "content": "To use ngrok you must be signed up for an account. You can do this via the official website. Once you login, you will be given an authtoken to authenticate ngrok. Copy the value and authenticate in terminal: . ngrok config add-authtoken $AUTH_TOKEN . ",
-    "url": "/docs/others/ngrok/#setup",
-    "relUrl": "/docs/others/ngrok/#setup"
-  },"140": {
-    "doc": "ngrok",
-    "title": "Forward a local port to a public URL",
-    "content": "Run the following command: . ngrok http $PORT . The public URL will be displayed in the terminal: ... Forwarding https://some.url.given.ngrok.io -&gt; http://localhost:$PORT ... For free plans, the URL changes every time you restart ngrok. ",
-    "url": "/docs/others/ngrok/#forward-a-local-port-to-a-public-url",
-    "relUrl": "/docs/others/ngrok/#forward-a-local-port-to-a-public-url"
-  },"141": {
-    "doc": "Jekyll",
-    "title": "Jekyll",
-    "content": ". | Ruby installation with rbenv | Install Jekyll | Create a Jekyll blog | Bundler / Gemfile . | Install gems listed in Gemfile | Adding gems to project | Removing gems | Execute a command in the context of the bundle | . | . ",
-    "url": "/docs/others/jekyll/",
-    "relUrl": "/docs/others/jekyll/"
-  },"142": {
-    "doc": "Jekyll",
-    "title": "Ruby installation with rbenv",
-    "content": "I’ve decided to use rbenv only because I didn’t want to mess with the system ruby that comes with macOS (I am currently using Catalina). Assuming you have Homebrew installed. # Install rbenv and ruby-build brew install rbenv # Set up rbenv integration with your shell rbenv init # Then follow the instruction that appears on screen . # rbenv init will ask you to add the following to .zshrc eval \"$(rbenv init - zsh)\" . Now that you have installed rbenv, create a folder that will contain your Jekyll site. I will refer to the folder as blog. Once created, move into blog. cd blog # List latest stable versions rbenv install -l # I chose 3.0.2 rbenv install 3.0.2 rbenv rehash # Following creates .ruby-version in cwd rbenv local 3.0.2 # Confirm ruby version in folder ruby -v . All the ruby versions are installed in ~/.rbenv. ",
-    "url": "/docs/others/jekyll/#ruby-installation-with-rbenv",
-    "relUrl": "/docs/others/jekyll/#ruby-installation-with-rbenv"
-  },"143": {
-    "doc": "Jekyll",
-    "title": "Install Jekyll",
-    "content": "Before installing the gems, check where they are being installed via . # Refer to INSTALLATION DIRECTORY / GEM PATHS gem env # OR gem env home . Rest of the stuff are just my preferences/me being a clean freak. Now, the Jekyll documentation tells you to do a local install with the --user-install flag. If you’re not using rbenv this is indeed more desirable as it installs your gems to your home directory (like ~/.gem). However, for my purpose and with rbenv it was unnecessary. As you’ll notice by inspecting the gem env outputs, the global install directory (INSTALLATION DIRECTORY) is already in your home directory (~/.rbenv/versions/...). On the other hand, the user install directory (USER INSTALLATION DIRECTORY) is set to some local folder (~/.local/share/gem/ruby/...). I personally prefer having all the packages contained in ~/.rbenv, so I simply chose to omit --user-install and do: . End of me being a freak. gem install jekyll bundler . ",
-    "url": "/docs/others/jekyll/#install-jekyll",
-    "relUrl": "/docs/others/jekyll/#install-jekyll"
-  },"144": {
-    "doc": "Jekyll",
-    "title": "Create a Jekyll blog",
-    "content": "First create a new Jekyll project by . # Assuming you're still in the blog folder jekyll new . It will create a default website you can test locally. # Will generate a static html site in _site bundle exec jekyll serve # With live-reloading bundle exec jekyll serve --livereload . If you get any errors regarding webrick: cannot load such file -- webrick (LoadError), add webrick by bundle add webrick. This is due to ruby 3 excluding webrick as a default bundled gem. ",
-    "url": "/docs/others/jekyll/#create-a-jekyll-blog",
-    "relUrl": "/docs/others/jekyll/#create-a-jekyll-blog"
-  },"145": {
-    "doc": "Jekyll",
-    "title": "Bundler / Gemfile",
-    "content": "Think of the bundler as the npm/yarn of Ruby and Gemfile as the package.json of Node projects. When you create a new Jekyll project with jekyll new, a Gemfile is automatically created. This Gemfile will list the basic gem dependencies to create a basic Jekyll site. Install gems listed in Gemfile . If there already exists a Gemfile, you can download all the necessary gems for this project by: . bundle install . These gems are usually installed in the same place they would be when you call gem install. Exact location can be confirmed by bundle show &lt;gem-name&gt;. Adding gems to project . When you need to add another gem for your project, you can either: . | Type it out yourself in Gemfile | . # Gemfile gem \"just-the-docs\" . Then, . bundle install . OR . | Use bundle add | . bundle add just-the-docs . If the gems already exist in system, it’ll just use that. If they don’t already, it will download the gem for you. Removing gems . When you no longer need a gem for the project, . bundle remove just-the-docs . This doesn’t remove the gem from the system. Only removes it from your project’s Gemfile. Execute a command in the context of the bundle . Every bundled gem will be made available in the context of the command you wish to execute even if these gems are not in the executable path. bundle exec jekyll build . References: . | Markdown Supported Languages | . ",
-    "url": "/docs/others/jekyll/#bundler--gemfile",
-    "relUrl": "/docs/others/jekyll/#bundler--gemfile"
-  },"146": {
-    "doc": "DBeaver",
-    "title": "DBeaver",
-    "content": ". | Installation | Export settings and connections | Download Vim plugin | . ",
-    "url": "/docs/others/dbeaver/",
-    "relUrl": "/docs/others/dbeaver/"
-  },"147": {
-    "doc": "DBeaver",
-    "title": "Installation",
-    "content": "brew install --cask dbeaver-community . ",
-    "url": "/docs/others/dbeaver/#installation",
-    "relUrl": "/docs/others/dbeaver/#installation"
-  },"148": {
-    "doc": "DBeaver",
-    "title": "Export settings and connections",
-    "content": "On MacOS, workspace configurations are stored in ~/Library/DBeaverData. Refer to link for different OS. To export the settings and connections, copy ~/Library/DBeaverData/workspace6/General/.dbeaver from source to target. ",
-    "url": "/docs/others/dbeaver/#export-settings-and-connections",
-    "relUrl": "/docs/others/dbeaver/#export-settings-and-connections"
-  },"149": {
-    "doc": "DBeaver",
-    "title": "Download Vim plugin",
-    "content": "On the top nagivation bar, click Help &gt; Install New Software.... Then type the following URL in the Work with field and click Add. http://vrapper.sourceforge.net/update-site/stable . Enter Vrapper for the Name field and click OK. Then select Vrapper and any other optional Vim plugins to install. Click Next to install the plugin. I personally find optional Surround.vim plugin to be very useful. After installation, restart DBeaver. ",
-    "url": "/docs/others/dbeaver/#download-vim-plugin",
-    "relUrl": "/docs/others/dbeaver/#download-vim-plugin"
-  },"150": {
     "doc": "Chrome Extensions",
     "title": "Chrome Extensions",
     "content": "To be added . Official Documentation . | Manifest V3 / V2 | To view the contents of extension storage | . ",
     "url": "/docs/others/chrome-ext/",
     "relUrl": "/docs/others/chrome-ext/"
-  },"151": {
+  },"139": {
     "doc": "Chrome Extensions",
     "title": "Manifest V3 / V2",
     "content": "To be added . ",
     "url": "/docs/others/chrome-ext/#manifest-v3--v2",
     "relUrl": "/docs/others/chrome-ext/#manifest-v3--v2"
-  },"152": {
+  },"140": {
     "doc": "Chrome Extensions",
     "title": "To view the contents of extension storage",
     "content": "Open the background in inspect view mode. Then type the following: . chrome.storage.local.get(console.log) . ",
     "url": "/docs/others/chrome-ext/#to-view-the-contents-of-extension-storage",
     "relUrl": "/docs/others/chrome-ext/#to-view-the-contents-of-extension-storage"
-  },"153": {
-    "doc": "Java",
-    "title": "Java",
-    "content": " ",
-    "url": "/docs/java/",
-    "relUrl": "/docs/java/"
-  },"154": {
+  },"141": {
     "doc": "Demo",
     "title": "Demo",
     "content": " ",
     "url": "/docs/demo/",
     "relUrl": "/docs/demo/"
-  },"155": {
+  },"142": {
     "doc": "Stat Quick Notes",
     "title": "Statistics Quick Notes",
     "content": "To be added . Fragments of things I learned. They may be moved to a separate category later. ",
     "url": "/docs/statistics/notes/#statistics-quick-notes",
     "relUrl": "/docs/statistics/notes/#statistics-quick-notes"
-  },"156": {
+  },"143": {
     "doc": "Stat Quick Notes",
     "title": "Stat Quick Notes",
     "content": " ",
     "url": "/docs/statistics/notes/",
     "relUrl": "/docs/statistics/notes/"
-  },"157": {
+  },"144": {
     "doc": "Statistics",
     "title": "Statistics",
     "content": " ",
     "url": "/docs/statistics/",
     "relUrl": "/docs/statistics/"
-  },"158": {
+  },"145": {
     "doc": "Flask",
     "title": "Flask",
     "content": " ",
     "url": "/docs/flask/",
     "relUrl": "/docs/flask/"
-  },"159": {
-    "doc": "Home",
-    "title": "Online Long-Term Memory of a Novice Programmer",
-    "content": "Personal documentation of itty bitties and all the hacky decisions I’ve made throughout my learning (and maybe life). ",
-    "url": "/#online-long-term-memory-of-a-novice-programmer",
-    "relUrl": "/#online-long-term-memory-of-a-novice-programmer"
-  },"160": {
-    "doc": "Home",
-    "title": "Intro",
-    "content": "Why? . Learning is always fun; I love jamming new things into my head. However, I’ve noticed that my long-term memory is in fact not long enough to guide me back after a while. Hence, the docs. I can’t do anything about the things that have already left my head, but I am hoping that I can at least keep an itty bitty documentation of my future learnings. Disclaimer . The information contained in this document is not necessarily correct or comprehensive. It will be biased in many ways and may contain naive and pitiful approaches made by a novice. Its sole purpose is to document my footsteps. ",
-    "url": "/#intro",
-    "relUrl": "/#intro"
-  },"161": {
-    "doc": "Home",
-    "title": "Home",
-    "content": " ",
-    "url": "/",
-    "relUrl": "/"
-  },"162": {
+  },"146": {
     "doc": "Terraform",
     "title": "Terraform",
     "content": " ",
     "url": "/docs/terraform/",
     "relUrl": "/docs/terraform/"
-  },"163": {
+  },"147": {
     "doc": "Terraform",
     "title": "What is Terraform?",
     "content": "Infrastructure as Code (IaC): Terraform is a software tool that codes the infrastructure with a declarative configuration language. Your entire infrastructure is managed through a set of declarations. The benefit of IaC is that everything is collected within a single tool. This gets rid of the pain of having to jump to different tools every time you want to configure your resources. ",
     "url": "/docs/terraform/#what-is-terraform",
     "relUrl": "/docs/terraform/#what-is-terraform"
-  },"164": {
+  },"148": {
     "doc": "Network",
     "title": "Network Basics",
     "content": ". | IP Address . | Private IP Address . | IPv4: RFC1918 | . | . | . ",
     "url": "/docs/learned/network/#network-basics",
     "relUrl": "/docs/learned/network/#network-basics"
-  },"165": {
+  },"149": {
     "doc": "Network",
     "title": "IP Address",
     "content": "IP (Internet Protocol) address is a unique address that identifies a device on a network using an Internet Protocol. Private IP Address . Reserved range for private networks . IPv4: RFC1918 . | [24-bit block] CIDR: 10.0.0.0/8, Subnet mask: 255.0.0.0 | [20-bit block] CIDR: 172.16.0.0/12, Subnet mask: 255.240.0.0 | [16-bit block] CIDR: 192.168.0.0/16, Subnet mask: 255.255.0.0 | . ",
     "url": "/docs/learned/network/#ip-address",
     "relUrl": "/docs/learned/network/#ip-address"
-  },"166": {
+  },"150": {
     "doc": "Network",
     "title": "Network",
     "content": " ",
     "url": "/docs/learned/network/",
     "relUrl": "/docs/learned/network/"
-  },"167": {
+  },"151": {
     "doc": "OAuth 2.0",
     "title": "OAuth 2.0",
     "content": ". | What is an OAuth 2.0 protocol? . | OpenID | . | Client types . | Client secret | Public clients | Confidential clients | . | Authorization flow . | Implicit flow | Authorization code flow | Authorization code flow with PKCE | . | Authorization server API . | Authorize | Token | . | PKCE Code Challenge . | Code verifier | Code challenge | . | . ",
     "url": "/docs/learned/oauth2/",
     "relUrl": "/docs/learned/oauth2/"
-  },"168": {
+  },"152": {
     "doc": "OAuth 2.0",
     "title": "What is an OAuth 2.0 protocol?",
     "content": "According to Google, it is an ‘open standard for access delegation’. While it sounds intimidating, it is essentially made to ‘let this application access my Google photos’, ‘let this site use my Facebook contacts’, etc. So it was developed as method for authorization to a 3rd party resource. Some terms: . | Resource owner: that’s the user (you) wanting to grant access | Resource server: the API you want to access | Client: application requesting access | User Agent: the thing user is using to talk to client (browser, mobile app) | Authorization server: authorizes and grants access tokens to client | . OpenID . One thing to note is the word authorization, and you shoud not to confuse it with authentication. When I first read about OAuth, I thought, “Well isn’t this the ‘Sign in with Google/Facebook’ button that I see quite a lot on websites these days?”. It sort of is, because the protocol behind that button is OpenID which is built on top of OAuth 2.0. So the way they operate are very similar, but it is good to know the difference that OAuth is for authorization and OpenID builds a layer on top of OAuth for authentication. ",
     "url": "/docs/learned/oauth2/#what-is-an-oauth-20-protocol",
     "relUrl": "/docs/learned/oauth2/#what-is-an-oauth-20-protocol"
-  },"169": {
+  },"153": {
     "doc": "OAuth 2.0",
     "title": "Client types",
     "content": "There are two different types of clients in OAuth. One is a public client and the other is a confidential client. To understand the difference, you need to know the term client secret. Client secret . A client secret is nothing more than a random string generated. It is usually created by generating a secure random string of 256-bit (32 bytes) and then converting it to hex. This value should never be revealed to the outside except for the authorizing server and the client app. Hence the name ‘client secret’. Inside your code, client secret will be used to successfully authorize users. But the issue that arises is where should the client store this secret. Public clients . If the client cannot keep the client secret a secret, it is called a public client. For example, single-page apps that expose everything on the browser with no backend or mobile apps that can have their HTTPS request intercepted and revealed are considered public clients. In case of an SPA, everything is exposed on the browser. Chrome inspect will reveal the source code, local storage, session, and cookies. So storing client secret is infeasible. For a mobile app, apparently it is possible to provide a fake HTTPS certificate that goes to your own API. So you can catch an HTTPS leaving the phone, route it to a different API, have that API make a request to the initial intended API, and return the response to phone as if it would normally, while the proxy API in the middle can inspect all the requests (which may contain the client secret at some point). Confidential clients . This is typically a traditional web server or anything backed by a server where nobody can take a peek at the source code or have the requests intercepted. ",
     "url": "/docs/learned/oauth2/#client-types",
     "relUrl": "/docs/learned/oauth2/#client-types"
-  },"170": {
+  },"154": {
     "doc": "OAuth 2.0",
     "title": "Authorization flow",
     "content": "There are a few different flows, but I will only document three of them: implicit flow, authorization code flow, authorization code flow with PKCE. The general process is as below: . | Client sends request to autorization server | Client gets an authorization code back | Client sends request to a token endpoint | Client gets an access token | Client places this token in a header when sending a request to resource server | . Implicit flow . Implicit flow is much more simplified. After step 1, implicit flow skips right to step 4. Because the access token is revealed on the browser url, this is considered an insecure lecay method. Authorization code flow . Client gets an authorization code back as a request parameter embedded in the url. The client then uses this code to exchange it for an access token. Usually secure random strings such as state and client secret are used to validate the process. Authorization code flow with PKCE . For public clients that cannot keep any secret strings, PKCE (Proof Key for Code Exchange) is implemented. This step includes an additional code challenge and verifying step. ",
     "url": "/docs/learned/oauth2/#authorization-flow",
     "relUrl": "/docs/learned/oauth2/#authorization-flow"
-  },"171": {
+  },"155": {
     "doc": "OAuth 2.0",
     "title": "Authorization server API",
     "content": "Typically there are two endpoints during the process. Authorize . Typical request is an HTTPS GET to a path that often looks like oauth/authorize. Parameters . | response_type: code for authorization code flow and token for implicit flow | client_id: client app id | redirect_uri: absolute uri to be redirected after authorization | state: a random value that will be returned back in redirect. This is a protection against CSRF. | scope: the scope of resources you want to protect | code_challenge_method (PKCE only): the encryption used in code challenge; typically S256 for SHA256 | code_challenge (PKCE only): the generated challenge from code_verifier | . Token . After extracting the authorization code from the redirect url, you make an HTTPS POST request to oauth/token. Header: . | Authorization: Basic Base64_url_encode('client_id:client_secret') | Content-Type: application/x-www-form-urlencoded | . Body: . | grant_type: authorization_code, refresh_token, client_credentials | client_id | redirect_uri: should be the same as the one used for authorization request | scope | code: extracted from url | code_verifier: proof key for the code_challenge | . Response: . { \"id_token\": \"~\", \"access_token\": \"~\", \"refresh_token\": \"~\", \"token_type\": \"Bearer\", \"expires_in\": 10000 } . ",
     "url": "/docs/learned/oauth2/#authorization-server-api",
     "relUrl": "/docs/learned/oauth2/#authorization-server-api"
-  },"172": {
+  },"156": {
     "doc": "OAuth 2.0",
     "title": "PKCE Code Challenge",
     "content": "Code verifier . According to here it is a ‘cryptographically random string using the characters A-Z, a-z, 0-9, and the punctuation characters -._~ (hyphen, period, underscore, and tilde), between 43 and 128 characters long’. Code challenge . Code challenge is created by hashing the code_verifier with SHA256 and then encoding as a BASE6-URL string. References: . | OAuth: PKCE | AWS Cognito: AUTHORIZE | AWS Cognito: TOKEN | Auth0: PKCE | . ",
     "url": "/docs/learned/oauth2/#pkce-code-challenge",
     "relUrl": "/docs/learned/oauth2/#pkce-code-challenge"
-  },"173": {
+  },"157": {
     "doc": "Database",
     "title": "Database",
     "content": ". | ACID / BASE . | ACID | BASE | . | CAP Theory | ORM | . ",
     "url": "/docs/learned/db/",
     "relUrl": "/docs/learned/db/"
-  },"174": {
+  },"158": {
     "doc": "Database",
     "title": "ACID / BASE",
     "content": "ACID . | Atomicity: All operations in a transaction are atomic, meaning they either all succeed or none happen (single failure rolls back the entire transaction). | Consistency: A transaction does not break any invariants set by DB. A DB must be in a valid state before and after a transaction. | Isolation: The end result of a DB after concurrent transactions and sequential transactions must be the same. All transactions must operate as if they were operating on an isolated DB. | Durability: Once a transaction is committed, the commit is retained even after a system failure. | . ACID transaction has been the norm for relational databases. It is more conservative in a sense and more suitable in domains where data safety is critical (financial institutes). However, it is generally considered to be slower due to heavy locking. BASE . | Basic Availiability: Reading and writing is available whenever possible. | Soft-state: State of the system do not ensure write consistency, and replica nodes are not guranteed to be consistent with each other. | Eventually consistent: Given time, system will eventually converge to a known state. | . Where throughput is deemed higher importance than immediate consistency, ACID may be too restrictive. BASE transaction is more optimistic in locking compared to ACID. Many NoSQL databases adhere to BASE when data safety is less of a risk. ",
     "url": "/docs/learned/db/#acid--base",
     "relUrl": "/docs/learned/db/#acid--base"
-  },"175": {
+  },"159": {
     "doc": "Database",
     "title": "CAP Theory",
     "content": "TBA . ",
     "url": "/docs/learned/db/#cap-theory",
     "relUrl": "/docs/learned/db/#cap-theory"
-  },"176": {
+  },"160": {
     "doc": "Database",
     "title": "ORM",
     "content": "TBA . References: . | Data Consistency Models | . ",
     "url": "/docs/learned/db/#orm",
     "relUrl": "/docs/learned/db/#orm"
-  },"177": {
-    "doc": "Kubernetes",
-    "title": "Kubernetes",
-    "content": " ",
-    "url": "/docs/kubernetes/",
-    "relUrl": "/docs/kubernetes/"
-  },"178": {
+  },"161": {
     "doc": "Things I Learned",
     "title": "Things I Learned",
     "content": "List of itty bitty things that I want to keep a note of, but couldn’t quite find a category to place yet. Contents listed here may be moved or grouped with other pages if more related contents are produced. ",
     "url": "/docs/learned/",
     "relUrl": "/docs/learned/"
-  },"179": {
+  },"162": {
     "doc": "Docker",
     "title": "Docker",
     "content": " ",
     "url": "/docs/docker/",
     "relUrl": "/docs/docker/"
-  },"180": {
+  },"163": {
     "doc": "Docker",
     "title": "Explained in a really dumb way",
     "content": "You build an image that contains all the resources that compose a project. This packaging makes porting really easy because all the resources that made your project run at one time is now completely captured in it. You could think of this as a snapshot of your project. This image can be run in a docker container. A container is basically a process isolated from your computer. Think of it as a mini sandbox that mimics your system. Inside a container resources will be downloaded, installed, and copied just as you would normally, but whatever that happened during a container execution will not meddle with your actual computer (unless you specifically configure it to). ",
     "url": "/docs/docker/#explained-in-a-really-dumb-way",
     "relUrl": "/docs/docker/#explained-in-a-really-dumb-way"
-  },"181": {
+  },"164": {
     "doc": "Python Environments",
     "title": "Python Environments",
     "content": ". | Why do you need them? | Python version manager vs Virtual environments . | Typical use case | . | Notes / sanity check | . ",
     "url": "/docs/python/envs/",
     "relUrl": "/docs/python/envs/"
-  },"182": {
+  },"165": {
     "doc": "Python Environments",
     "title": "Why do you need them?",
     "content": "Every Python project comes with different requirements. For example: . |   | Python | Library1 | Library2 | Library3 | . | Project A | 3.6 | x | 1.1.2 | 2.3.0 | . | Project B | 3.10 | x | 2.3.1 | 3.0.1 | . | Project C | 2.7 | 1.4.0 | 1.1.2 | x | . As the number of projects grow, managing different versions of Python and their packages are going to be increasingly difficult. Switching between them and resolving conflicts is one hassle, but removing them after use is also a pain. Environments, however, remembers the context of a project, and keeps them independent of other project’s context. Hence, project collaboration and management becomes much easier with environments. ",
     "url": "/docs/python/envs/#why-do-you-need-them",
     "relUrl": "/docs/python/envs/#why-do-you-need-them"
-  },"183": {
+  },"166": {
     "doc": "Python Environments",
     "title": "Python version manager vs Virtual environments",
     "content": "It can be confusing because they all go by the name environment. Long story short, . | Version manager: manages Python versions | Virtual environment: manages libraries | . You’ll probably end up needing both. Typical use case . You install and select a Python version to use with a version manager. Then create a virtual environment for a project using that Python version. For example (not comprehensive): . | pyenv: version manager | Conda: version manager + virtual environment | venv: virtual environment | Pipenv: virtual environment | Poetry: virtual environment | . ",
     "url": "/docs/python/envs/#python-version-manager-vs-virtual-environments",
     "relUrl": "/docs/python/envs/#python-version-manager-vs-virtual-environments"
-  },"184": {
+  },"167": {
     "doc": "Python Environments",
     "title": "Notes / sanity check",
     "content": ". | which python / which python3 will point to the python binary | which pip / which pip3 will point the pip binary | pip -V / pip3 -V will point to the site-packages | conda run which python / conda run python -V does the expected for the base conda env or the active env | pipenv run which python / pipenv run python -V does the expected for the current root directory env | However, pipenv run pip -V will create an env for the cwd and add pip to the Pipfile for cwd | . ",
     "url": "/docs/python/envs/#notes--sanity-check",
     "relUrl": "/docs/python/envs/#notes--sanity-check"
-  },"185": {
-    "doc": "Jenkins",
-    "title": "Jenkins",
-    "content": " ",
-    "url": "/docs/jenkins/",
-    "relUrl": "/docs/jenkins/"
-  },"186": {
+  },"168": {
     "doc": "Python",
     "title": "Python",
     "content": " ",
     "url": "/docs/python/",
     "relUrl": "/docs/python/"
-  },"187": {
+  },"169": {
     "doc": "SSL",
     "title": "SSL",
     "content": " ",
     "url": "/docs/security/ssl/",
     "relUrl": "/docs/security/ssl/"
-  },"188": {
+  },"170": {
     "doc": "SSH",
     "title": "SSH",
     "content": " ",
     "url": "/docs/security/ssh/",
     "relUrl": "/docs/security/ssh/"
-  },"189": {
+  },"171": {
     "doc": "PGP Key",
     "title": "PGP Key",
     "content": ". | OpenPGP | GnuPG . | Basic usage | Editing a key | Encrypt and decrypt | Error | . | Key ID . | Fingerprint | Long key ID | Short key ID | . | . ",
     "url": "/docs/security/pgp/",
     "relUrl": "/docs/security/pgp/"
-  },"190": {
+  },"172": {
     "doc": "PGP Key",
     "title": "OpenPGP",
     "content": "To be added . ",
     "url": "/docs/security/pgp/#openpgp",
     "relUrl": "/docs/security/pgp/#openpgp"
-  },"191": {
+  },"173": {
     "doc": "PGP Key",
     "title": "GnuPG",
     "content": "Basic usage . # Follow prompt to create keys gpg --full-generate-key # List public keys gpg --list-keys # List secret keys gpg --list-secret-keys . Editing a key . gpg --edit-key &lt;key-id&gt; . To fix the expiration setting, for example, do: . gpg&gt; expire ...prompt... Then save the settings by: . gpg&gt; save . Related files will be stored in ~/.gnupg. Encrypt and decrypt . To be added . The last % of decrypted output is unused. Error . In case you get any error of the following: . $ gpg: public key decryption failed: Inappropriate ioctl for device $ gpg: decryption failed: Inappropriate ioctl for device . or . $ gpg: public key decryption failed: No such file or directory $ gpg: decryption failed: No such file or directory . Try: . echo $GPG_TTY . If it shows a not a tty error, set: . export GPG_TTY=$(tty) . You can place them in your shell configuration file. ",
     "url": "/docs/security/pgp/#gnupg",
     "relUrl": "/docs/security/pgp/#gnupg"
-  },"192": {
+  },"174": {
     "doc": "PGP Key",
     "title": "Key ID",
     "content": "The key ID is calculated from your public key and the creation timestamp. Fingerprint . The long hex printed with gpg --list-keys is the fingerprint of the key. Long key ID . The last 16 hex of the fingerprint. Short key ID . The last 8 hex of the fingerprint. You can provide either one of the three for a key ID. ",
     "url": "/docs/security/pgp/#key-id",
     "relUrl": "/docs/security/pgp/#key-id"
-  },"193": {
+  },"175": {
     "doc": "Vault",
     "title": "Vault",
     "content": ". | Installation . | With Homebrew | With Docker | . | Server configuration file . | storage | listener | log level | ttl (Time-To-Live) | ui | . | . ",
     "url": "/docs/security/vault/",
     "relUrl": "/docs/security/vault/"
-  },"194": {
+  },"176": {
     "doc": "Vault",
     "title": "Installation",
     "content": "With Homebrew . brew tap hashicorp/tap . brew install hashicorp/tap/vault . With Docker . Official docker image is vault. Three volumes can be mounted. | /vault/logs to persist logs | /vault/file to persist data when file is the storage backnd for Vault | /vault/config for Vault server configuration file | . By default, Vault will run in container as a development server (vault server -dev). Vault entrypoint checks for a command and uses it as a subcommand to vault. If you do not wish to run in development mode, set command to server. To prevent memory leaking information to disk through swaps, container must be run with cap-add set to IPC_LOCK. To disable memory locking due to setcap issues, set SKIP_SETCAP environment variable to a non-empty value. In non-development environment, you must add disable_mlock: true to the configuration file to disable this functionality. Place a configuration file (either using .hcl or .json) for the Vault server in /vault/config. Vault will automatically read it. ",
     "url": "/docs/security/vault/#installation",
     "relUrl": "/docs/security/vault/#installation"
-  },"195": {
+  },"177": {
     "doc": "Vault",
     "title": "Server configuration file",
     "content": "You can use either HCL or JSON, but I will use HCL because I prefer its syntax. The entire set of configuration can be found here. The following are some of the most basic configurations to run a Vault server. storage . The list of all storage backends can be found here. The simplest storage backend is the filesystem. Example: . storage \"file\" { path = \"/vault/file\" } . listener . listener configures where Vault should listen for requests. There is only one configuration right now which is TCP. listener \"tcp\" { # If you're using docker, and you want to access the web UI # Use address = \"0.0.0.0:8200\" address = \"127.0.0.1:8200\" # You must explicitly disable tls if you're not using it tls_disable = \"false\" | \"true\" (string) # Else tls_cert_file = \"...\" tls_key_file = \"...\" } . Make sure to secure your connection with tls (Let’s Encrypt or so) if you expect your Vault server to have non-local http requests, which usually is the case when being used for production. log level . Specifies log level. log_level = \"trace\" | \"debug\" | \"error\" | \"warn\" | \"info\" . ttl (Time-To-Live) . max_lease_ttl = \"768h\" (string) default_least_ttl = \"700h\" (string) . These set the lease expiration time for non-root tokens and secrets. default_least_ttl cannot be greater than max_lease_ttl. max_lease_ttl can be overriden later for different token lease methods. ui . ui = false | true (boolean) . Set to true to enable web UI. ",
     "url": "/docs/security/vault/#server-configuration-file",
     "relUrl": "/docs/security/vault/#server-configuration-file"
-  },"196": {
+  },"178": {
     "doc": "Security",
     "title": "Security",
     "content": " ",
     "url": "/docs/security/",
     "relUrl": "/docs/security/"
-  },"197": {
+  },"179": {
     "doc": "GitHub",
     "title": "GitHub",
     "content": " ",
     "url": "/docs/git-hub/github/",
     "relUrl": "/docs/git-hub/github/"
-  },"198": {
+  },"180": {
     "doc": "Git",
     "title": "Git",
     "content": " ",
     "url": "/docs/git-hub/git/",
     "relUrl": "/docs/git-hub/git/"
-  },"199": {
+  },"181": {
     "doc": "Git/GitHub",
     "title": "Git/GitHub",
     "content": " ",
     "url": "/docs/git-hub/",
     "relUrl": "/docs/git-hub/"
-  },"200": {
+  },"182": {
     "doc": "Git/GitHub",
     "title": "You probably already know what this is",
     "content": "Version control system; awesome stuff. ",
     "url": "/docs/git-hub/#you-probably-already-know-what-this-is",
     "relUrl": "/docs/git-hub/#you-probably-already-know-what-this-is"
-  },"201": {
+  },"183": {
     "doc": "Vue",
     "title": "Vue",
     "content": " ",
     "url": "/docs/vue/",
     "relUrl": "/docs/vue/"
-  },"202": {
-    "doc": "Volta",
-    "title": "Volta",
-    "content": "Javascript command-line tool manager . Official Guide . | Why Volta? | Installation . | Using Homebrew | Using installation script | . | Usage example . | Install | . | curl SSL certificate problem . | Workaround (Not Recommended) | Fix | . | . ",
-    "url": "/docs/others/volta/",
-    "relUrl": "/docs/others/volta/"
-  },"203": {
-    "doc": "Volta",
-    "title": "Why Volta?",
-    "content": "If you’ve ever tried uninstalling Node or installing a newer version of Node for a project, you may have found that it can get quite ugly. Volta keeps all of the binaries in your home directory, and makes it easy to install and uninstall different versions. You can also use Volta to pin a specified Node version for each project, much like the Python virtual environments. ",
-    "url": "/docs/others/volta/#why-volta",
-    "relUrl": "/docs/others/volta/#why-volta"
-  },"204": {
-    "doc": "Volta",
+  },"184": {
+    "doc": "Vim",
+    "title": "Vim",
+    "content": "To be added . | Window | Key mapping | NerdTree | . ",
+    "url": "/docs/others/vim/",
+    "relUrl": "/docs/others/vim/"
+  },"185": {
+    "doc": "Vim",
+    "title": "Window",
+    "content": "To split, . :sp # Split window horizontally :vsp # Split window vertically . To navigate between windows, . &lt;Ctrl&gt; + w + w # Navigate between viewports &lt;Ctrl&gt; + w + h/j/k/l # Navigate to respective direction . ",
+    "url": "/docs/others/vim/#window",
+    "relUrl": "/docs/others/vim/#window"
+  },"186": {
+    "doc": "Vim",
+    "title": "Key mapping",
+    "content": "There are 6 types of mapping commands: . :map # Recursive / Works in normal, visual, select and operator modes :noremap # Non-recursive version :nmap # Recursive / Works in normal mode :nnoremap :vmap # Recursive / Works in visual mode :vnoremap . Type one of the above to list the current key mappings. To set new mappings, add them to ~/.vim/vimrc: . \"Example nnoremap &lt;C-n&gt; :&lt;NERDTreeToggle&lt;CR&gt; . ",
+    "url": "/docs/others/vim/#key-mapping",
+    "relUrl": "/docs/others/vim/#key-mapping"
+  },"187": {
+    "doc": "Vim",
+    "title": "NerdTree",
+    "content": "Set shortcut to toggle NerdTree: . nnoremap nerd :&lt;NERDTreeToggle&lt;CR&gt; . In NerdTree, type ? to toggle help. References: . | Key Mapping | . ",
+    "url": "/docs/others/vim/#nerdtree",
+    "relUrl": "/docs/others/vim/#nerdtree"
+  },"188": {
+    "doc": "ngrok",
+    "title": "ngrok",
+    "content": "Official Guide . | Installation | Setup | Forward a local port to a public URL | . ",
+    "url": "/docs/others/ngrok/",
+    "relUrl": "/docs/others/ngrok/"
+  },"189": {
+    "doc": "ngrok",
     "title": "Installation",
-    "content": "Using Homebrew . brew install volta . Add to ~/.zshrc: . export VOLTA_HOME=\"$HOME/.volta\" export PATH=\"$VOLTA_HOME/bin:$PATH\" . Using installation script . curl https://get.volta.sh | bash . Necessary PATH will be added to .zshrc. If you get a curl: (60) SSL certificate problem: certificate has expired error, you may be using an old version of OpenSSL or LibreSSL. Workaround/Fix . ",
-    "url": "/docs/others/volta/#installation",
-    "relUrl": "/docs/others/volta/#installation"
-  },"205": {
-    "doc": "Volta",
-    "title": "Usage example",
-    "content": "Install . volta install node volta install yarn . ",
-    "url": "/docs/others/volta/#usage-example",
-    "relUrl": "/docs/others/volta/#usage-example"
-  },"206": {
-    "doc": "Volta",
-    "title": "curl SSL certificate problem",
-    "content": "This is a known issue (as of Sep. 2021). The issue is not due to Volta but is related to an older version of OpenSSL/LibreSSL. See here for details, but long story short: . | Update to OpenSSL 1.1 for secure connection using LetsEncrypt certificates. | . Workaround (Not Recommended) . As suggested by this comment, one hacky workaround is to just use an insecure (-k) curl: . curl -k https://get.volta.sh &gt; volta.sh . Then change line 10 of volta.sh to use an insecure curl as well: . 9| get_latest_release() { 10| curl -k --silent \"https://volta.sh/latest-version\" 11| } . Then run: . bash volta.sh . It works, but defeats the whole purpose of certificates. Fix . Better approach is to install the brew packaged curl, as it uses OpenSSL 1.1 while the shipped curl uses an older version of LibreSSL. ",
-    "url": "/docs/others/volta/#curl-ssl-certificate-problem",
-    "relUrl": "/docs/others/volta/#curl-ssl-certificate-problem"
-  },"207": {
-    "doc": "Scrapy",
-    "title": "Scrapy",
-    "content": "To be added . Python web scraper . Official Documentation . | Installation | Start a project | Create a spider . | Show available spider templates | Generate spider | Check generated spiders | . | . ",
-    "url": "/docs/others/scrapy/",
-    "relUrl": "/docs/others/scrapy/"
-  },"208": {
-    "doc": "Scrapy",
+    "content": "brew install ngrok/ngrok/ngrok # OR brew install --cask ngrok . Check installation via: . ngrok -h . ",
+    "url": "/docs/others/ngrok/#installation",
+    "relUrl": "/docs/others/ngrok/#installation"
+  },"190": {
+    "doc": "ngrok",
+    "title": "Setup",
+    "content": "To use ngrok you must be signed up for an account. You can do this via the official website. Once you login, you will be given an authtoken to authenticate ngrok. Copy the value and authenticate in terminal: . ngrok config add-authtoken $AUTH_TOKEN . ",
+    "url": "/docs/others/ngrok/#setup",
+    "relUrl": "/docs/others/ngrok/#setup"
+  },"191": {
+    "doc": "ngrok",
+    "title": "Forward a local port to a public URL",
+    "content": "Run the following command: . ngrok http $PORT . The public URL will be displayed in the terminal: ... Forwarding https://some.url.given.ngrok.io -&gt; http://localhost:$PORT ... For free plans, the URL changes every time you restart ngrok. ",
+    "url": "/docs/others/ngrok/#forward-a-local-port-to-a-public-url",
+    "relUrl": "/docs/others/ngrok/#forward-a-local-port-to-a-public-url"
+  },"192": {
+    "doc": "Jekyll",
+    "title": "Jekyll",
+    "content": ". | Ruby installation with rbenv | Install Jekyll | Create a Jekyll blog | Bundler / Gemfile . | Install gems listed in Gemfile | Adding gems to project | Removing gems | Execute a command in the context of the bundle | . | . ",
+    "url": "/docs/others/jekyll/",
+    "relUrl": "/docs/others/jekyll/"
+  },"193": {
+    "doc": "Jekyll",
+    "title": "Ruby installation with rbenv",
+    "content": "I’ve decided to use rbenv only because I didn’t want to mess with the system ruby that comes with macOS (I am currently using Catalina). Assuming you have Homebrew installed. # Install rbenv and ruby-build brew install rbenv # Set up rbenv integration with your shell rbenv init # Then follow the instruction that appears on screen . # rbenv init will ask you to add the following to .zshrc eval \"$(rbenv init - zsh)\" . Now that you have installed rbenv, create a folder that will contain your Jekyll site. I will refer to the folder as blog. Once created, move into blog. cd blog # List latest stable versions rbenv install -l # I chose 3.0.2 rbenv install 3.0.2 rbenv rehash # Following creates .ruby-version in cwd rbenv local 3.0.2 # Confirm ruby version in folder ruby -v . All the ruby versions are installed in ~/.rbenv. ",
+    "url": "/docs/others/jekyll/#ruby-installation-with-rbenv",
+    "relUrl": "/docs/others/jekyll/#ruby-installation-with-rbenv"
+  },"194": {
+    "doc": "Jekyll",
+    "title": "Install Jekyll",
+    "content": "Before installing the gems, check where they are being installed via . # Refer to INSTALLATION DIRECTORY / GEM PATHS gem env # OR gem env home . Rest of the stuff are just my preferences/me being a clean freak. Now, the Jekyll documentation tells you to do a local install with the --user-install flag. If you’re not using rbenv this is indeed more desirable as it installs your gems to your home directory (like ~/.gem). However, for my purpose and with rbenv it was unnecessary. As you’ll notice by inspecting the gem env outputs, the global install directory (INSTALLATION DIRECTORY) is already in your home directory (~/.rbenv/versions/...). On the other hand, the user install directory (USER INSTALLATION DIRECTORY) is set to some local folder (~/.local/share/gem/ruby/...). I personally prefer having all the packages contained in ~/.rbenv, so I simply chose to omit --user-install and do: . End of me being a freak. gem install jekyll bundler . ",
+    "url": "/docs/others/jekyll/#install-jekyll",
+    "relUrl": "/docs/others/jekyll/#install-jekyll"
+  },"195": {
+    "doc": "Jekyll",
+    "title": "Create a Jekyll blog",
+    "content": "First create a new Jekyll project by . # Assuming you're still in the blog folder jekyll new . It will create a default website you can test locally. # Will generate a static html site in _site bundle exec jekyll serve # With live-reloading bundle exec jekyll serve --livereload . If you get any errors regarding webrick: cannot load such file -- webrick (LoadError), add webrick by bundle add webrick. This is due to ruby 3 excluding webrick as a default bundled gem. ",
+    "url": "/docs/others/jekyll/#create-a-jekyll-blog",
+    "relUrl": "/docs/others/jekyll/#create-a-jekyll-blog"
+  },"196": {
+    "doc": "Jekyll",
+    "title": "Bundler / Gemfile",
+    "content": "Think of the bundler as the npm/yarn of Ruby and Gemfile as the package.json of Node projects. When you create a new Jekyll project with jekyll new, a Gemfile is automatically created. This Gemfile will list the basic gem dependencies to create a basic Jekyll site. Install gems listed in Gemfile . If there already exists a Gemfile, you can download all the necessary gems for this project by: . bundle install . These gems are usually installed in the same place they would be when you call gem install. Exact location can be confirmed by bundle show &lt;gem-name&gt;. Adding gems to project . When you need to add another gem for your project, you can either: . | Type it out yourself in Gemfile | . # Gemfile gem \"just-the-docs\" . Then, . bundle install . OR . | Use bundle add | . bundle add just-the-docs . If the gems already exist in system, it’ll just use that. If they don’t already, it will download the gem for you. Removing gems . When you no longer need a gem for the project, . bundle remove just-the-docs . This doesn’t remove the gem from the system. Only removes it from your project’s Gemfile. Execute a command in the context of the bundle . Every bundled gem will be made available in the context of the command you wish to execute even if these gems are not in the executable path. bundle exec jekyll build . References: . | Markdown Supported Languages | . ",
+    "url": "/docs/others/jekyll/#bundler--gemfile",
+    "relUrl": "/docs/others/jekyll/#bundler--gemfile"
+  },"197": {
+    "doc": "DBeaver",
+    "title": "DBeaver",
+    "content": ". | Installation | Export settings and connections | Download Vim plugin | . ",
+    "url": "/docs/others/dbeaver/",
+    "relUrl": "/docs/others/dbeaver/"
+  },"198": {
+    "doc": "DBeaver",
     "title": "Installation",
-    "content": "pip install Scrapy # or poetry add Scrapy . ",
-    "url": "/docs/others/scrapy/#installation",
-    "relUrl": "/docs/others/scrapy/#installation"
-  },"209": {
-    "doc": "Scrapy",
-    "title": "Start a project",
-    "content": "cd &lt;proj-root&gt; scrapy startproject &lt;proj-name&gt; . ",
-    "url": "/docs/others/scrapy/#start-a-project",
-    "relUrl": "/docs/others/scrapy/#start-a-project"
-  },"210": {
-    "doc": "Scrapy",
-    "title": "Create a spider",
-    "content": "First navigate to a specific Scrapy project: . cd &lt;proj-name&gt; . Check that you are indeed in the right project by: . $ scrapy Scrapy x.x.x - project: &lt;proj-name&gt; . Show available spider templates . $ scrapy genspider -l basic crawl csvfeed xmlfeed . Generate spider . scrapy genspider -t crawl &lt;spider-name&gt; &lt;allowed-domain&gt; . Check generated spiders . scrapy list . ",
-    "url": "/docs/others/scrapy/#create-a-spider",
-    "relUrl": "/docs/others/scrapy/#create-a-spider"
-  },"211": {
-    "doc": "MongoDB",
-    "title": "MongoDB",
-    "content": "On-prem community edition . | Install MongoDB (locally) | Run and stop MongoDB (locally) | . ",
-    "url": "/docs/others/mongodb/",
-    "relUrl": "/docs/others/mongodb/"
-  },"212": {
-    "doc": "MongoDB",
-    "title": "Install MongoDB (locally)",
-    "content": "brew tap mongodb/brew brew install mongodb-community@4.4 . This installs . | mongod server | mongos sharded cluster query router | mongo shell | . And also . | /usr/local/etc/mongod.conf configuration file | /usr/local/var/log/mongodb log directory | /usr/local/var/mongodb data directory | . And finally MongoDB Database Tools . Location varies by system. Check with brew --prefix. ",
-    "url": "/docs/others/mongodb/#install-mongodb-locally",
-    "relUrl": "/docs/others/mongodb/#install-mongodb-locally"
-  },"213": {
-    "doc": "MongoDB",
-    "title": "Run and stop MongoDB (locally)",
-    "content": "Run MongoDB as a macOS service (recommended) . brew services start mongodb-community@4.4 # Verify it is running (should be in started status) brew service list | grep mongodb-community . You can then use the mongo shell via . mongo . Stop MongoDB . brew services stop mongodb-community@4.4 . References: . | MongoDB: Install | . ",
-    "url": "/docs/others/mongodb/#run-and-stop-mongodb-locally",
-    "relUrl": "/docs/others/mongodb/#run-and-stop-mongodb-locally"
-  },"214": {
-    "doc": "zsh",
-    "title": "zsh &amp; Shell setup",
-    "content": ". | Install zsh . | OS X | Ubuntu | . | Change to zsh | Install oh-my-zsh | Change Theme | Recommended plugins . | zsh-syntax-highlighting | zsh-autosuggestions | fzf | fasd | . | Preferred Iterm2/Gnome Terminal color schemes | . ",
-    "url": "/docs/others/zsh/#zsh--shell-setup",
-    "relUrl": "/docs/others/zsh/#zsh--shell-setup"
-  },"215": {
-    "doc": "zsh",
-    "title": "Install zsh",
-    "content": "OS X . brew install zsh . Ubuntu . sudo apt install zsh . ",
-    "url": "/docs/others/zsh/#install-zsh",
-    "relUrl": "/docs/others/zsh/#install-zsh"
-  },"216": {
-    "doc": "zsh",
-    "title": "Change to zsh",
-    "content": "Make zsh the default shell . chsh -s $(which zsh) . Confirm shell has changed . echo $SHELL . In Ubuntu, if echo $SHELL or echo $0 still shows bash, try logging out and log back in. Hopefully, shell would have been changed and zsh-newuser-install will pop up. ",
-    "url": "/docs/others/zsh/#change-to-zsh",
-    "relUrl": "/docs/others/zsh/#change-to-zsh"
-  },"217": {
-    "doc": "zsh",
-    "title": "Install oh-my-zsh",
-    "content": "Assuming you have curl installed, . sh -c \"$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\" . In case of a change refer to here for a new link. ",
-    "url": "/docs/others/zsh/#install-oh-my-zsh",
-    "relUrl": "/docs/others/zsh/#install-oh-my-zsh"
-  },"218": {
-    "doc": "zsh",
-    "title": "Change Theme",
-    "content": "My preferred theme is Powerlevel10k. To install it as an Oh My Zsh theme, . git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k . Then in ~/.zshrc, set ZSH_THEME . ZSH_THEME=\"powerlevel10k/powerlevel10k\" . When using Iterm2, the recommended fonts are automatically installed. Otherwise, install the fonts from here. ",
-    "url": "/docs/others/zsh/#change-theme",
-    "relUrl": "/docs/others/zsh/#change-theme"
-  },"219": {
-    "doc": "zsh",
-    "title": "Recommended plugins",
-    "content": "zsh-syntax-highlighting . See here for details. git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting . To activate the plugin, go to .zshrc and add zsh-syntax-highlighting to plugins. zsh-autosuggestions . See here for details. git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions . To activate the plugin, go to .zshrc and add zsh-autosuggestions to plugins. fzf . See here for details. # OS X brew install fzf # Ubuntu sudo apt install fzf . Then activate the plugin in .zshrc. fasd . See here for details. # OS X brew install fasd # Ubuntu sudo apt install fasd . Then activate the plugin in .zshrc. ",
-    "url": "/docs/others/zsh/#recommended-plugins",
-    "relUrl": "/docs/others/zsh/#recommended-plugins"
-  },"220": {
-    "doc": "zsh",
-    "title": "Preferred Iterm2/Gnome Terminal color schemes",
-    "content": "Look for the following themes in Iterm2 / Gough: . | Snazzy | Tomorrow Night | . ",
-    "url": "/docs/others/zsh/#preferred-iterm2gnome-terminal-color-schemes",
-    "relUrl": "/docs/others/zsh/#preferred-iterm2gnome-terminal-color-schemes"
-  },"221": {
-    "doc": "zsh",
-    "title": "zsh",
-    "content": " ",
-    "url": "/docs/others/zsh/",
-    "relUrl": "/docs/others/zsh/"
-  },"222": {
-    "doc": "IntelliJ",
-    "title": "IntelliJ",
-    "content": " ",
-    "url": "/docs/others/intellij/",
-    "relUrl": "/docs/others/intellij/"
-  },"223": {
-    "doc": "Others",
-    "title": "List of All Documentations",
-    "content": " ",
-    "url": "/docs/others/#list-of-all-documentations",
-    "relUrl": "/docs/others/#list-of-all-documentations"
-  },"224": {
-    "doc": "Others",
-    "title": "Others",
-    "content": " ",
-    "url": "/docs/others/",
-    "relUrl": "/docs/others/"
-  },"225": {
-    "doc": "Linux",
-    "title": "Linux",
-    "content": " ",
-    "url": "/docs/linux/",
-    "relUrl": "/docs/linux/"
-  },"226": {
-    "doc": "AI Quick Notes",
-    "title": "AI Quick Notes",
-    "content": "To be added . Fragments of things I learned. They may be moved to a separate category later. ",
-    "url": "/docs/ai/notes/",
-    "relUrl": "/docs/ai/notes/"
-  },"227": {
-    "doc": "AI/ML/DL",
-    "title": "AI/ML/DL",
-    "content": "$DL \\subset ML \\subset AI$ . ",
-    "url": "/docs/ai/#aimldl",
-    "relUrl": "/docs/ai/#aimldl"
-  },"228": {
-    "doc": "AI/ML/DL",
-    "title": "AI/ML/DL",
-    "content": ". ",
-    "url": "/docs/ai/",
-    "relUrl": "/docs/ai/"
-  },"229": {
+    "content": "brew install --cask dbeaver-community . ",
+    "url": "/docs/others/dbeaver/#installation",
+    "relUrl": "/docs/others/dbeaver/#installation"
+  },"199": {
+    "doc": "DBeaver",
+    "title": "Export settings and connections",
+    "content": "On MacOS, workspace configurations are stored in ~/Library/DBeaverData. Refer to link for different OS. To export the settings and connections, copy ~/Library/DBeaverData/workspace6/General/.dbeaver from source to target. ",
+    "url": "/docs/others/dbeaver/#export-settings-and-connections",
+    "relUrl": "/docs/others/dbeaver/#export-settings-and-connections"
+  },"200": {
+    "doc": "DBeaver",
+    "title": "Download Vim plugin",
+    "content": "On the top nagivation bar, click Help &gt; Install New Software.... Then type the following URL in the Work with field and click Add. http://vrapper.sourceforge.net/update-site/stable . Enter Vrapper for the Name field and click OK. Then select Vrapper and any other optional Vim plugins to install. Click Next to install the plugin. I personally find optional Surround.vim plugin to be very useful. After installation, restart DBeaver. ",
+    "url": "/docs/others/dbeaver/#download-vim-plugin",
+    "relUrl": "/docs/others/dbeaver/#download-vim-plugin"
+  },"201": {
     "doc": "Homebrew",
     "title": "Homebrew",
     "content": "Package manager for macOS . Official Page . | Installation . | Opt-out of Homebrew analytics | . | Useful commands . | brew search | brew install | brew uninstall | brew list | brew deps | brew info | brew update | brew upgrade | brew doctor | brew autoremove | . | Installing other versions of Casks | Notes . | keg-only | . | . ",
     "url": "/docs/others/homebrew/",
     "relUrl": "/docs/others/homebrew/"
-  },"230": {
+  },"202": {
     "doc": "Homebrew",
     "title": "Installation",
     "content": "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\" . Then follow the instructions. In my case, I had to add /opt/homebrew/bin to PATH. echo 'eval \"$(/opt/homebrew/bin/brew shellenv)\"' &gt;&gt; ~/.zprofile eval \"$(/opt/hombrew/bin/brew shellenv)\" # Or just open a new tab . Opt-out of Homebrew analytics . brew analytics off . ",
     "url": "/docs/others/homebrew/#installation",
     "relUrl": "/docs/others/homebrew/#installation"
-  },"231": {
+  },"203": {
     "doc": "Homebrew",
     "title": "Useful commands",
     "content": "brew search . brew search ${package} . brew install . brew install ${package} brew install --cask ${package} . cask is an extension to Hombrew formulae, mainly for GUI applications . brew uninstall . brew uninstall ${package} . brew uninstall won’t let you remove a package if it is a dependency of another package. You could force uninstall, but you generally don’t wanna do this. brew list . brew list brew list --versions . brew deps . brew deps ${package} brew deps --installed brew deps --installed --tree . Shows dependencies. brew info . brew info ${package} . Shows a summary of information of a formula/cask. Summary includes dependencies, current stable version, install status, etc. brew update . brew update . Updates brew itself. brew upgrade . brew upgrade # Upgrade all brew upgrade ${package} . Upgrades installed packages that are outdated. brew doctor . brew doctor . Diagnoses problems or errors regarding, but not limited to, brew. Possible warnings or errors may include, interruption during brew install, failure to symlink binary, deprecated Xcode, etc. brew autoremove . brew autoremove . This removes dangling dependencies that were not removed with the parent package. ",
     "url": "/docs/others/homebrew/#useful-commands",
     "relUrl": "/docs/others/homebrew/#useful-commands"
-  },"232": {
+  },"204": {
     "doc": "Homebrew",
     "title": "Installing other versions of Casks",
     "content": "If you want to install an older version of a cask, . brew tap homebrew/cask-versions . Then search for the version you want. brew search ${package} . ",
     "url": "/docs/others/homebrew/#installing-other-versions-of-casks",
     "relUrl": "/docs/others/homebrew/#installing-other-versions-of-casks"
-  },"233": {
+  },"205": {
     "doc": "Homebrew",
     "title": "Notes",
     "content": "keg-only . By default, brew installed binaries are symlinked to /usr/local/bin, but keg-only formulae are not. This is usually due to the preexistence of an older OS shipped default version, typically in /usr/bin. Although not symlinked in /usr/local/bin, keg-only or not, every brew formula is kept in /usr/local/Cellar and every formula is symlinked in /usr/local/opt. Which means you can add /usr/local/opt/&lt;formula&gt;/bin to PATH (just making sure it goes in the front of /usr/bin so that it is found first). All of the information here can be found during install or brew info Caveats. ",
     "url": "/docs/others/homebrew/#notes",
     "relUrl": "/docs/others/homebrew/#notes"
-  },"234": {
-    "doc": "Basic Linux Setup",
-    "title": "Basic Linux Setup",
-    "content": "A note for myself. | Update packages | Install packages | Change to zsh | Color schemes | Little bit of customization . | GNOME Shell Integration | Dash to Panel | . | . ",
-    "url": "/docs/linux/init.html",
-    "relUrl": "/docs/linux/init.html"
-  },"235": {
-    "doc": "Basic Linux Setup",
-    "title": "Update packages",
-    "content": "sudo apt update &amp;&amp; sudo apt upgrade . ",
-    "url": "/docs/linux/init.html#update-packages",
-    "relUrl": "/docs/linux/init.html#update-packages"
-  },"236": {
-    "doc": "Basic Linux Setup",
-    "title": "Install packages",
-    "content": "List of packages I frequently use. To be added . sudo apt install &lt;package-name&gt; . | vim | net-tools | git | gnome-tweaks | htop | neofetch | nautilus | curl | tree | tmux | fasd | fzf | bat | fd | exa | . ",
-    "url": "/docs/linux/init.html#install-packages",
-    "relUrl": "/docs/linux/init.html#install-packages"
-  },"237": {
-    "doc": "Basic Linux Setup",
+  },"206": {
+    "doc": "Volta",
+    "title": "Volta",
+    "content": "Javascript command-line tool manager . Official Guide . | Why Volta? | Installation . | Using Homebrew | Using installation script | . | Usage example . | Install | . | curl SSL certificate problem . | Workaround (Not Recommended) | Fix | . | . ",
+    "url": "/docs/others/volta/",
+    "relUrl": "/docs/others/volta/"
+  },"207": {
+    "doc": "Volta",
+    "title": "Why Volta?",
+    "content": "If you’ve ever tried uninstalling Node or installing a newer version of Node for a project, you may have found that it can get quite ugly. Volta keeps all of the binaries in your home directory, and makes it easy to install and uninstall different versions. You can also use Volta to pin a specified Node version for each project, much like the Python virtual environments. ",
+    "url": "/docs/others/volta/#why-volta",
+    "relUrl": "/docs/others/volta/#why-volta"
+  },"208": {
+    "doc": "Volta",
+    "title": "Installation",
+    "content": "Using Homebrew . brew install volta . Add to ~/.zshrc: . export VOLTA_HOME=\"$HOME/.volta\" export PATH=\"$VOLTA_HOME/bin:$PATH\" . Using installation script . curl https://get.volta.sh | bash . Necessary PATH will be added to .zshrc. If you get a curl: (60) SSL certificate problem: certificate has expired error, you may be using an old version of OpenSSL or LibreSSL. Workaround/Fix . ",
+    "url": "/docs/others/volta/#installation",
+    "relUrl": "/docs/others/volta/#installation"
+  },"209": {
+    "doc": "Volta",
+    "title": "Usage example",
+    "content": "Install . volta install node volta install yarn . ",
+    "url": "/docs/others/volta/#usage-example",
+    "relUrl": "/docs/others/volta/#usage-example"
+  },"210": {
+    "doc": "Volta",
+    "title": "curl SSL certificate problem",
+    "content": "This is a known issue (as of Sep. 2021). The issue is not due to Volta but is related to an older version of OpenSSL/LibreSSL. See here for details, but long story short: . | Update to OpenSSL 1.1 for secure connection using LetsEncrypt certificates. | . Workaround (Not Recommended) . As suggested by this comment, one hacky workaround is to just use an insecure (-k) curl: . curl -k https://get.volta.sh &gt; volta.sh . Then change line 10 of volta.sh to use an insecure curl as well: . 9| get_latest_release() { 10| curl -k --silent \"https://volta.sh/latest-version\" 11| } . Then run: . bash volta.sh . It works, but defeats the whole purpose of certificates. Fix . Better approach is to install the brew packaged curl, as it uses OpenSSL 1.1 while the shipped curl uses an older version of LibreSSL. ",
+    "url": "/docs/others/volta/#curl-ssl-certificate-problem",
+    "relUrl": "/docs/others/volta/#curl-ssl-certificate-problem"
+  },"211": {
+    "doc": "Scrapy",
+    "title": "Scrapy",
+    "content": "To be added . Python web scraper . Official Documentation . | Installation | Start a project | Create a spider . | Show available spider templates | Generate spider | Check generated spiders | . | . ",
+    "url": "/docs/others/scrapy/",
+    "relUrl": "/docs/others/scrapy/"
+  },"212": {
+    "doc": "Scrapy",
+    "title": "Installation",
+    "content": "pip install Scrapy # or poetry add Scrapy . ",
+    "url": "/docs/others/scrapy/#installation",
+    "relUrl": "/docs/others/scrapy/#installation"
+  },"213": {
+    "doc": "Scrapy",
+    "title": "Start a project",
+    "content": "cd &lt;proj-root&gt; scrapy startproject &lt;proj-name&gt; . ",
+    "url": "/docs/others/scrapy/#start-a-project",
+    "relUrl": "/docs/others/scrapy/#start-a-project"
+  },"214": {
+    "doc": "Scrapy",
+    "title": "Create a spider",
+    "content": "First navigate to a specific Scrapy project: . cd &lt;proj-name&gt; . Check that you are indeed in the right project by: . $ scrapy Scrapy x.x.x - project: &lt;proj-name&gt; . Show available spider templates . $ scrapy genspider -l basic crawl csvfeed xmlfeed . Generate spider . scrapy genspider -t crawl &lt;spider-name&gt; &lt;allowed-domain&gt; . Check generated spiders . scrapy list . ",
+    "url": "/docs/others/scrapy/#create-a-spider",
+    "relUrl": "/docs/others/scrapy/#create-a-spider"
+  },"215": {
+    "doc": "MongoDB",
+    "title": "MongoDB",
+    "content": "On-prem community edition . | Install MongoDB (locally) | Run and stop MongoDB (locally) | . ",
+    "url": "/docs/others/mongodb/",
+    "relUrl": "/docs/others/mongodb/"
+  },"216": {
+    "doc": "MongoDB",
+    "title": "Install MongoDB (locally)",
+    "content": "brew tap mongodb/brew brew install mongodb-community@4.4 . This installs . | mongod server | mongos sharded cluster query router | mongo shell | . And also . | /usr/local/etc/mongod.conf configuration file | /usr/local/var/log/mongodb log directory | /usr/local/var/mongodb data directory | . And finally MongoDB Database Tools . Location varies by system. Check with brew --prefix. ",
+    "url": "/docs/others/mongodb/#install-mongodb-locally",
+    "relUrl": "/docs/others/mongodb/#install-mongodb-locally"
+  },"217": {
+    "doc": "MongoDB",
+    "title": "Run and stop MongoDB (locally)",
+    "content": "Run MongoDB as a macOS service (recommended) . brew services start mongodb-community@4.4 # Verify it is running (should be in started status) brew service list | grep mongodb-community . You can then use the mongo shell via . mongo . Stop MongoDB . brew services stop mongodb-community@4.4 . References: . | MongoDB: Install | . ",
+    "url": "/docs/others/mongodb/#run-and-stop-mongodb-locally",
+    "relUrl": "/docs/others/mongodb/#run-and-stop-mongodb-locally"
+  },"218": {
+    "doc": "zsh",
+    "title": "zsh &amp; Shell setup",
+    "content": ". | Install zsh . | OS X | Ubuntu | . | Change to zsh | Install oh-my-zsh | Change Theme | Recommended plugins . | zsh-syntax-highlighting | zsh-autosuggestions | fzf | fasd | . | Preferred Iterm2/Gnome Terminal color schemes | . ",
+    "url": "/docs/others/zsh/#zsh--shell-setup",
+    "relUrl": "/docs/others/zsh/#zsh--shell-setup"
+  },"219": {
+    "doc": "zsh",
+    "title": "Install zsh",
+    "content": "OS X . brew install zsh . Ubuntu . sudo apt install zsh . ",
+    "url": "/docs/others/zsh/#install-zsh",
+    "relUrl": "/docs/others/zsh/#install-zsh"
+  },"220": {
+    "doc": "zsh",
     "title": "Change to zsh",
-    "content": "See here. ",
-    "url": "/docs/linux/init.html#change-to-zsh",
-    "relUrl": "/docs/linux/init.html#change-to-zsh"
+    "content": "Make zsh the default shell . chsh -s $(which zsh) . Confirm shell has changed . echo $SHELL . In Ubuntu, if echo $SHELL or echo $0 still shows bash, try logging out and log back in. Hopefully, shell would have been changed and zsh-newuser-install will pop up. ",
+    "url": "/docs/others/zsh/#change-to-zsh",
+    "relUrl": "/docs/others/zsh/#change-to-zsh"
+  },"221": {
+    "doc": "zsh",
+    "title": "Install oh-my-zsh",
+    "content": "Assuming you have curl installed, . sh -c \"$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\" . In case of a change refer to here for a new link. ",
+    "url": "/docs/others/zsh/#install-oh-my-zsh",
+    "relUrl": "/docs/others/zsh/#install-oh-my-zsh"
+  },"222": {
+    "doc": "zsh",
+    "title": "Change Theme",
+    "content": "My preferred theme is Powerlevel10k. To install it as an Oh My Zsh theme, . git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k . Then in ~/.zshrc, set ZSH_THEME . ZSH_THEME=\"powerlevel10k/powerlevel10k\" . When using Iterm2, the recommended fonts are automatically installed. Otherwise, install the fonts from here. ",
+    "url": "/docs/others/zsh/#change-theme",
+    "relUrl": "/docs/others/zsh/#change-theme"
+  },"223": {
+    "doc": "zsh",
+    "title": "Recommended plugins",
+    "content": "zsh-syntax-highlighting . See here for details. git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting . To activate the plugin, go to .zshrc and add zsh-syntax-highlighting to plugins. zsh-autosuggestions . See here for details. git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions . To activate the plugin, go to .zshrc and add zsh-autosuggestions to plugins. fzf . See here for details. # OS X brew install fzf # Ubuntu sudo apt install fzf . Then activate the plugin in .zshrc. fasd . See here for details. # OS X brew install fasd # Ubuntu sudo apt install fasd . Then activate the plugin in .zshrc. ",
+    "url": "/docs/others/zsh/#recommended-plugins",
+    "relUrl": "/docs/others/zsh/#recommended-plugins"
+  },"224": {
+    "doc": "zsh",
+    "title": "Preferred Iterm2/Gnome Terminal color schemes",
+    "content": "Look for the following themes in Iterm2 / Gough: . | Snazzy | Tomorrow Night | . ",
+    "url": "/docs/others/zsh/#preferred-iterm2gnome-terminal-color-schemes",
+    "relUrl": "/docs/others/zsh/#preferred-iterm2gnome-terminal-color-schemes"
+  },"225": {
+    "doc": "zsh",
+    "title": "zsh",
+    "content": " ",
+    "url": "/docs/others/zsh/",
+    "relUrl": "/docs/others/zsh/"
+  },"226": {
+    "doc": "IntelliJ",
+    "title": "IntelliJ",
+    "content": " ",
+    "url": "/docs/others/intellij/",
+    "relUrl": "/docs/others/intellij/"
+  },"227": {
+    "doc": "Others",
+    "title": "List of All Documentations",
+    "content": " ",
+    "url": "/docs/others/#list-of-all-documentations",
+    "relUrl": "/docs/others/#list-of-all-documentations"
+  },"228": {
+    "doc": "Others",
+    "title": "Others",
+    "content": " ",
+    "url": "/docs/others/",
+    "relUrl": "/docs/others/"
+  },"229": {
+    "doc": "Java",
+    "title": "Java",
+    "content": " ",
+    "url": "/docs/java/",
+    "relUrl": "/docs/java/"
+  },"230": {
+    "doc": "AI Quick Notes",
+    "title": "AI Quick Notes",
+    "content": "To be added . Fragments of things I learned. They may be moved to a separate category later. ",
+    "url": "/docs/ai/notes/",
+    "relUrl": "/docs/ai/notes/"
+  },"231": {
+    "doc": "AI/ML/DL",
+    "title": "AI/ML/DL",
+    "content": "$DL \\subset ML \\subset AI$ . ",
+    "url": "/docs/ai/#aimldl",
+    "relUrl": "/docs/ai/#aimldl"
+  },"232": {
+    "doc": "AI/ML/DL",
+    "title": "AI/ML/DL",
+    "content": ". ",
+    "url": "/docs/ai/",
+    "relUrl": "/docs/ai/"
+  },"233": {
+    "doc": "Linux",
+    "title": "Linux",
+    "content": " ",
+    "url": "/docs/linux/",
+    "relUrl": "/docs/linux/"
+  },"234": {
+    "doc": "AWS",
+    "title": "AWS",
+    "content": " ",
+    "url": "/docs/aws/",
+    "relUrl": "/docs/aws/"
+  },"235": {
+    "doc": "Jenkins",
+    "title": "Jenkins",
+    "content": " ",
+    "url": "/docs/jenkins/",
+    "relUrl": "/docs/jenkins/"
+  },"236": {
+    "doc": "Kubernetes",
+    "title": "Kubernetes",
+    "content": " ",
+    "url": "/docs/kubernetes/",
+    "relUrl": "/docs/kubernetes/"
+  },"237": {
+    "doc": "Home",
+    "title": "Online Long-Term Memory of a Novice Programmer",
+    "content": "Personal documentation of itty bitties and all the hacky decisions I’ve made throughout my learning (and maybe life). ",
+    "url": "/#online-long-term-memory-of-a-novice-programmer",
+    "relUrl": "/#online-long-term-memory-of-a-novice-programmer"
   },"238": {
-    "doc": "Basic Linux Setup",
-    "title": "Color schemes",
-    "content": "See here for details. First install the following, . sudo apt-get install dconf-cli uuid-runtime . Then, . bash -c \"$(curl -sLo- https://git.io/vQgMr)\" . Recommended color schemes are: . | Snazzy (174) | Tomorrow Night (204) | . ",
-    "url": "/docs/linux/init.html#color-schemes",
-    "relUrl": "/docs/linux/init.html#color-schemes"
+    "doc": "Home",
+    "title": "Intro",
+    "content": "Why? . Learning is always fun; I love jamming new things into my head. However, I’ve noticed that my long-term memory is in fact not long enough to guide me back after a while. Hence, the docs. I can’t do anything about the things that have already left my head, but I am hoping that I can at least keep an itty bitty documentation of my future learnings. Disclaimer . The information contained in this document is not necessarily correct or comprehensive. It will be biased in many ways and may contain naive and pitiful approaches made by a novice. Its sole purpose is to document my footsteps. ",
+    "url": "/#intro",
+    "relUrl": "/#intro"
   },"239": {
-    "doc": "Basic Linux Setup",
-    "title": "Little bit of customization",
-    "content": "GNOME Shell Integration . Download the following extension from chrome. https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep . Dash to Panel . Download the following extension form chrome. https://extensions.gnome.org/extension/1160/dash-to-panel/ . ",
-    "url": "/docs/linux/init.html#little-bit-of-customization",
-    "relUrl": "/docs/linux/init.html#little-bit-of-customization"
+    "doc": "Home",
+    "title": "Home",
+    "content": " ",
+    "url": "/",
+    "relUrl": "/"
   },"240": {
     "doc": "Vue Project Setup",
     "title": "Vue Project Setup",
@@ -1475,654 +1475,690 @@
     "url": "/docs/vue/init.html#install-eslint-and-prettier-optional",
     "relUrl": "/docs/vue/init.html#install-eslint-and-prettier-optional"
   },"246": {
+    "doc": "Basic Linux Setup",
+    "title": "Basic Linux Setup",
+    "content": "A note for myself. | Update packages | Install packages | Change to zsh | Color schemes | Little bit of customization . | GNOME Shell Integration | Dash to Panel | . | . ",
+    "url": "/docs/linux/init.html",
+    "relUrl": "/docs/linux/init.html"
+  },"247": {
+    "doc": "Basic Linux Setup",
+    "title": "Update packages",
+    "content": "sudo apt update &amp;&amp; sudo apt upgrade . ",
+    "url": "/docs/linux/init.html#update-packages",
+    "relUrl": "/docs/linux/init.html#update-packages"
+  },"248": {
+    "doc": "Basic Linux Setup",
+    "title": "Install packages",
+    "content": "List of packages I frequently use. To be added . sudo apt install &lt;package-name&gt; . | vim | net-tools | git | gnome-tweaks | htop | neofetch | nautilus | curl | tree | tmux | fasd | fzf | bat | fd | exa | . ",
+    "url": "/docs/linux/init.html#install-packages",
+    "relUrl": "/docs/linux/init.html#install-packages"
+  },"249": {
+    "doc": "Basic Linux Setup",
+    "title": "Change to zsh",
+    "content": "See here. ",
+    "url": "/docs/linux/init.html#change-to-zsh",
+    "relUrl": "/docs/linux/init.html#change-to-zsh"
+  },"250": {
+    "doc": "Basic Linux Setup",
+    "title": "Color schemes",
+    "content": "See here for details. First install the following, . sudo apt-get install dconf-cli uuid-runtime . Then, . bash -c \"$(curl -sLo- https://git.io/vQgMr)\" . Recommended color schemes are: . | Snazzy (174) | Tomorrow Night (204) | . ",
+    "url": "/docs/linux/init.html#color-schemes",
+    "relUrl": "/docs/linux/init.html#color-schemes"
+  },"251": {
+    "doc": "Basic Linux Setup",
+    "title": "Little bit of customization",
+    "content": "GNOME Shell Integration . Download the following extension from chrome. https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep . Dash to Panel . Download the following extension form chrome. https://extensions.gnome.org/extension/1160/dash-to-panel/ . ",
+    "url": "/docs/linux/init.html#little-bit-of-customization",
+    "relUrl": "/docs/linux/init.html#little-bit-of-customization"
+  },"252": {
     "doc": "jenv",
     "title": "jenv",
     "content": ". | Installation | Typical usage | Basic commands . | Add JDK | List all added JDKs | Set global JDK | Set JDK for current working directory | . | . ",
     "url": "/docs/java/jenv.html",
     "relUrl": "/docs/java/jenv.html"
-  },"247": {
+  },"253": {
     "doc": "jenv",
     "title": "Installation",
     "content": "brew install jenv echo 'export PATH=\"$HOME/.jenv/bin:$PATH\"' &gt;&gt; ~/.zshrc echo 'eval \"$(jenv init -)\"' &gt;&gt; ~/.zshrc exec $SHELL -l jenv enable-plugin export exec $SHELL -l . ",
     "url": "/docs/java/jenv.html#installation",
     "relUrl": "/docs/java/jenv.html#installation"
-  },"248": {
+  },"254": {
     "doc": "jenv",
     "title": "Typical usage",
     "content": "First install the JDK you want to use, . brew install --cask corretto11 . Then add it to jenv, . jenv rehash jenv add \"$(/usr/libexec/java_home)\" # Or if the following does not work jenv add /Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home . Check that JDK has been added by, . $ jenv versions * system 11.0 11.0.16.1 corretto64-11.0.16.1 . To set a JDK for current working directory, . jenv local 11.0 # OR 11.0.16.1 OR corretto64-11.0.16.1 . Confirm that JAVA_HOME has been set, . echo ${JAVA_HOME} . ",
     "url": "/docs/java/jenv.html#typical-usage",
     "relUrl": "/docs/java/jenv.html#typical-usage"
-  },"249": {
+  },"255": {
     "doc": "jenv",
     "title": "Basic commands",
     "content": "jenv -h or jenv help &lt;command&gt; for more details. Add JDK . jenv add ${PATH_TO_JVM_HOME} . List all added JDKs . jenv versions . Set global JDK . jenv global ${version_name_from_jenv_versions} . Set JDK for current working directory . jenv local ${version_name_from_jenv_versions} . ",
     "url": "/docs/java/jenv.html#basic-commands",
     "relUrl": "/docs/java/jenv.html#basic-commands"
-  },"250": {
+  },"256": {
     "doc": "JS/TS Cheatsheet",
     "title": "Javascript/Typescript Cheatsheet",
     "content": ". | Installation | Typescript compiler | Basic typing . | Primitive types | Array and tuple types | Union and enum types | Object types and type alias | Function types | Literal types | . | Type assertions | Interface . | Object interface | Function interface | . | Undefined values . | Non-null assertions (!) | . | Index signature | Generics | Classes | Readonly arrays and tuples | Symbol type | Computed property names | Template strings | . ",
     "url": "/docs/vue/jsts.html#javascripttypescript-cheatsheet",
     "relUrl": "/docs/vue/jsts.html#javascripttypescript-cheatsheet"
-  },"251": {
+  },"257": {
     "doc": "JS/TS Cheatsheet",
     "title": "Installation",
     "content": "I personally prefer to install typescript compiler per project directory. npm i typescript --save-dev # or -D # OR yarn add typescript --dev . ",
     "url": "/docs/vue/jsts.html#installation",
     "relUrl": "/docs/vue/jsts.html#installation"
-  },"252": {
+  },"258": {
     "doc": "JS/TS Cheatsheet",
     "title": "Typescript compiler",
     "content": "Basic usage: . tsc &lt;filename&gt; # One-time compile tsc --watch &lt;filename&gt; # Livereloading . When specifiying the filename for tsc you may include or leave out the .ts extension. tsc --init . init creates the tsconfig.json file. With a tsconfig.json file, you can leave out the filename when runnig tsc. ",
     "url": "/docs/vue/jsts.html#typescript-compiler",
     "relUrl": "/docs/vue/jsts.html#typescript-compiler"
-  },"253": {
+  },"259": {
     "doc": "JS/TS Cheatsheet",
     "title": "Basic typing",
     "content": "Primitive types . Primitives are all lowercase. let a: number = 1; let b: string = \"a\"; let c: boolean = true; // Lowercase let d: any = { x: 0 }; . Unless declared without initialization, these are usually inferred. Array and tuple types . Simply add brackets: . let a: number[] = [1, 2, 3, 4]; // You can also use Array&lt;number&gt; let b: [number, string] = [1, \"a\"]; let c: [number, string][] = [[1, \"a\"], [2, \"b\"]]; . Union and enum types . Union: . let id: string | number; . Enum: . enum MyEnum { Up = 1, // Default is 0 Down, Left, Right } . The first constant in an enum always has the value of 0. If you set it to 1, the rest will have an ascending value of 2, 3, and 4. You can also give string values to enums. Object types and type alias . Object typing without the type alias can be messy: . const obj: { a: number, b?: string, readonly c: boolean, } = { a: 1, c: true } . Using type: . type MyObj = { a: number, b?: string, readonly c: boolean }; const obj: MyObj = { a: 1, c: true } . The ? means it is an optional property or an optional parameter if used in functions. Function types . function f(x: number, y: string): void { ... } . Literal types . You can use this like a constant or quicky enum: . function f(x: number, y: \"a\" | \"b\"): -1 | 0 | 1 { ... } . To change an object to a literal type use as const: . const x = { a: \"hello\", b: \"world\" } as const . ",
     "url": "/docs/vue/jsts.html#basic-typing",
     "relUrl": "/docs/vue/jsts.html#basic-typing"
-  },"254": {
+  },"260": {
     "doc": "JS/TS Cheatsheet",
     "title": "Type assertions",
     "content": "To give any variables explicit types: . let a: any = 1; let b = a as number // OR let c = &lt;number&gt;a . ",
     "url": "/docs/vue/jsts.html#type-assertions",
     "relUrl": "/docs/vue/jsts.html#type-assertions"
-  },"255": {
+  },"261": {
     "doc": "JS/TS Cheatsheet",
     "title": "Interface",
     "content": "Object interface . interface MyInterface { a: number, b?: string } . Function interface . interface FuncInterface { (x: number, y: string): void } . While it is similar to type aliasing, there are some differences: . | You cannot use union types with an interface. | . type MyType = string | number; // OK // interface MyType2 = string | number; // NO . | You can add new fields to existing interfaces but not in type aliasing. | . interface MyInterface{ a: number } interface MyInterface{ b: string } . ",
     "url": "/docs/vue/jsts.html#interface",
     "relUrl": "/docs/vue/jsts.html#interface"
-  },"256": {
+  },"262": {
     "doc": "JS/TS Cheatsheet",
     "title": "Undefined values",
     "content": "Use null or undefined. function f(x: number | null): void{ ... } . Non-null assertions (!) . someObj!.runFunction(); . ",
     "url": "/docs/vue/jsts.html#undefined-values",
     "relUrl": "/docs/vue/jsts.html#undefined-values"
-  },"257": {
+  },"263": {
     "doc": "JS/TS Cheatsheet",
     "title": "Index signature",
     "content": "To be added . ",
     "url": "/docs/vue/jsts.html#index-signature",
     "relUrl": "/docs/vue/jsts.html#index-signature"
-  },"258": {
+  },"264": {
     "doc": "JS/TS Cheatsheet",
     "title": "Generics",
     "content": "To be added . ",
     "url": "/docs/vue/jsts.html#generics",
     "relUrl": "/docs/vue/jsts.html#generics"
-  },"259": {
+  },"265": {
     "doc": "JS/TS Cheatsheet",
     "title": "Classes",
     "content": "To be added . ",
     "url": "/docs/vue/jsts.html#classes",
     "relUrl": "/docs/vue/jsts.html#classes"
-  },"260": {
+  },"266": {
     "doc": "JS/TS Cheatsheet",
     "title": "Readonly arrays and tuples",
     "content": "To be added . ",
     "url": "/docs/vue/jsts.html#readonly-arrays-and-tuples",
     "relUrl": "/docs/vue/jsts.html#readonly-arrays-and-tuples"
-  },"261": {
+  },"267": {
     "doc": "JS/TS Cheatsheet",
     "title": "Symbol type",
     "content": "To be added . ",
     "url": "/docs/vue/jsts.html#symbol-type",
     "relUrl": "/docs/vue/jsts.html#symbol-type"
-  },"262": {
+  },"268": {
     "doc": "JS/TS Cheatsheet",
     "title": "Computed property names",
     "content": "To be added . ",
     "url": "/docs/vue/jsts.html#computed-property-names",
     "relUrl": "/docs/vue/jsts.html#computed-property-names"
-  },"263": {
+  },"269": {
     "doc": "JS/TS Cheatsheet",
     "title": "Template strings",
     "content": "let a = `Put ${variableName} here.` . ",
     "url": "/docs/vue/jsts.html#template-strings",
     "relUrl": "/docs/vue/jsts.html#template-strings"
-  },"264": {
+  },"270": {
     "doc": "JS/TS Cheatsheet",
     "title": "JS/TS Cheatsheet",
     "content": " ",
     "url": "/docs/vue/jsts.html",
     "relUrl": "/docs/vue/jsts.html"
-  },"265": {
+  },"271": {
     "doc": "M1 TensorFlow",
     "title": "M1 Tensorflow",
     "content": "GPU accelerated TensorFlow on M1 . See here for the official documentation. | Install Miniforge | Install TensorFlow dependencies | Install base TensorFlow and tensorflow-metal | To upgrade to a new TensorFlow version | . ",
     "url": "/docs/ai/m1-tf.html#m1-tensorflow",
     "relUrl": "/docs/ai/m1-tf.html#m1-tensorflow"
-  },"266": {
+  },"272": {
     "doc": "M1 TensorFlow",
     "title": "Install Miniforge",
     "content": "Download and install Miniforge3 conda: . curl -L -O https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh chmod +x Miniforge3-MacOSX-arm64.sh sh Miniforge3-MacOSX-arm64.sh # Optional conda config --set auto_activate_base false . For information on conda see here. Installing Miniconda3 macOS Apple M1 64-bit bash (Py38 conda 4.10.1 2021-11-08) did not work. Miniforge’s arm64 was the only thing that worked. ",
     "url": "/docs/ai/m1-tf.html#install-miniforge",
     "relUrl": "/docs/ai/m1-tf.html#install-miniforge"
-  },"267": {
+  },"273": {
     "doc": "M1 TensorFlow",
     "title": "Install TensorFlow dependencies",
     "content": "Create a new environment: . conda create -n tf-m1 python=3.9 . You can use either Python 3.8 or 3.9. Install tensorflow-deps: . conda install -c apple tensorflow-deps . ",
     "url": "/docs/ai/m1-tf.html#install-tensorflow-dependencies",
     "relUrl": "/docs/ai/m1-tf.html#install-tensorflow-dependencies"
-  },"268": {
+  },"274": {
     "doc": "M1 TensorFlow",
     "title": "Install base TensorFlow and tensorflow-metal",
     "content": "Making sure the environment is activated: . Check environment is indeed activated by which pip. Especially if you’re doing it in a VSCode terminal. pip install tensorflow-macos . pip install tensorflow-metal . ",
     "url": "/docs/ai/m1-tf.html#install-base-tensorflow-and-tensorflow-metal",
     "relUrl": "/docs/ai/m1-tf.html#install-base-tensorflow-and-tensorflow-metal"
-  },"269": {
+  },"275": {
     "doc": "M1 TensorFlow",
     "title": "To upgrade to a new TensorFlow version",
     "content": "From the official doc, the recommended way is: . # uninstall existing tensorflow-macos and tensorflow-metal python -m pip uninstall tensorflow-macos python -m pip uninstall tensorflow-metal # Upgrade tensorflow-deps conda install -c apple tensorflow-deps --force-reinstall # or point to specific conda environment conda install -c apple tensorflow-deps --force-reinstall -n my_env . ",
     "url": "/docs/ai/m1-tf.html#to-upgrade-to-a-new-tensorflow-version",
     "relUrl": "/docs/ai/m1-tf.html#to-upgrade-to-a-new-tensorflow-version"
-  },"270": {
+  },"276": {
     "doc": "M1 TensorFlow",
     "title": "M1 TensorFlow",
     "content": " ",
     "url": "/docs/ai/m1-tf.html",
     "relUrl": "/docs/ai/m1-tf.html"
-  },"271": {
+  },"277": {
     "doc": "MLflow",
     "title": "MLflow",
     "content": "To be added . Official Doc . | Installation | . ",
     "url": "/docs/ai/mlflow.html",
     "relUrl": "/docs/ai/mlflow.html"
-  },"272": {
+  },"278": {
     "doc": "MLflow",
     "title": "Installation",
     "content": "pip install mlflow . ",
     "url": "/docs/ai/mlflow.html#installation",
     "relUrl": "/docs/ai/mlflow.html#installation"
-  },"273": {
+  },"279": {
     "doc": "Docker Networks",
     "title": "Docker Networks",
     "content": ". | Some useful commands | How do I talk to the container? | How can containers talk to each other? . | Default bridge network | User-defined bridge network | . | . ",
     "url": "/docs/docker/networks.html",
     "relUrl": "/docs/docker/networks.html"
-  },"274": {
+  },"280": {
     "doc": "Docker Networks",
     "title": "Some useful commands",
     "content": "# List all networks docker network ls . docker network inspect network-name . # Disconnect any containers using this network docker network disconnect network-name my-container docker network rm network-name . # Remove unused networks docker network prune . Link to documentation. ",
     "url": "/docs/docker/networks.html#some-useful-commands",
     "relUrl": "/docs/docker/networks.html#some-useful-commands"
-  },"275": {
+  },"281": {
     "doc": "Docker Networks",
     "title": "How do I talk to the container?",
     "content": "When a container is created, none of the ports inside the container are exposed. In order for the Docker host (your computer) or other containers to talk to it, it must first publish a port. The following maps a port 1234 inside a container to 4321 on Docker host. docker create -p 1234:4321 . Now you can communicate with the container via http://localhost:4321. ",
     "url": "/docs/docker/networks.html#how-do-i-talk-to-the-container",
     "relUrl": "/docs/docker/networks.html#how-do-i-talk-to-the-container"
-  },"276": {
+  },"282": {
     "doc": "Docker Networks",
     "title": "How can containers talk to each other?",
     "content": "If the containers are running on the same Docker daemon host (ie. all running on your computer), then the easiest way is to put them on the same bridge network. Default bridge network . Check the existing docker networks with . docker network ls . You will see a network with the name bridge. That is the default bridge network. Every started container is automatically added to the default bridge network if you didn’t specify anything else. With the default bridge you talk to other containers by using their IP Address. docker inspect my-container | grep IPAddress . Downsides to using the default bridge network: . | Using an IP address sucks: it is not immediate which container I’m referring to. | Every container can talk to every other container, which may cause security issues. | . User-defined bridge network . You can instead add a user-defined bridge network. It still uses the same bridge driver, but unlike the default bridge not everyone is invited to it. docker network create my-bridge # You can add after container creation docker network connect my-bridge my-container # Or when you create it docker create --network my-bridge . In user-defined bridge network, containers can talk to each other by using the container names as hostnames. So if my container was named my-db with port published at 1234, then the API would be: . http://my-db:1234 . References: . | Docker Networking | . ",
     "url": "/docs/docker/networks.html#how-can-containers-talk-to-each-other",
     "relUrl": "/docs/docker/networks.html#how-can-containers-talk-to-each-other"
-  },"277": {
+  },"283": {
     "doc": "Pipenv",
     "title": "Pipenv",
     "content": ". | Advantage to venv | Basic usage . | Install | Create environment and install | Activate and deactivate environment . | Activate | Deactivate | . | Create Pipfile.lock | Delete environment | . | Use pipenv with a specific Python version | . ",
     "url": "/docs/python/envs/pipenv.html",
     "relUrl": "/docs/python/envs/pipenv.html"
-  },"278": {
+  },"284": {
     "doc": "Pipenv",
     "title": "Advantage to venv",
     "content": "Pipenv’s Pipfile serves as an upgrade to requirements.txt. It allows you to separately mark production and development dependencies. ",
     "url": "/docs/python/envs/pipenv.html#advantage-to-venv",
     "relUrl": "/docs/python/envs/pipenv.html#advantage-to-venv"
-  },"279": {
+  },"285": {
     "doc": "Pipenv",
     "title": "Basic usage",
     "content": "Install . brew install pipenv . Create environment and install . Go to the desired project folder. To create and use a virtual environment for this root: . pipenv pipenv install &lt;package-name&gt; # Install specific package . If there’s already a Pipfile, create env and install listed requirements: . pipenv install # With Pipfile . All the pipenv environments are in ~/.local/share/virtualenvs/root-dir-name-hash/ by default. Activate and deactivate environment . Activate . pipenv shell . Deactivate . exit . Do not use deactivate. Create Pipfile.lock . pipenv lock . Delete environment . To delete the environment for current directory: . pipenv --rm . ",
     "url": "/docs/python/envs/pipenv.html#basic-usage",
     "relUrl": "/docs/python/envs/pipenv.html#basic-usage"
-  },"280": {
+  },"286": {
     "doc": "Pipenv",
     "title": "Use pipenv with a specific Python version",
     "content": "You can set a specific version of Python when creating a pipenv virtual environment. pipenv --python 3.x . However, it requires that Python 3.x is already installed on your local machine unlike conda create -n myenv python=3.x. You can either, . | (Not recommended) brew install the desired Python 3.x | (Recommended) Use pyenv | (Meh..) Create a conda environment with the desired version and only use the binary | . Then navigate to the root of the project and make Pipenv use the active Python: . pipenv --python=$(which python) --site-packages # Creates an env in cwd pipenv run which python # It will point to a binary in `~/.local/share/virtualenvs/some-root-dir-hash/bin/python` pipenv run python -V # Check that it is indeed 3.x . ",
     "url": "/docs/python/envs/pipenv.html#use-pipenv-with-a-specific-python-version",
     "relUrl": "/docs/python/envs/pipenv.html#use-pipenv-with-a-specific-python-version"
-  },"281": {
+  },"287": {
     "doc": "Poetry",
     "title": "Poetry",
     "content": "Yet another Python virtual environment &amp; package manager! . | Installation | Enable tab completion | Using Poetry with a specific Python version . | Set Python binary | . | Managing environments . | See all virtual envs associated with this directory/project | Delete environments | . | Basic usage . | Activate environment | Deactivate environment | Add dependencies | Install dependencies | Remove dependencies | . | . ",
     "url": "/docs/python/envs/poetry.html",
     "relUrl": "/docs/python/envs/poetry.html"
-  },"282": {
+  },"288": {
     "doc": "Poetry",
     "title": "Installation",
     "content": "Use Homebrew: . brew install poetry . Check installation via . poetry --version . ",
     "url": "/docs/python/envs/poetry.html#installation",
     "relUrl": "/docs/python/envs/poetry.html#installation"
-  },"283": {
+  },"289": {
     "doc": "Poetry",
     "title": "Enable tab completion",
     "content": "You can enable poetry tab completion for various shells. Check poetry help completions for other shells. For Oh-My-Zsh: . mkdir $ZSH_CUSTOM/plugins/poetry poetry completions zsh &gt; $ZSH_CUSTOM/plugins/poetry/_poetry . Then go to ~/.zshrc and add the following plugin: . # ~/.zshrc plugins( ... poetry ) . ",
     "url": "/docs/python/envs/poetry.html#enable-tab-completion",
     "relUrl": "/docs/python/envs/poetry.html#enable-tab-completion"
-  },"284": {
+  },"290": {
     "doc": "Poetry",
     "title": "Using Poetry with a specific Python version",
     "content": "Have the Python version you want ready. Always check that you do indeed have the version you want by which python . You can set the version you want . | With pyenv (Recommended) | With conda | . Now init Poetry in project to create a pyproject.toml file. cd &lt;project-dir&gt; poetry init . By default, Poetry uses the currently active Python. Poetry virtual environments are created in ~/Library/Caches/pypoetry/virtualenvs. Set Python binary . If you’d like to change a version after init, activate a new Python binary and do: . poetry env use `pyenv which python3` . Check that it is using the right binary by: . poetry env info . ",
     "url": "/docs/python/envs/poetry.html#using-poetry-with-a-specific-python-version",
     "relUrl": "/docs/python/envs/poetry.html#using-poetry-with-a-specific-python-version"
-  },"285": {
+  },"291": {
     "doc": "Poetry",
     "title": "Managing environments",
     "content": "See all virtual envs associated with this directory/project . poetry env list . Delete environments . poetry env remove &lt;proj-hash--py3.x&gt; ## Check exact name with poetry env list . ",
     "url": "/docs/python/envs/poetry.html#managing-environments",
     "relUrl": "/docs/python/envs/poetry.html#managing-environments"
-  },"286": {
+  },"292": {
     "doc": "Poetry",
     "title": "Basic usage",
     "content": "Activate environment . poetry shell # Creates a new child shell # OR source `poetry env info --path`/bin/activate # Does not open a child shell . Deactivate environment . exit # If in child shell # OR deactivate # If activated with source &lt;path&gt;/bin/activate . Add dependencies . poetry add &lt;package&gt; # OR poetry add &lt;package&gt; --dev . Install dependencies . poetry install # OR poetry install --no-dev . Remove dependencies . poetry remove &lt;package&gt; # OR poetry remove &lt;package&gt; --dev . References: . | Poetry | Poetry Commands | . ",
     "url": "/docs/python/envs/poetry.html#basic-usage",
     "relUrl": "/docs/python/envs/poetry.html#basic-usage"
-  },"287": {
+  },"293": {
     "doc": "pyenv",
     "title": "pyenv",
     "content": "Python version manager . GitHub . | What is pyenv | Installation | Typical usage | Basic commands . | Check activated Python version | List installed Python versions | List all available Python for install | Install a Python version | Uninstall a Python version | Show installed directory | Set Python version | Show Python binary | . | Uninstall pyenv . | Remove all shell startup configuration | Remove all Python versions | Remove pyenv | . | . ",
     "url": "/docs/python/envs/pyenv.html",
     "relUrl": "/docs/python/envs/pyenv.html"
-  },"288": {
+  },"294": {
     "doc": "pyenv",
     "title": "What is pyenv",
     "content": "pyenv is a version manager for Python. As it started off as a fork of rbenv, the syntax and usage are very similar. It is a Python version manager not a virtual environment manager. To manage a virtual environment for Python libraries, use in junction with venv, poetry, pipenv, etc. ",
     "url": "/docs/python/envs/pyenv.html#what-is-pyenv",
     "relUrl": "/docs/python/envs/pyenv.html#what-is-pyenv"
-  },"289": {
+  },"295": {
     "doc": "pyenv",
     "title": "Installation",
     "content": "Easiest way is to use Homebrew: . brew install pyenv . Then, . echo 'eval \"$(pyenv init --path)\"' &gt;&gt; ~/.zprofile echo 'eval \"$(pyenv init -)\"' &gt;&gt; ~/.zshrc . or . echo 'eval \"$(pyenv init --path)\"' &gt;&gt; ~/.zshrc . If using .zprofile, Terminal app should open shell as login shell. Restart shell and install Python build dependencies: . brew install openssl readline sqlite3 xz zlib . ",
     "url": "/docs/python/envs/pyenv.html#installation",
     "relUrl": "/docs/python/envs/pyenv.html#installation"
-  },"290": {
+  },"296": {
     "doc": "pyenv",
     "title": "Typical usage",
     "content": "To install a specific Python version for a project, navigate to your project root and do: . pyenv intall -l # Decide a version number pyenv install -s 3.x.x # -s means skip installation if it already exists pyenv rehash # Makes all Python binaries available to system pyenv local 3.x.x # Make sure you're in project root . ",
     "url": "/docs/python/envs/pyenv.html#typical-usage",
     "relUrl": "/docs/python/envs/pyenv.html#typical-usage"
-  },"291": {
+  },"297": {
     "doc": "pyenv",
     "title": "Basic commands",
     "content": "Full commands are listed here . Check activated Python version . pyenv version . Do not confuse with below. Notice the plural. List installed Python versions . pyenv versions . List all available Python for install . pyenv install -l . Install a Python version . pyenv install 3.x.x pyenv rehash . Uninstall a Python version . pyenv uninstall 3.x.x . Show installed directory . pyenv prefix 3.x.x . Set Python version . pyenv global 3.x.x pyenv local 3.x.x . Show Python binary . pyenv which python3 . ",
     "url": "/docs/python/envs/pyenv.html#basic-commands",
     "relUrl": "/docs/python/envs/pyenv.html#basic-commands"
-  },"292": {
+  },"298": {
     "doc": "pyenv",
     "title": "Uninstall pyenv",
     "content": "Remove all shell startup configuration . Remove the following from .zprofile and .zshrc: . echo 'eval \"$(pyenv init --path)\"' echo 'eval \"$(pyenv init -)\"' . Remove all Python versions . rm -rf $(pyenv root) . Remove pyenv . brew uninstall pyenv . ",
     "url": "/docs/python/envs/pyenv.html#uninstall-pyenv",
     "relUrl": "/docs/python/envs/pyenv.html#uninstall-pyenv"
-  },"293": {
+  },"299": {
     "doc": "Vue Quick Notes",
     "title": "Vue Quick Notes",
     "content": "Quick notes for dummies. Using &lt;script setup lang=\"ts\"&gt;. | Props . | To use props in child component . | Without default values | With default values | . | . | Ref / Reactive | Computed / Watch | Event / Emits . | To use emits | . | v-model . | Parent-Child usage example | . | Provide / Inject | Etc . | $keyword equivalent in the script tag | . | . ",
     "url": "/docs/vue/quick-notes.html",
     "relUrl": "/docs/vue/quick-notes.html"
-  },"294": {
+  },"300": {
     "doc": "Vue Quick Notes",
     "title": "Props",
     "content": ". | Props are reactive by default | You don’t explicitly import defineProps; it is a compiler macro for &lt;script setup&gt; | If you don’t pass optional props, they have a value of undefined | In the template, you can access the props without having to do props.someVarName, just use someVarName. | Even if you toRef a prop, they will not become a copy. If you modify the toRef-ed prop, it will affect the original. | . To use props in child component . Without default values . const props = defineProps&lt;{ a: string b: number }&gt;() . With default values . interface MyProps { a: strings b?: number } const props = withDefaults(defineProps&lt;MyProps&gt;(), { b: 0 }) . ",
     "url": "/docs/vue/quick-notes.html#props",
     "relUrl": "/docs/vue/quick-notes.html#props"
-  },"295": {
+  },"301": {
     "doc": "Vue Quick Notes",
     "title": "Ref / Reactive",
     "content": ". | You can use ref with primitive types like string and number but not with reactive | You access refs by refObj.value and reactives by reactiveObj | Everything that belonged in the data part before the Composition API should be wrapped with ref or reactive. (Unless they’re nonchanging in value.) | . ",
     "url": "/docs/vue/quick-notes.html#ref--reactive",
     "relUrl": "/docs/vue/quick-notes.html#ref--reactive"
-  },"296": {
+  },"302": {
     "doc": "Vue Quick Notes",
     "title": "Computed / Watch",
     "content": "See details here. | watch watches for a specific set of changes, and runs a function. | With watch you can also get the prev and new value. | You can watch ref like a normal variable, but you gotta use () =&gt; reactiveObj instead for reactive objects. | watchEffect watches for all change in every variable used in its function. | watchEffect is kinda more like computed except it’s purpose is not to to get or set a variable. | computed with a single arrow function creates a getter (so immutable). If you give it instead an object with get and set, it will be writable. | If you store watch and watchEffect in a variable named myVar for example, you can stop its watch behavior by calling myVar(). | There exists, onTrack and onTrigger for debugging. | . ",
     "url": "/docs/vue/quick-notes.html#computed--watch",
     "relUrl": "/docs/vue/quick-notes.html#computed--watch"
-  },"297": {
+  },"303": {
     "doc": "Vue Quick Notes",
     "title": "Event / Emits",
     "content": "To use emits . const emits = defineEmits&lt;{ (e: 'myEvent', valueImGivingBack: string): void }&gt;( // Then later function onEvent(e: Event) { const newVal = (e.target as HTMLTextAreaElement).value emits('myEvent', newVal) } . ",
     "url": "/docs/vue/quick-notes.html#event--emits",
     "relUrl": "/docs/vue/quick-notes.html#event--emits"
-  },"298": {
+  },"304": {
     "doc": "Vue Quick Notes",
     "title": "v-model",
     "content": ". | Syntax changed since Vue2, see here for details. | v-model is a syntactic sugar: you can always do the same thing with regular propping and emitting. | Basically, if you use the vanilla v-model as is, the name of the prop and the event will have to be modelValue and update:modelValue. | If you give it a name like v-model:childProp, it will be childProp and update:childProp. | You can use multiple v-models with a child component; just give it different names. | Remember, v-model needs to be used with ref or reactive variable | . Parent-Child usage example . // Parent.vue &lt;template&gt; &lt;Child v-model:childProp=\"parentVar\"&gt; &lt;/template&gt; &lt;script setup lang=\"ts\"&gt; const parentVar = ref('hey child') &lt;/script&gt; . // Child.vue &lt;template&gt; &lt;input @keyup.enter=\"onEnterPressed\"&gt; &lt;/template&gt; &lt;script setup lang=\"ts\"&gt; const defineProps&lt;{ childProp: string }&gt;() const emits = defineEmits&lt;{ (e: 'update:childProp', childProp: string): void }&gt;() function onEnterPressed(e: Event) { const someVal = 'sup' emits('update:childProp', someVal) } &lt;/script&gt; . ",
     "url": "/docs/vue/quick-notes.html#v-model",
     "relUrl": "/docs/vue/quick-notes.html#v-model"
-  },"299": {
+  },"305": {
     "doc": "Vue Quick Notes",
     "title": "Provide / Inject",
     "content": ". | To make typing work, you gotta use the InjectionKey&lt;T&gt;. See here for details. | To update provided reactive props, make the parent component provide mutation functions as well. Always recommended to have the root (providing) component to be in charge of mutations. | . ",
     "url": "/docs/vue/quick-notes.html#provide--inject",
     "relUrl": "/docs/vue/quick-notes.html#provide--inject"
-  },"300": {
+  },"306": {
     "doc": "Vue Quick Notes",
     "title": "Etc",
     "content": ". | You can use $event, $router, $route, $slots, $attrs, $emit in the template tag, but not in the script tag. | ref, reactive, toRef, toRefs, computed, watch, watchEffect are all in vue | attrs are basically all the stuff passed down to a child naturally from being an HTML element, but not actually a Vue prop. Ex) class | You can use the normal &lt;script&gt; tag along with the &lt;script setup&gt;. Two things you’ll have to do within the normal &lt;script&gt; tag is setting name and inheritAttrs. | . $keyword equivalent in the script tag . See here for details. But basically: . import { useSlots, useAttrs } from 'vue import { useRouter, useRoute } from 'vue-router' const slots = useSlots() const attrs = useAttrs() const router = useRouter() const route = useRoute() . ",
     "url": "/docs/vue/quick-notes.html#etc",
     "relUrl": "/docs/vue/quick-notes.html#etc"
-  },"301": {
+  },"307": {
     "doc": "ROC Curve",
     "title": "Receiver Operating Characteristic Curve",
     "content": ". | Errors in classfication | ROC Curve . | Area under the curve (AUC) | . | Selecting the threshold | PR Curve using precision | . ",
     "url": "/docs/ai/notes/roc.html#receiver-operating-characteristic-curve",
     "relUrl": "/docs/ai/notes/roc.html#receiver-operating-characteristic-curve"
-  },"302": {
+  },"308": {
     "doc": "ROC Curve",
     "title": "Errors in classfication",
     "content": "In machine learning, classifiers cannot be perfect and there will be errors. Blue64701, CC BY-SA 4.0, via Wikimedia Commons There is usually a trade-off between sensitivity and specificity. You may attempt to reduce as many false negatives in expense of false positives, or reduce false positives in expense of false negatives. However, we’d still like to know the optimal line or threshold that ultimately classifies an observation while minimizing the sacrifice. ",
     "url": "/docs/ai/notes/roc.html#errors-in-classfication",
     "relUrl": "/docs/ai/notes/roc.html#errors-in-classfication"
-  },"303": {
+  },"309": {
     "doc": "ROC Curve",
     "title": "ROC Curve",
     "content": "We can use the ROC curve to help determine that. cmglee, MartinThoma, CC BY-SA 4.0, via Wikimedia Commons The basic idea is, we tweak the classifier’s threshold and plot a point using the $TPR$ (sensitivity, recall) and $FPR$ (fall-out)). \\[TPR \\text{ (recall)} = \\frac{TP}{TP+FN}\\] \\[FPR = \\frac{FP}{FP + TN} = 1 - TNR \\text{ (specificity)}\\] The collection of these points will form a curve for that classifier. Each point on the ROC curve is a performance measure of a threshold. Area under the curve (AUC) . The red dotted line indicates a curve of a random classifier where $TPR = FPR$, which means the number of correctly classfied positive tests and the number of incorrectly classified positive tests are equal. For any classifier above the random classifier, the number of correctly classified positives is greater than the number of incorrectly classified positives. So classifiers with ROC curves higher above have better performances. Area under the curve (AUC) ($\\le 1$) is an aggregate performance measure across all thresholds of a model. Higher AUC indicates higher accuracy of the model. AUC is a useful metric even when the class distributions are highly unbalanced. AUC is for comparing models not thresholds. ",
     "url": "/docs/ai/notes/roc.html#roc-curve",
     "relUrl": "/docs/ai/notes/roc.html#roc-curve"
-  },"304": {
+  },"310": {
     "doc": "ROC Curve",
     "title": "Selecting the threshold",
     "content": "In every classification problem, a business decision must be made. Which of the two are more detrimental? . If the normal/abnormal classification was performed in a medical setting, a False Negative might be a patient who is diagnosed as normal, but is actually sick. Here we prefer to avoid False Negatives (or maximize True Positives) at the expense of more False Positives. In the below figure, think about moving the green bar to the far left. However, if the classification was about whether an email is spam or not, we’d pretty much prefer spam mails occasionally ending up in your inbox rather than having your job offer email sent to spam. In this case, we prefer to avoid False Positives at the expense of more False Negatives. In the below figure, think about moving the green bar to the far right. The business decision at hand is then: . | Maximize True Positive Rate | Minimize False Positive Rate | . Sharpr for svg version. original work by kakau in a png, CC BY-SA 3.0, via Wikimedia Commons The ROC curve is a visual illustration of the impact of different thresholds and helps you make these business decisions. If you increase the threshold towards right, the point on the ROC curve moves towards bottom left. If you decrease the threshold towards left, the point on the ROC curve moves towards top right. ",
     "url": "/docs/ai/notes/roc.html#selecting-the-threshold",
     "relUrl": "/docs/ai/notes/roc.html#selecting-the-threshold"
-  },"305": {
+  },"311": {
     "doc": "ROC Curve",
     "title": "PR Curve using precision",
     "content": "Sometimes the curve is drawn with recall (TPR, sensitivity) and precision (PPV) instead. \\[precision = \\frac{TP}{TP + FP}\\] \\[FPR = \\frac{FP}{N} = \\frac{FP}{TN+FP}\\] Suppose the number of actual Condition Negative ($N$) dominates ($N \\rightarrow \\infty$; high imbalance towards class Negative). As you can see from the equation, while precision is significantly affected by the number of False Positives regardless, FPR does not change as much if $N$ is too large. Therefore, if the class distributions are highly imbalanced, precision may be more sensitive to False Positives than FPR. AUC for ROC curve is sometimes called AUROC and AUC for PR curve is called AUPR. Both AUC metrics bear analogous meaning: higher the better. If you increase the threshold towards right, the point on PR curve moves top left. References: . | Ten quick tips for machine learning in computational biology - Scientific Figure on ResearchGate. Available from: https://www.researchgate.net/figure/a-Example-of-Precision-Recall-curve-with-the-precision-score-on-the-y-axis-and-the_fig1_321672019 [accessed 4 Dec, 2021] | . ",
     "url": "/docs/ai/notes/roc.html#pr-curve-using-precision",
     "relUrl": "/docs/ai/notes/roc.html#pr-curve-using-precision"
-  },"306": {
+  },"312": {
     "doc": "ROC Curve",
     "title": "ROC Curve",
     "content": ". ",
     "url": "/docs/ai/notes/roc.html",
     "relUrl": "/docs/ai/notes/roc.html"
-  },"307": {
+  },"313": {
     "doc": "Storybook UI",
     "title": "Storybook UI",
     "content": ". | Install and add Storybook UI | Start Storybook locally | Error: PostCSS plugin tailwindcss requires PostCSS 8 | . ",
     "url": "/docs/vue/sb.html",
     "relUrl": "/docs/vue/sb.html"
-  },"308": {
+  },"314": {
     "doc": "Storybook UI",
     "title": "Install and add Storybook UI",
     "content": "Inside the Vue project root, . npx sb init . ",
     "url": "/docs/vue/sb.html#install-and-add-storybook-ui",
     "relUrl": "/docs/vue/sb.html#install-and-add-storybook-ui"
-  },"309": {
+  },"315": {
     "doc": "Storybook UI",
     "title": "Start Storybook locally",
     "content": "yarn storybook . ",
     "url": "/docs/vue/sb.html#start-storybook-locally",
     "relUrl": "/docs/vue/sb.html#start-storybook-locally"
-  },"310": {
+  },"316": {
     "doc": "Storybook UI",
     "title": "Error: PostCSS plugin tailwindcss requires PostCSS 8",
     "content": "Tailwind CSS depends on PostCSS 8. As of now, Storybook have not yet been updated to support PostCSS 8. Therefore, you must install a compatibility build of Tailwind to use it with Storybook. See here for detail. If you already have Tailwind installed, remove by . yarn remove tailwindcss postcss autoprefixer . ",
     "url": "/docs/vue/sb.html#error-postcss-plugin-tailwindcss-requires-postcss-8",
     "relUrl": "/docs/vue/sb.html#error-postcss-plugin-tailwindcss-requires-postcss-8"
-  },"311": {
+  },"317": {
     "doc": "Sparse Checkout",
     "title": "Sparse Checkout",
     "content": ". | Monorepo | Checkout only the necessary folders | Check the status | . ",
     "url": "/docs/git-hub/git/sparse.html",
     "relUrl": "/docs/git-hub/git/sparse.html"
-  },"312": {
+  },"318": {
     "doc": "Sparse Checkout",
     "title": "Monorepo",
     "content": "A monorepo a single repository that contains multiple logical root directories or microservices (e.g. frontend subfolder and a backend subfolder.) . As a monorepo grows in size, tracking can become slow. However, a frontend developer may not have to consistently pull and push with the changes in a backend folder and vice versa. We don’t need them, so why keep them? . If the logics of difference microservices can be isolated, version control can prune down unnecessary structures. ",
     "url": "/docs/git-hub/git/sparse.html#monorepo",
     "relUrl": "/docs/git-hub/git/sparse.html#monorepo"
-  },"313": {
+  },"319": {
     "doc": "Sparse Checkout",
     "title": "Checkout only the necessary folders",
     "content": "First clone a project without checking them out: . git clone &lt;URL&gt; --no-checkout # For efficient cloning use partial clone git clone &lt;URL&gt; --no-checkout --filter=blob:none # Or if you also don't need the commit history git clone &lt;URL&gt; --no-checkout --depth 1 . cd into the cloned project and init only the root files: . git sparse-checkout init --cone . Yes it is --cone not a typo of --clone. Set subfolders that you’d like to checkout: . git sparse-checkout set backend db/config . Then checkout: . git checkout . ",
     "url": "/docs/git-hub/git/sparse.html#checkout-only-the-necessary-folders",
     "relUrl": "/docs/git-hub/git/sparse.html#checkout-only-the-necessary-folders"
-  },"314": {
+  },"320": {
     "doc": "Sparse Checkout",
     "title": "Check the status",
     "content": "Try: . git status . Now your git status will indicate that you are in sparse checkout mode. You will see that your project is still up to date with the remote even though all the other subfolders are not locally present. References: . | Bring your monorepo down to size with sparse-checkout | . ",
     "url": "/docs/git-hub/git/sparse.html#check-the-status",
     "relUrl": "/docs/git-hub/git/sparse.html#check-the-status"
-  },"315": {
+  },"321": {
     "doc": "Terraform Module",
     "title": "Terraform Module",
     "content": ". | What is a Terraform module | Typical file structure | Module structure | Module input variables | How to call a module | Itty Bitties | . ",
     "url": "/docs/terraform/terraform-module.html",
     "relUrl": "/docs/terraform/terraform-module.html"
-  },"316": {
+  },"322": {
     "doc": "Terraform Module",
     "title": "What is a Terraform module",
     "content": "It is sort of like a class in programming. Given input variables, it can be reused to create multiple instances of the infra described in the module. For example, when you’re creating an AWS lambda resource, there are typically some other resources associated with it, such as the REST API, IAM role, etc. If you think you’re going to be using this pattern often, you can create a module containing all the common resources and only expose some input variables that need to be configured at the top level. ",
     "url": "/docs/terraform/terraform-module.html#what-is-a-terraform-module",
     "relUrl": "/docs/terraform/terraform-module.html#what-is-a-terraform-module"
-  },"317": {
+  },"323": {
     "doc": "Terraform Module",
     "title": "Typical file structure",
     "content": "The main Terraform execution point is called the root module. This is often the main.tf file in the top level driectory. Modules are often placed in a folder called modules. ├── README.md ├── main.tf ├── modules ├── outputs.tf └── variables.tf . ",
     "url": "/docs/terraform/terraform-module.html#typical-file-structure",
     "relUrl": "/docs/terraform/terraform-module.html#typical-file-structure"
-  },"318": {
+  },"324": {
     "doc": "Terraform Module",
     "title": "Module structure",
     "content": "Inside modules directory, create a child directory with a name of your module: e.g. mymodule. ├── main.tf ├── modules │   └── mymodule │      ├── main.tf │      ├── outputs.tf │      └── variables.tf ├── outputs.tf └── variables.tf . The structure inside mymodule is optional. They can be separated as above or smashed into a single file. ",
     "url": "/docs/terraform/terraform-module.html#module-structure",
     "relUrl": "/docs/terraform/terraform-module.html#module-structure"
-  },"319": {
+  },"325": {
     "doc": "Terraform Module",
     "title": "Module input variables",
     "content": "Unless you plan to reuse your module as-is every single time, you typically provide input variables to modules. Any variables defined with variable must be provided by the calling module or an error will be raised. ",
     "url": "/docs/terraform/terraform-module.html#module-input-variables",
     "relUrl": "/docs/terraform/terraform-module.html#module-input-variables"
-  },"320": {
+  },"326": {
     "doc": "Terraform Module",
     "title": "How to call a module",
     "content": "All you need to do is feed the necessary input variables. In main.tf, . # main.tf module \"module_a\" { source = \"./modules/mymodule\" my_input_var = \"Here you go\" } . Notice that the source attribute points the the directory of the module, not any specific files . If you defined any output variables in the module with output, you can access them by: . module.module_a.my_output_var . ",
     "url": "/docs/terraform/terraform-module.html#how-to-call-a-module",
     "relUrl": "/docs/terraform/terraform-module.html#how-to-call-a-module"
-  },"321": {
+  },"327": {
     "doc": "Terraform Module",
     "title": "Itty Bitties",
     "content": ". | Although you can nest your modules in multiple levels, it is recommended to keep the entire Terraform module as flat as possible. | Even if you don’t access them, module output variables is always output after terraform apply. | Think about whether a module is absolutely necessary. Sometimes you may end up feeding in as many input variablesas the original resource. | . ",
     "url": "/docs/terraform/terraform-module.html#itty-bitties",
     "relUrl": "/docs/terraform/terraform-module.html#itty-bitties"
-  },"322": {
+  },"328": {
     "doc": "Provision with Terraform",
     "title": "Provision with Terraform",
     "content": ". | Configuration | . ",
     "url": "/docs/demo/flask-login-app/terraform.html",
     "relUrl": "/docs/demo/flask-login-app/terraform.html"
-  },"323": {
+  },"329": {
     "doc": "Provision with Terraform",
     "title": "Configuration",
     "content": "Folder structure . flask-mongodb ├── backend │   ├── .gitignore │   ├── .dockerignore │   ├── app.py │   ├── back.dev.Dockerfile │   ├── requirements.txt │   └── venv │   └── flaskmongo └── terraform ├── main.tf └── providers.tf . We are going to be using a docker provider. # flask-mongodb/terraform/main.tf terraform { required_providers { docker = { source = \"kreuzwerker/docker\" version = \"~&gt; 2.11.0\" } } required_version = \"~&gt; 0.15.3\" } . # flask-mongodb/terraform/providers.tf provider \"docker\" { host = \"unix:///var/run/docker.sock\" } resource \"docker_container\" \"backend_tf\" { name = \"backend-tf\" image = docker_image.flask_back.latest volumes { container_path = \"/www\" host_path = \"/full/path/to/flask-mongodb/backend\" read_only = true } ports { internal = 5000 external = 5000 } } resource \"docker_image\" \"flask_back\" { name = \"flask-back:latest\" build { path = \"../backend\" dockerfile = \"back.dev.Dockerfile\" force_remove = true } } . Now initialize to download and install providers in .terraform and apply to create . terraform init terraform apply --auto-approve . To verify that docker image has been built and container is running . docker images | grep flask-back docker ps | grep backend-tf . Because volume is mounted, any change in directory backend will be reflected in the container. To destroy all resources created . terraform destroy . ",
     "url": "/docs/demo/flask-login-app/terraform.html#configuration",
     "relUrl": "/docs/demo/flask-login-app/terraform.html#configuration"
-  },"324": {
+  },"330": {
     "doc": "tfenv",
     "title": "tfenv",
     "content": "Much like rbenv, pyenv . | Installation | Usage . | List all versions available | Install and uninstall | List all installed versions | Use a specific version | Print current version | Pin current version to project | . | . ",
     "url": "/docs/terraform/tfenv.html",
     "relUrl": "/docs/terraform/tfenv.html"
-  },"325": {
+  },"331": {
     "doc": "tfenv",
     "title": "Installation",
     "content": "brew install tfenv . tfenv conflicts with terraform, so if you have terraform installed, you need to uninstall it first. ",
     "url": "/docs/terraform/tfenv.html#installation",
     "relUrl": "/docs/terraform/tfenv.html#installation"
-  },"326": {
+  },"332": {
     "doc": "tfenv",
     "title": "Usage",
     "content": "List all versions available . tfenv list-remote . Install and uninstall . tfenv install [version] tfenv uninstall [version] . List all installed versions . tfenv list . Use a specific version . tfenv use [version] . Print current version . tfenv version-name . Pin current version to project . tfenv pin . Command above will create a .terraform-version file in the current directory. References: . | tfenv Github | . ",
     "url": "/docs/terraform/tfenv.html#usage",
     "relUrl": "/docs/terraform/tfenv.html#usage"
-  },"327": {
-    "doc": "Useful Notes",
-    "title": "Useful Notes",
-    "content": ". | Use multiple GitHub accounts with SSH . | Generate a new SSH key | Add the new SSH key to GitHub account | Modify config | Local config per repository | Add remote | . | . ",
-    "url": "/docs/git-hub/github/useful.html",
-    "relUrl": "/docs/git-hub/github/useful.html"
-  },"328": {
-    "doc": "Useful Notes",
-    "title": "Use multiple GitHub accounts with SSH",
-    "content": "First navigate to ~/.ssh. For organization, create a directory and name it github. All private and public keys for GitHub connection will be placed here. Generate a new SSH key . Follow the ssh-keygen prompt. It will ask you to decide on a name for the file, passphrase, etc. # If Ed25519 algorithm is supported ssh-keygen -t ed25519 -C \"your_github@email.com\" . # Legacy RSA ssh-keygen -t rsa -b 4096 -C \"your_github@email.com\" . Add the new SSH key to GitHub account . Easiest part. Refer to GitHub documentation for step-by-step screencaps. Modify config . Suppose I have two GitHub accounts each associated with personal_email@address.com and work_email@address.com. I’ll assume the private keys are named github-personal and github-work respectively. Now append the following to ~/.ssh/config . Host github-personal HostName github.com User git IdentityFile ~/.ssh/github/github-personal Host github-work HostName github.com User git IdentityFile ~/.ssh/github/github-work . You can define custom host for both as such or have one of them keep the default github.com. Local config per repository . First start a local repo with . git init . Then config local name and email that will be used for that repo . git config --local user.name \"work_name\" git config --local user.email \"work_email@address.com\" . Add remote . Normally you would add an ssh remote by . git remote add origin git@github.com:github_username:repo_name # OR git remote add origin github.com:github_username:repo_name . But this time, . git remote add origin github-work:work_username:repo_name . References: . | GitHub: SSH | . ",
-    "url": "/docs/git-hub/github/useful.html#use-multiple-github-accounts-with-ssh",
-    "relUrl": "/docs/git-hub/github/useful.html#use-multiple-github-accounts-with-ssh"
-  },"329": {
-    "doc": "Useful Git Commands",
-    "title": "Useful Commands",
-    "content": ". | Configuration . | See current configuration | Global user config | Local user config | Command alias | Global ignore | . | Untrack file | Fix previous commit | Rebase | Cherry Pick | Remove or modify a commit with rebase | . ",
-    "url": "/docs/git-hub/git/useful.html#useful-commands",
-    "relUrl": "/docs/git-hub/git/useful.html#useful-commands"
-  },"330": {
-    "doc": "Useful Git Commands",
-    "title": "Configuration",
-    "content": "See current configuration . git config --list . Global user config . git config --global user.name \"myname\" git config --global user.email \"myemail@example.com\" . Local user config . Useful when you need to use different identity per project, . git config --local user.name \"anothername\" git config --local user.email \"anotheremail@example.com\" . Command alias . If you’re tired of writing long git commands that you frequently use, . git config --global alias.youralias \"command to shorten (without 'git')\" . Global ignore . First create a ~/.gitignore_global file. Then, . git config --global core.excludeFile ~/.gitignore_global . ",
-    "url": "/docs/git-hub/git/useful.html#configuration",
-    "relUrl": "/docs/git-hub/git/useful.html#configuration"
-  },"331": {
-    "doc": "Useful Git Commands",
-    "title": "Untrack file",
-    "content": "When you have a file that you would like to untrack, . git rm -r --cached &lt;file-or-dir&gt; . ",
-    "url": "/docs/git-hub/git/useful.html#untrack-file",
-    "relUrl": "/docs/git-hub/git/useful.html#untrack-file"
-  },"332": {
-    "doc": "Useful Git Commands",
-    "title": "Fix previous commit",
-    "content": "This comes in handy when you make a small change in your code after you’ve committed, but you realize you probably wanted it included in your last commit. # Modify commit message as well git commit --amend . # Keep the commit message git commit --amend --no-edit . If you already pushed the commit to a remote before the ammend, then you need to force push the new changes by git push -f origin master. ",
-    "url": "/docs/git-hub/git/useful.html#fix-previous-commit",
-    "relUrl": "/docs/git-hub/git/useful.html#fix-previous-commit"
   },"333": {
-    "doc": "Useful Git Commands",
-    "title": "Rebase",
-    "content": "To rebase from a remote, . git fetch git rebase origin/main . Or simply . git pull --rebase . ",
-    "url": "/docs/git-hub/git/useful.html#rebase",
-    "relUrl": "/docs/git-hub/git/useful.html#rebase"
-  },"334": {
-    "doc": "Useful Git Commands",
-    "title": "Cherry Pick",
-    "content": "To cherry pick a single commit from anothe branch, first check the hash of the commit. Then, . git cherry-pick &lt;hash&gt; . ",
-    "url": "/docs/git-hub/git/useful.html#cherry-pick",
-    "relUrl": "/docs/git-hub/git/useful.html#cherry-pick"
-  },"335": {
-    "doc": "Useful Git Commands",
-    "title": "Remove or modify a commit with rebase",
-    "content": "To modify a commit from the past, first check the number of commits you must go back to find the commit you want to modify. Then, . git rebase -i HEAD~&lt;num-commits-to-target-inclusive&gt; . Then you can choose an action for each commit by editing the text editor which looks like: . pick &lt;hash&gt; A Commit Message4 pick &lt;hash&gt; A Commit Message3 pick &lt;hash&gt; A Commit Message2 pick &lt;hash&gt; A Commit Message1 . Modify pick to a command listed in the editor comments. ",
-    "url": "/docs/git-hub/git/useful.html#remove-or-modify-a-commit-with-rebase",
-    "relUrl": "/docs/git-hub/git/useful.html#remove-or-modify-a-commit-with-rebase"
-  },"336": {
-    "doc": "Useful Git Commands",
-    "title": "Useful Git Commands",
-    "content": " ",
-    "url": "/docs/git-hub/git/useful.html",
-    "relUrl": "/docs/git-hub/git/useful.html"
-  },"337": {
     "doc": "Useful Commands",
     "title": "Useful CLI Commands",
     "content": ". | lsbom | networksetup | netstat | ifconfig | system_profiler | fzf (+ Oh-My-Zsh) . | Usage example | . | fasd (+ Oh-My-Zsh) | . ",
     "url": "/docs/learned/useful.html#useful-cli-commands",
     "relUrl": "/docs/learned/useful.html#useful-cli-commands"
-  },"338": {
+  },"334": {
     "doc": "Useful Commands",
     "title": "lsbom",
     "content": "Lists the contents of an installer’s bom (bill of materials) file, which contains information on what files were added to the system. My preferred usage: . lsbom -f -l -s -pf /var/db/receipts/&lt;some-package-name&gt;.bom &gt;&gt; package-bom.txt # Inspect manually vim package-bom.txt # Then pipe it to some rm code, etc. # cat package-bom.txt | while read f; do ...; done . ",
     "url": "/docs/learned/useful.html#lsbom",
     "relUrl": "/docs/learned/useful.html#lsbom"
-  },"339": {
+  },"335": {
     "doc": "Useful Commands",
     "title": "networksetup",
     "content": "To see all hardware ports (Wi-Fi, Bluetooth, Thunderbolt, etc.) . networksetup -listallhardwareports . ",
     "url": "/docs/learned/useful.html#networksetup",
     "relUrl": "/docs/learned/useful.html#networksetup"
-  },"340": {
+  },"336": {
     "doc": "Useful Commands",
     "title": "netstat",
     "content": "To see all current in/outbound network connections . netstat -i . ",
     "url": "/docs/learned/useful.html#netstat",
     "relUrl": "/docs/learned/useful.html#netstat"
-  },"341": {
+  },"337": {
     "doc": "Useful Commands",
     "title": "ifconfig",
     "content": "To see all network devices on machine . ifconfig . ",
     "url": "/docs/learned/useful.html#ifconfig",
     "relUrl": "/docs/learned/useful.html#ifconfig"
-  },"342": {
+  },"338": {
     "doc": "Useful Commands",
     "title": "system_profiler",
     "content": "Command line version of the GUI System Profiler on macOS. To list USB devices, . system_profiler SPUSBDataType . ",
     "url": "/docs/learned/useful.html#system_profiler",
     "relUrl": "/docs/learned/useful.html#system_profiler"
-  },"343": {
+  },"339": {
     "doc": "Useful Commands",
     "title": "fzf (+ Oh-My-Zsh)",
     "content": "Usage example . vim $(fzf) . ",
     "url": "/docs/learned/useful.html#fzf--oh-my-zsh",
     "relUrl": "/docs/learned/useful.html#fzf--oh-my-zsh"
-  },"344": {
+  },"340": {
     "doc": "Useful Commands",
     "title": "fasd (+ Oh-My-Zsh)",
     "content": "To be added . ",
     "url": "/docs/learned/useful.html#fasd--oh-my-zsh",
     "relUrl": "/docs/learned/useful.html#fasd--oh-my-zsh"
-  },"345": {
+  },"341": {
     "doc": "Useful Commands",
     "title": "Useful Commands",
     "content": " ",
     "url": "/docs/learned/useful.html",
     "relUrl": "/docs/learned/useful.html"
+  },"342": {
+    "doc": "Useful Notes",
+    "title": "Useful Notes",
+    "content": ". | Use multiple GitHub accounts with SSH . | Generate a new SSH key | Add the new SSH key to GitHub account | Modify config | Local config per repository | Add remote | . | . ",
+    "url": "/docs/git-hub/github/useful.html",
+    "relUrl": "/docs/git-hub/github/useful.html"
+  },"343": {
+    "doc": "Useful Notes",
+    "title": "Use multiple GitHub accounts with SSH",
+    "content": "First navigate to ~/.ssh. For organization, create a directory and name it github. All private and public keys for GitHub connection will be placed here. Generate a new SSH key . Follow the ssh-keygen prompt. It will ask you to decide on a name for the file, passphrase, etc. # If Ed25519 algorithm is supported ssh-keygen -t ed25519 -C \"your_github@email.com\" . # Legacy RSA ssh-keygen -t rsa -b 4096 -C \"your_github@email.com\" . Add the new SSH key to GitHub account . Easiest part. Refer to GitHub documentation for step-by-step screencaps. Modify config . Suppose I have two GitHub accounts each associated with personal_email@address.com and work_email@address.com. I’ll assume the private keys are named github-personal and github-work respectively. Now append the following to ~/.ssh/config . Host github-personal HostName github.com User git IdentityFile ~/.ssh/github/github-personal Host github-work HostName github.com User git IdentityFile ~/.ssh/github/github-work . You can define custom host for both as such or have one of them keep the default github.com. Local config per repository . First start a local repo with . git init . Then config local name and email that will be used for that repo . git config --local user.name \"work_name\" git config --local user.email \"work_email@address.com\" . Add remote . Normally you would add an ssh remote by . git remote add origin git@github.com:github_username:repo_name # OR git remote add origin github.com:github_username:repo_name . But this time, . git remote add origin github-work:work_username:repo_name . References: . | GitHub: SSH | . ",
+    "url": "/docs/git-hub/github/useful.html#use-multiple-github-accounts-with-ssh",
+    "relUrl": "/docs/git-hub/github/useful.html#use-multiple-github-accounts-with-ssh"
+  },"344": {
+    "doc": "Useful Git Commands",
+    "title": "Useful Commands",
+    "content": ". | Configuration . | See current configuration | Global user config | Local user config | Command alias | Global ignore | . | Untrack file | Fix previous commit | Rebase | Cherry Pick | Remove or modify a commit with rebase | . ",
+    "url": "/docs/git-hub/git/useful.html#useful-commands",
+    "relUrl": "/docs/git-hub/git/useful.html#useful-commands"
+  },"345": {
+    "doc": "Useful Git Commands",
+    "title": "Configuration",
+    "content": "See current configuration . git config --list . Global user config . git config --global user.name \"myname\" git config --global user.email \"myemail@example.com\" . Local user config . Useful when you need to use different identity per project, . git config --local user.name \"anothername\" git config --local user.email \"anotheremail@example.com\" . Command alias . If you’re tired of writing long git commands that you frequently use, . git config --global alias.youralias \"command to shorten (without 'git')\" . Global ignore . First create a ~/.gitignore_global file. Then, . git config --global core.excludeFile ~/.gitignore_global . ",
+    "url": "/docs/git-hub/git/useful.html#configuration",
+    "relUrl": "/docs/git-hub/git/useful.html#configuration"
   },"346": {
+    "doc": "Useful Git Commands",
+    "title": "Untrack file",
+    "content": "When you have a file that you would like to untrack, . git rm -r --cached &lt;file-or-dir&gt; . ",
+    "url": "/docs/git-hub/git/useful.html#untrack-file",
+    "relUrl": "/docs/git-hub/git/useful.html#untrack-file"
+  },"347": {
+    "doc": "Useful Git Commands",
+    "title": "Fix previous commit",
+    "content": "This comes in handy when you make a small change in your code after you’ve committed, but you realize you probably wanted it included in your last commit. # Modify commit message as well git commit --amend . # Keep the commit message git commit --amend --no-edit . If you already pushed the commit to a remote before the ammend, then you need to force push the new changes by git push -f origin master. ",
+    "url": "/docs/git-hub/git/useful.html#fix-previous-commit",
+    "relUrl": "/docs/git-hub/git/useful.html#fix-previous-commit"
+  },"348": {
+    "doc": "Useful Git Commands",
+    "title": "Rebase",
+    "content": "To rebase from a remote, . git fetch git rebase origin/main . Or simply . git pull --rebase . ",
+    "url": "/docs/git-hub/git/useful.html#rebase",
+    "relUrl": "/docs/git-hub/git/useful.html#rebase"
+  },"349": {
+    "doc": "Useful Git Commands",
+    "title": "Cherry Pick",
+    "content": "To cherry pick a single commit from anothe branch, first check the hash of the commit. Then, . git cherry-pick &lt;hash&gt; . ",
+    "url": "/docs/git-hub/git/useful.html#cherry-pick",
+    "relUrl": "/docs/git-hub/git/useful.html#cherry-pick"
+  },"350": {
+    "doc": "Useful Git Commands",
+    "title": "Remove or modify a commit with rebase",
+    "content": "To modify a commit from the past, first check the number of commits you must go back to find the commit you want to modify. Then, . git rebase -i HEAD~&lt;num-commits-to-target-inclusive&gt; . Then you can choose an action for each commit by editing the text editor which looks like: . pick &lt;hash&gt; A Commit Message4 pick &lt;hash&gt; A Commit Message3 pick &lt;hash&gt; A Commit Message2 pick &lt;hash&gt; A Commit Message1 . Modify pick to a command listed in the editor comments. ",
+    "url": "/docs/git-hub/git/useful.html#remove-or-modify-a-commit-with-rebase",
+    "relUrl": "/docs/git-hub/git/useful.html#remove-or-modify-a-commit-with-rebase"
+  },"351": {
+    "doc": "Useful Git Commands",
+    "title": "Useful Git Commands",
+    "content": " ",
+    "url": "/docs/git-hub/git/useful.html",
+    "relUrl": "/docs/git-hub/git/useful.html"
+  },"352": {
     "doc": "venv",
     "title": "venv",
     "content": ". | What is venv | Basic usage . | Create environment | Activate environment | Deactivate environment | . | . ",
     "url": "/docs/python/envs/venv.html",
     "relUrl": "/docs/python/envs/venv.html"
-  },"347": {
+  },"353": {
     "doc": "venv",
     "title": "What is venv",
     "content": "venv is Python’s default virtual environment tool. ",
     "url": "/docs/python/envs/venv.html#what-is-venv",
     "relUrl": "/docs/python/envs/venv.html#what-is-venv"
-  },"348": {
+  },"354": {
     "doc": "venv",
     "title": "Basic usage",
     "content": "Create environment . venv creates a virtual environment for the Python version used to invoke it. # If you only need one environment for the project python -m venv venv # If you are going to need multiple environments python -m venv venv/myenv # Creates a nested dir . python -m venv &lt;name-of-env&gt; creates a directory in cwd. The &lt;name-of-env&gt; can be anything you like, but venv is used the most by convention. Just like node_modules, because venv exists within the project root, it is almost always added to .gitignore. Activate environment . Assuming cwd is project root where venv directory exists, . source venv/bin/activate . Once activated, which python will point to . /Path/To/Project/venv/bin/python . Deactivate environment . deactivate . ",
     "url": "/docs/python/envs/venv.html#basic-usage",
     "relUrl": "/docs/python/envs/venv.html#basic-usage"
-  },"349": {
+  },"355": {
     "doc": "vim-plug",
     "title": "vim-plug",
     "content": "To be added . vim-plug Tutorial . ",
     "url": "/docs/others/vim/vim-plug.html",
     "relUrl": "/docs/others/vim/vim-plug.html"
-  },"350": {
+  },"356": {
     "doc": "Docker Volumes",
     "title": "Docker Volumes",
     "content": ". | What is a Docker volume | Cases where Docker volume comes in handy . | You want some live-reloading features | You want to persist data upon container shutdown | . | . ",
     "url": "/docs/docker/volumes.html",
     "relUrl": "/docs/docker/volumes.html"
-  },"351": {
+  },"357": {
     "doc": "Docker Volumes",
     "title": "What is a Docker volume",
     "content": "In short, it maps the volume inside a container with some local directory on your computer. If you set the volume to read-only, every change in local directory will be reflected in the container but not vice versa. If you set read-only to false, the contents inside the container and the local directory will remain same throughout the container execution. ",
     "url": "/docs/docker/volumes.html#what-is-a-docker-volume",
     "relUrl": "/docs/docker/volumes.html#what-is-a-docker-volume"
-  },"352": {
+  },"358": {
     "doc": "Docker Volumes",
     "title": "Cases where Docker volume comes in handy",
     "content": "You want some live-reloading features . During development, it is really painful if you have to rebuild or rerun everytime you make a change. By mapping your container volume to a local build context, the container will update itself everytime you make a change to your local code. You want to persist data upon container shutdown . For example if you’re running a DB as a container without a volume mapped, each time the container restarts, the contents of the DB will be erased. However, if you map your container volume to a local directory, the data will be kept even after shutdown. ",
     "url": "/docs/docker/volumes.html#cases-where-docker-volume-comes-in-handy",
     "relUrl": "/docs/docker/volumes.html#cases-where-docker-volume-comes-in-handy"
-  },"353": {
+  },"359": {
     "doc": "Homebrew x86_64",
     "title": "Homebrew x86_64",
     "content": ". | Installing Homebrew for both arm and x86 . | Install for x86 | Set alias | Opt out of analytics (Optional) | . | . ",
     "url": "/docs/others/homebrew/x86.html",
     "relUrl": "/docs/others/homebrew/x86.html"
-  },"354": {
+  },"360": {
     "doc": "Homebrew x86_64",
     "title": "Installing Homebrew for both arm and x86",
     "content": "Install for x86 . After having installed Homebrew natively, install for x86: . arch -x86_64 /bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\" . x86 Homebrew will be located in /usr/local/Homebrew while native Homebrew is in /opt/homebrew. Set alias . In your .zshrc, . # .zshrc alias xbrew='arch -x86_64 /usr/local/Homebrew/bin/brew' . Opt out of analytics (Optional) . xbrew analytics off . ",
