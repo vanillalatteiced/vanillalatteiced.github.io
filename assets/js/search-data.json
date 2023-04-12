@@ -1607,672 +1607,690 @@
     "url": "/docs/java/jenv.html#basic-commands",
     "relUrl": "/docs/java/jenv.html#basic-commands"
   },"268": {
+    "doc": "Java Memory",
+    "title": "Java Memory",
+    "content": ". | Runtime Data Area | jmap . | Example usage | Errors | . | . ",
+    "url": "/docs/java/jmap.html",
+    "relUrl": "/docs/java/jmap.html"
+  },"269": {
+    "doc": "Java Memory",
+    "title": "Runtime Data Area",
+    "content": "To be added . ",
+    "url": "/docs/java/jmap.html#runtime-data-area",
+    "relUrl": "/docs/java/jmap.html#runtime-data-area"
+  },"270": {
+    "doc": "Java Memory",
+    "title": "jmap",
+    "content": "jmap is a CLI tool used to get memory-related information of a JVM. Example usage . jmap -heap $PID . Errors . If you get the following error, . Can't attach to the process: ptrace(PTRACE_ATTACH, ..) failed for $PID: Operation not permitted . Try the following, . echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope . If you get the following error, . cannot open binary file . Make sure you are running the command as the same user that started the JVM. ",
+    "url": "/docs/java/jmap.html#jmap",
+    "relUrl": "/docs/java/jmap.html#jmap"
+  },"271": {
     "doc": "JS/TS Cheatsheet",
     "title": "Javascript/Typescript Cheatsheet",
     "content": ". | Installation | Typescript compiler | Basic typing . | Primitive types | Array and tuple types | Union and enum types | Object types and type alias | Function types | Literal types | . | Type assertions | Interface . | Object interface | Function interface | . | Undefined values . | Non-null assertions (!) | . | Index signature | Generics | Classes | Readonly arrays and tuples | Symbol type | Computed property names | Template strings | . ",
     "url": "/docs/vue/jsts.html#javascripttypescript-cheatsheet",
     "relUrl": "/docs/vue/jsts.html#javascripttypescript-cheatsheet"
-  },"269": {
+  },"272": {
     "doc": "JS/TS Cheatsheet",
     "title": "Installation",
     "content": "I personally prefer to install typescript compiler per project directory. npm i typescript --save-dev # or -D # OR yarn add typescript --dev . ",
     "url": "/docs/vue/jsts.html#installation",
     "relUrl": "/docs/vue/jsts.html#installation"
-  },"270": {
+  },"273": {
     "doc": "JS/TS Cheatsheet",
     "title": "Typescript compiler",
     "content": "Basic usage: . tsc &lt;filename&gt; # One-time compile tsc --watch &lt;filename&gt; # Livereloading . When specifiying the filename for tsc you may include or leave out the .ts extension. tsc --init . init creates the tsconfig.json file. With a tsconfig.json file, you can leave out the filename when runnig tsc. ",
     "url": "/docs/vue/jsts.html#typescript-compiler",
     "relUrl": "/docs/vue/jsts.html#typescript-compiler"
-  },"271": {
+  },"274": {
     "doc": "JS/TS Cheatsheet",
     "title": "Basic typing",
     "content": "Primitive types . Primitives are all lowercase. let a: number = 1; let b: string = \"a\"; let c: boolean = true; // Lowercase let d: any = { x: 0 }; . Unless declared without initialization, these are usually inferred. Array and tuple types . Simply add brackets: . let a: number[] = [1, 2, 3, 4]; // You can also use Array&lt;number&gt; let b: [number, string] = [1, \"a\"]; let c: [number, string][] = [[1, \"a\"], [2, \"b\"]]; . Union and enum types . Union: . let id: string | number; . Enum: . enum MyEnum { Up = 1, // Default is 0 Down, Left, Right } . The first constant in an enum always has the value of 0. If you set it to 1, the rest will have an ascending value of 2, 3, and 4. You can also give string values to enums. Object types and type alias . Object typing without the type alias can be messy: . const obj: { a: number, b?: string, readonly c: boolean, } = { a: 1, c: true } . Using type: . type MyObj = { a: number, b?: string, readonly c: boolean }; const obj: MyObj = { a: 1, c: true } . The ? means it is an optional property or an optional parameter if used in functions. Function types . function f(x: number, y: string): void { ... } . Literal types . You can use this like a constant or quicky enum: . function f(x: number, y: \"a\" | \"b\"): -1 | 0 | 1 { ... } . To change an object to a literal type use as const: . const x = { a: \"hello\", b: \"world\" } as const . ",
     "url": "/docs/vue/jsts.html#basic-typing",
     "relUrl": "/docs/vue/jsts.html#basic-typing"
-  },"272": {
+  },"275": {
     "doc": "JS/TS Cheatsheet",
     "title": "Type assertions",
     "content": "To give any variables explicit types: . let a: any = 1; let b = a as number // OR let c = &lt;number&gt;a . ",
     "url": "/docs/vue/jsts.html#type-assertions",
     "relUrl": "/docs/vue/jsts.html#type-assertions"
-  },"273": {
+  },"276": {
     "doc": "JS/TS Cheatsheet",
     "title": "Interface",
     "content": "Object interface . interface MyInterface { a: number, b?: string } . Function interface . interface FuncInterface { (x: number, y: string): void } . While it is similar to type aliasing, there are some differences: . | You cannot use union types with an interface. | . type MyType = string | number; // OK // interface MyType2 = string | number; // NO . | You can add new fields to existing interfaces but not in type aliasing. | . interface MyInterface{ a: number } interface MyInterface{ b: string } . ",
     "url": "/docs/vue/jsts.html#interface",
     "relUrl": "/docs/vue/jsts.html#interface"
-  },"274": {
+  },"277": {
     "doc": "JS/TS Cheatsheet",
     "title": "Undefined values",
     "content": "Use null or undefined. function f(x: number | null): void{ ... } . Non-null assertions (!) . someObj!.runFunction(); . ",
     "url": "/docs/vue/jsts.html#undefined-values",
     "relUrl": "/docs/vue/jsts.html#undefined-values"
-  },"275": {
+  },"278": {
     "doc": "JS/TS Cheatsheet",
     "title": "Index signature",
     "content": "To be added . ",
     "url": "/docs/vue/jsts.html#index-signature",
     "relUrl": "/docs/vue/jsts.html#index-signature"
-  },"276": {
+  },"279": {
     "doc": "JS/TS Cheatsheet",
     "title": "Generics",
     "content": "To be added . ",
     "url": "/docs/vue/jsts.html#generics",
     "relUrl": "/docs/vue/jsts.html#generics"
-  },"277": {
+  },"280": {
     "doc": "JS/TS Cheatsheet",
     "title": "Classes",
     "content": "To be added . ",
     "url": "/docs/vue/jsts.html#classes",
     "relUrl": "/docs/vue/jsts.html#classes"
-  },"278": {
+  },"281": {
     "doc": "JS/TS Cheatsheet",
     "title": "Readonly arrays and tuples",
     "content": "To be added . ",
     "url": "/docs/vue/jsts.html#readonly-arrays-and-tuples",
     "relUrl": "/docs/vue/jsts.html#readonly-arrays-and-tuples"
-  },"279": {
+  },"282": {
     "doc": "JS/TS Cheatsheet",
     "title": "Symbol type",
     "content": "To be added . ",
     "url": "/docs/vue/jsts.html#symbol-type",
     "relUrl": "/docs/vue/jsts.html#symbol-type"
-  },"280": {
+  },"283": {
     "doc": "JS/TS Cheatsheet",
     "title": "Computed property names",
     "content": "To be added . ",
     "url": "/docs/vue/jsts.html#computed-property-names",
     "relUrl": "/docs/vue/jsts.html#computed-property-names"
-  },"281": {
+  },"284": {
     "doc": "JS/TS Cheatsheet",
     "title": "Template strings",
     "content": "let a = `Put ${variableName} here.` . ",
     "url": "/docs/vue/jsts.html#template-strings",
     "relUrl": "/docs/vue/jsts.html#template-strings"
-  },"282": {
+  },"285": {
     "doc": "JS/TS Cheatsheet",
     "title": "JS/TS Cheatsheet",
     "content": " ",
     "url": "/docs/vue/jsts.html",
     "relUrl": "/docs/vue/jsts.html"
-  },"283": {
+  },"286": {
     "doc": "M1 TensorFlow",
     "title": "M1 Tensorflow",
     "content": "GPU accelerated TensorFlow on M1 . See here for the official documentation. | Install Miniforge | Install TensorFlow dependencies | Install base TensorFlow and tensorflow-metal | To upgrade to a new TensorFlow version | . ",
     "url": "/docs/ai/m1-tf.html#m1-tensorflow",
     "relUrl": "/docs/ai/m1-tf.html#m1-tensorflow"
-  },"284": {
+  },"287": {
     "doc": "M1 TensorFlow",
     "title": "Install Miniforge",
     "content": "Download and install Miniforge3 conda: . curl -L -O https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh chmod +x Miniforge3-MacOSX-arm64.sh sh Miniforge3-MacOSX-arm64.sh # Optional conda config --set auto_activate_base false . For information on conda see here. Installing Miniconda3 macOS Apple M1 64-bit bash (Py38 conda 4.10.1 2021-11-08) did not work. Miniforge’s arm64 was the only thing that worked. ",
     "url": "/docs/ai/m1-tf.html#install-miniforge",
     "relUrl": "/docs/ai/m1-tf.html#install-miniforge"
-  },"285": {
+  },"288": {
     "doc": "M1 TensorFlow",
     "title": "Install TensorFlow dependencies",
     "content": "Create a new environment: . conda create -n tf-m1 python=3.9 . You can use either Python 3.8 or 3.9. Install tensorflow-deps: . conda install -c apple tensorflow-deps . ",
     "url": "/docs/ai/m1-tf.html#install-tensorflow-dependencies",
     "relUrl": "/docs/ai/m1-tf.html#install-tensorflow-dependencies"
-  },"286": {
+  },"289": {
     "doc": "M1 TensorFlow",
     "title": "Install base TensorFlow and tensorflow-metal",
     "content": "Making sure the environment is activated: . Check environment is indeed activated by which pip. Especially if you’re doing it in a VSCode terminal. pip install tensorflow-macos . pip install tensorflow-metal . ",
     "url": "/docs/ai/m1-tf.html#install-base-tensorflow-and-tensorflow-metal",
     "relUrl": "/docs/ai/m1-tf.html#install-base-tensorflow-and-tensorflow-metal"
-  },"287": {
+  },"290": {
     "doc": "M1 TensorFlow",
     "title": "To upgrade to a new TensorFlow version",
     "content": "From the official doc, the recommended way is: . # uninstall existing tensorflow-macos and tensorflow-metal python -m pip uninstall tensorflow-macos python -m pip uninstall tensorflow-metal # Upgrade tensorflow-deps conda install -c apple tensorflow-deps --force-reinstall # or point to specific conda environment conda install -c apple tensorflow-deps --force-reinstall -n my_env . ",
     "url": "/docs/ai/m1-tf.html#to-upgrade-to-a-new-tensorflow-version",
     "relUrl": "/docs/ai/m1-tf.html#to-upgrade-to-a-new-tensorflow-version"
-  },"288": {
+  },"291": {
     "doc": "M1 TensorFlow",
     "title": "M1 TensorFlow",
     "content": " ",
     "url": "/docs/ai/m1-tf.html",
     "relUrl": "/docs/ai/m1-tf.html"
-  },"289": {
+  },"292": {
     "doc": "MLflow",
     "title": "MLflow",
     "content": "To be added . Official Doc . | Installation | . ",
     "url": "/docs/ai/mlflow.html",
     "relUrl": "/docs/ai/mlflow.html"
-  },"290": {
+  },"293": {
     "doc": "MLflow",
     "title": "Installation",
     "content": "pip install mlflow . ",
     "url": "/docs/ai/mlflow.html#installation",
     "relUrl": "/docs/ai/mlflow.html#installation"
-  },"291": {
+  },"294": {
     "doc": "Docker Networks",
     "title": "Docker Networks",
     "content": ". | Some useful commands | How do I talk to the container? | How can containers talk to each other? . | Default bridge network | User-defined bridge network | . | . ",
     "url": "/docs/docker/networks.html",
     "relUrl": "/docs/docker/networks.html"
-  },"292": {
+  },"295": {
     "doc": "Docker Networks",
     "title": "Some useful commands",
     "content": "# List all networks docker network ls . docker network inspect network-name . # Disconnect any containers using this network docker network disconnect network-name my-container docker network rm network-name . # Remove unused networks docker network prune . Link to documentation. ",
     "url": "/docs/docker/networks.html#some-useful-commands",
     "relUrl": "/docs/docker/networks.html#some-useful-commands"
-  },"293": {
+  },"296": {
     "doc": "Docker Networks",
     "title": "How do I talk to the container?",
     "content": "When a container is created, none of the ports inside the container are exposed. In order for the Docker host (your computer) or other containers to talk to it, it must first publish a port. The following maps a port 1234 inside a container to 4321 on Docker host. docker create -p 1234:4321 . Now you can communicate with the container via http://localhost:4321. ",
     "url": "/docs/docker/networks.html#how-do-i-talk-to-the-container",
     "relUrl": "/docs/docker/networks.html#how-do-i-talk-to-the-container"
-  },"294": {
+  },"297": {
     "doc": "Docker Networks",
     "title": "How can containers talk to each other?",
     "content": "If the containers are running on the same Docker daemon host (ie. all running on your computer), then the easiest way is to put them on the same bridge network. Default bridge network . Check the existing docker networks with . docker network ls . You will see a network with the name bridge. That is the default bridge network. Every started container is automatically added to the default bridge network if you didn’t specify anything else. With the default bridge you talk to other containers by using their IP Address. docker inspect my-container | grep IPAddress . Downsides to using the default bridge network: . | Using an IP address sucks: it is not immediate which container I’m referring to. | Every container can talk to every other container, which may cause security issues. | . User-defined bridge network . You can instead add a user-defined bridge network. It still uses the same bridge driver, but unlike the default bridge not everyone is invited to it. docker network create my-bridge # You can add after container creation docker network connect my-bridge my-container # Or when you create it docker create --network my-bridge . In user-defined bridge network, containers can talk to each other by using the container names as hostnames. So if my container was named my-db with port published at 1234, then the API would be: . http://my-db:1234 . References: . | Docker Networking | . ",
     "url": "/docs/docker/networks.html#how-can-containers-talk-to-each-other",
     "relUrl": "/docs/docker/networks.html#how-can-containers-talk-to-each-other"
-  },"295": {
+  },"298": {
     "doc": "Python Package",
     "title": "Python Package",
     "content": "To be added . | Basic structure of a Python package | Install package . | Editable (development) mode | . | . ",
     "url": "/docs/python/package.html",
     "relUrl": "/docs/python/package.html"
-  },"296": {
+  },"299": {
     "doc": "Python Package",
     "title": "Basic structure of a Python package",
     "content": "To be added . ",
     "url": "/docs/python/package.html#basic-structure-of-a-python-package",
     "relUrl": "/docs/python/package.html#basic-structure-of-a-python-package"
-  },"297": {
+  },"300": {
     "doc": "Python Package",
     "title": "Install package",
     "content": "Editable (development) mode . To install a package in editable mode, you must have defined the package in a setup.py file. Navigate to the package directory and run: . pip3 install --editable . # OR pip3 install -e . References: . | setuptools | . ",
     "url": "/docs/python/package.html#install-package",
     "relUrl": "/docs/python/package.html#install-package"
-  },"298": {
+  },"301": {
     "doc": "Pipenv",
     "title": "Pipenv",
     "content": ". | Advantage to venv | Basic usage . | Install | Create environment and install | Activate and deactivate environment . | Activate | Deactivate | . | Create Pipfile.lock | Delete environment | . | Use pipenv with a specific Python version | . ",
     "url": "/docs/python/envs/pipenv.html",
     "relUrl": "/docs/python/envs/pipenv.html"
-  },"299": {
+  },"302": {
     "doc": "Pipenv",
     "title": "Advantage to venv",
     "content": "Pipenv’s Pipfile serves as an upgrade to requirements.txt. It allows you to separately mark production and development dependencies. ",
     "url": "/docs/python/envs/pipenv.html#advantage-to-venv",
     "relUrl": "/docs/python/envs/pipenv.html#advantage-to-venv"
-  },"300": {
+  },"303": {
     "doc": "Pipenv",
     "title": "Basic usage",
     "content": "Install . brew install pipenv . Create environment and install . Go to the desired project folder. To create and use a virtual environment for this root: . pipenv pipenv install &lt;package-name&gt; # Install specific package . If there’s already a Pipfile, create env and install listed requirements: . pipenv install # With Pipfile . All the pipenv environments are in ~/.local/share/virtualenvs/root-dir-name-hash/ by default. Activate and deactivate environment . Activate . pipenv shell . Deactivate . exit . Do not use deactivate. Create Pipfile.lock . pipenv lock . Delete environment . To delete the environment for current directory: . pipenv --rm . ",
     "url": "/docs/python/envs/pipenv.html#basic-usage",
     "relUrl": "/docs/python/envs/pipenv.html#basic-usage"
-  },"301": {
+  },"304": {
     "doc": "Pipenv",
     "title": "Use pipenv with a specific Python version",
     "content": "You can set a specific version of Python when creating a pipenv virtual environment. pipenv --python 3.x . However, it requires that Python 3.x is already installed on your local machine unlike conda create -n myenv python=3.x. You can either, . | (Not recommended) brew install the desired Python 3.x | (Recommended) Use pyenv | (Meh..) Create a conda environment with the desired version and only use the binary | . Then navigate to the root of the project and make Pipenv use the active Python: . pipenv --python=$(which python) --site-packages # Creates an env in cwd pipenv run which python # It will point to a binary in `~/.local/share/virtualenvs/some-root-dir-hash/bin/python` pipenv run python -V # Check that it is indeed 3.x . ",
     "url": "/docs/python/envs/pipenv.html#use-pipenv-with-a-specific-python-version",
     "relUrl": "/docs/python/envs/pipenv.html#use-pipenv-with-a-specific-python-version"
-  },"302": {
+  },"305": {
     "doc": "Poetry",
     "title": "Poetry",
     "content": "Yet another Python virtual environment &amp; package manager! . | Installation | Enable tab completion | Using Poetry with a specific Python version . | Set Python binary | . | Managing environments . | See all virtual envs associated with this directory/project | Delete environments | . | Basic usage . | Activate environment | Deactivate environment | Add dependencies | Install dependencies | Remove dependencies | . | . ",
     "url": "/docs/python/envs/poetry.html",
     "relUrl": "/docs/python/envs/poetry.html"
-  },"303": {
+  },"306": {
     "doc": "Poetry",
     "title": "Installation",
     "content": "Use Homebrew: . brew install poetry . Check installation via . poetry --version . ",
     "url": "/docs/python/envs/poetry.html#installation",
     "relUrl": "/docs/python/envs/poetry.html#installation"
-  },"304": {
+  },"307": {
     "doc": "Poetry",
     "title": "Enable tab completion",
     "content": "You can enable poetry tab completion for various shells. Check poetry help completions for other shells. For Oh-My-Zsh: . mkdir $ZSH_CUSTOM/plugins/poetry poetry completions zsh &gt; $ZSH_CUSTOM/plugins/poetry/_poetry . Then go to ~/.zshrc and add the following plugin: . # ~/.zshrc plugins( ... poetry ) . ",
     "url": "/docs/python/envs/poetry.html#enable-tab-completion",
     "relUrl": "/docs/python/envs/poetry.html#enable-tab-completion"
-  },"305": {
+  },"308": {
     "doc": "Poetry",
     "title": "Using Poetry with a specific Python version",
     "content": "Have the Python version you want ready. Always check that you do indeed have the version you want by which python . You can set the version you want . | With pyenv (Recommended) | With conda | . Now init Poetry in project to create a pyproject.toml file. cd &lt;project-dir&gt; poetry init . By default, Poetry uses the currently active Python. Poetry virtual environments are created in ~/Library/Caches/pypoetry/virtualenvs. Set Python binary . If you’d like to change a version after init, activate a new Python binary and do: . poetry env use `pyenv which python3` . Check that it is using the right binary by: . poetry env info . ",
     "url": "/docs/python/envs/poetry.html#using-poetry-with-a-specific-python-version",
     "relUrl": "/docs/python/envs/poetry.html#using-poetry-with-a-specific-python-version"
-  },"306": {
+  },"309": {
     "doc": "Poetry",
     "title": "Managing environments",
     "content": "See all virtual envs associated with this directory/project . poetry env list . Delete environments . poetry env remove &lt;proj-hash--py3.x&gt; ## Check exact name with poetry env list . ",
     "url": "/docs/python/envs/poetry.html#managing-environments",
     "relUrl": "/docs/python/envs/poetry.html#managing-environments"
-  },"307": {
+  },"310": {
     "doc": "Poetry",
     "title": "Basic usage",
     "content": "Activate environment . poetry shell # Creates a new child shell # OR source `poetry env info --path`/bin/activate # Does not open a child shell . Deactivate environment . exit # If in child shell # OR deactivate # If activated with source &lt;path&gt;/bin/activate . Add dependencies . poetry add &lt;package&gt; # OR poetry add &lt;package&gt; --dev . Install dependencies . poetry install # OR poetry install --no-dev . Remove dependencies . poetry remove &lt;package&gt; # OR poetry remove &lt;package&gt; --dev . References: . | Poetry | Poetry Commands | . ",
     "url": "/docs/python/envs/poetry.html#basic-usage",
     "relUrl": "/docs/python/envs/poetry.html#basic-usage"
-  },"308": {
+  },"311": {
     "doc": "pyenv",
     "title": "pyenv",
     "content": "Python version manager . GitHub . | What is pyenv | Installation | Typical usage | Basic commands . | Check activated Python version | List installed Python versions | List all available Python for install | Install a Python version | Uninstall a Python version | Show installed directory | Set Python version | Show Python binary | . | Uninstall pyenv . | Remove all shell startup configuration | Remove all Python versions | Remove pyenv | . | . ",
     "url": "/docs/python/envs/pyenv.html",
     "relUrl": "/docs/python/envs/pyenv.html"
-  },"309": {
+  },"312": {
     "doc": "pyenv",
     "title": "What is pyenv",
     "content": "pyenv is a version manager for Python. As it started off as a fork of rbenv, the syntax and usage are very similar. It is a Python version manager not a virtual environment manager. To manage a virtual environment for Python libraries, use in junction with venv, poetry, pipenv, etc. ",
     "url": "/docs/python/envs/pyenv.html#what-is-pyenv",
     "relUrl": "/docs/python/envs/pyenv.html#what-is-pyenv"
-  },"310": {
+  },"313": {
     "doc": "pyenv",
     "title": "Installation",
     "content": "Easiest way is to use Homebrew: . brew install pyenv . Then, . echo 'eval \"$(pyenv init --path)\"' &gt;&gt; ~/.zprofile echo 'eval \"$(pyenv init -)\"' &gt;&gt; ~/.zshrc . or . echo 'eval \"$(pyenv init --path)\"' &gt;&gt; ~/.zshrc . If using .zprofile, Terminal app should open shell as login shell. Restart shell and install Python build dependencies: . brew install openssl readline sqlite3 xz zlib . ",
     "url": "/docs/python/envs/pyenv.html#installation",
     "relUrl": "/docs/python/envs/pyenv.html#installation"
-  },"311": {
+  },"314": {
     "doc": "pyenv",
     "title": "Typical usage",
     "content": "To install a specific Python version for a project, navigate to your project root and do: . pyenv intall -l # Decide a version number pyenv install -s 3.x.x # -s means skip installation if it already exists pyenv rehash # Makes all Python binaries available to system pyenv local 3.x.x # Make sure you're in project root . ",
     "url": "/docs/python/envs/pyenv.html#typical-usage",
     "relUrl": "/docs/python/envs/pyenv.html#typical-usage"
-  },"312": {
+  },"315": {
     "doc": "pyenv",
     "title": "Basic commands",
     "content": "Full commands are listed here . Check activated Python version . pyenv version . Do not confuse with below. Notice the plural. List installed Python versions . pyenv versions . List all available Python for install . pyenv install -l . Install a Python version . pyenv install 3.x.x pyenv rehash . Uninstall a Python version . pyenv uninstall 3.x.x . Show installed directory . pyenv prefix 3.x.x . Set Python version . pyenv global 3.x.x pyenv local 3.x.x . Show Python binary . pyenv which python3 . ",
     "url": "/docs/python/envs/pyenv.html#basic-commands",
     "relUrl": "/docs/python/envs/pyenv.html#basic-commands"
-  },"313": {
+  },"316": {
     "doc": "pyenv",
     "title": "Uninstall pyenv",
     "content": "Remove all shell startup configuration . Remove the following from .zprofile and .zshrc: . echo 'eval \"$(pyenv init --path)\"' echo 'eval \"$(pyenv init -)\"' . Remove all Python versions . rm -rf $(pyenv root) . Remove pyenv . brew uninstall pyenv . ",
     "url": "/docs/python/envs/pyenv.html#uninstall-pyenv",
     "relUrl": "/docs/python/envs/pyenv.html#uninstall-pyenv"
-  },"314": {
+  },"317": {
     "doc": "Vue Quick Notes",
     "title": "Vue Quick Notes",
     "content": "Quick notes for dummies. Using &lt;script setup lang=\"ts\"&gt;. | Props . | To use props in child component . | Without default values | With default values | . | . | Ref / Reactive | Computed / Watch | Event / Emits . | To use emits | . | v-model . | Parent-Child usage example | . | Provide / Inject | Etc . | $keyword equivalent in the script tag | . | . ",
     "url": "/docs/vue/quick-notes.html",
     "relUrl": "/docs/vue/quick-notes.html"
-  },"315": {
+  },"318": {
     "doc": "Vue Quick Notes",
     "title": "Props",
     "content": ". | Props are reactive by default | You don’t explicitly import defineProps; it is a compiler macro for &lt;script setup&gt; | If you don’t pass optional props, they have a value of undefined | In the template, you can access the props without having to do props.someVarName, just use someVarName. | Even if you toRef a prop, they will not become a copy. If you modify the toRef-ed prop, it will affect the original. | . To use props in child component . Without default values . const props = defineProps&lt;{ a: string b: number }&gt;() . With default values . interface MyProps { a: strings b?: number } const props = withDefaults(defineProps&lt;MyProps&gt;(), { b: 0 }) . ",
     "url": "/docs/vue/quick-notes.html#props",
     "relUrl": "/docs/vue/quick-notes.html#props"
-  },"316": {
+  },"319": {
     "doc": "Vue Quick Notes",
     "title": "Ref / Reactive",
     "content": ". | You can use ref with primitive types like string and number but not with reactive | You access refs by refObj.value and reactives by reactiveObj | Everything that belonged in the data part before the Composition API should be wrapped with ref or reactive. (Unless they’re nonchanging in value.) | . ",
     "url": "/docs/vue/quick-notes.html#ref--reactive",
     "relUrl": "/docs/vue/quick-notes.html#ref--reactive"
-  },"317": {
+  },"320": {
     "doc": "Vue Quick Notes",
     "title": "Computed / Watch",
     "content": "See details here. | watch watches for a specific set of changes, and runs a function. | With watch you can also get the prev and new value. | You can watch ref like a normal variable, but you gotta use () =&gt; reactiveObj instead for reactive objects. | watchEffect watches for all change in every variable used in its function. | watchEffect is kinda more like computed except it’s purpose is not to to get or set a variable. | computed with a single arrow function creates a getter (so immutable). If you give it instead an object with get and set, it will be writable. | If you store watch and watchEffect in a variable named myVar for example, you can stop its watch behavior by calling myVar(). | There exists, onTrack and onTrigger for debugging. | . ",
     "url": "/docs/vue/quick-notes.html#computed--watch",
     "relUrl": "/docs/vue/quick-notes.html#computed--watch"
-  },"318": {
+  },"321": {
     "doc": "Vue Quick Notes",
     "title": "Event / Emits",
     "content": "To use emits . const emits = defineEmits&lt;{ (e: 'myEvent', valueImGivingBack: string): void }&gt;( // Then later function onEvent(e: Event) { const newVal = (e.target as HTMLTextAreaElement).value emits('myEvent', newVal) } . ",
     "url": "/docs/vue/quick-notes.html#event--emits",
     "relUrl": "/docs/vue/quick-notes.html#event--emits"
-  },"319": {
+  },"322": {
     "doc": "Vue Quick Notes",
     "title": "v-model",
     "content": ". | Syntax changed since Vue2, see here for details. | v-model is a syntactic sugar: you can always do the same thing with regular propping and emitting. | Basically, if you use the vanilla v-model as is, the name of the prop and the event will have to be modelValue and update:modelValue. | If you give it a name like v-model:childProp, it will be childProp and update:childProp. | You can use multiple v-models with a child component; just give it different names. | Remember, v-model needs to be used with ref or reactive variable | . Parent-Child usage example . // Parent.vue &lt;template&gt; &lt;Child v-model:childProp=\"parentVar\"&gt; &lt;/template&gt; &lt;script setup lang=\"ts\"&gt; const parentVar = ref('hey child') &lt;/script&gt; . // Child.vue &lt;template&gt; &lt;input @keyup.enter=\"onEnterPressed\"&gt; &lt;/template&gt; &lt;script setup lang=\"ts\"&gt; const defineProps&lt;{ childProp: string }&gt;() const emits = defineEmits&lt;{ (e: 'update:childProp', childProp: string): void }&gt;() function onEnterPressed(e: Event) { const someVal = 'sup' emits('update:childProp', someVal) } &lt;/script&gt; . ",
     "url": "/docs/vue/quick-notes.html#v-model",
     "relUrl": "/docs/vue/quick-notes.html#v-model"
-  },"320": {
+  },"323": {
     "doc": "Vue Quick Notes",
     "title": "Provide / Inject",
     "content": ". | To make typing work, you gotta use the InjectionKey&lt;T&gt;. See here for details. | To update provided reactive props, make the parent component provide mutation functions as well. Always recommended to have the root (providing) component to be in charge of mutations. | . ",
     "url": "/docs/vue/quick-notes.html#provide--inject",
     "relUrl": "/docs/vue/quick-notes.html#provide--inject"
-  },"321": {
+  },"324": {
     "doc": "Vue Quick Notes",
     "title": "Etc",
     "content": ". | You can use $event, $router, $route, $slots, $attrs, $emit in the template tag, but not in the script tag. | ref, reactive, toRef, toRefs, computed, watch, watchEffect are all in vue | attrs are basically all the stuff passed down to a child naturally from being an HTML element, but not actually a Vue prop. Ex) class | You can use the normal &lt;script&gt; tag along with the &lt;script setup&gt;. Two things you’ll have to do within the normal &lt;script&gt; tag is setting name and inheritAttrs. | . $keyword equivalent in the script tag . See here for details. But basically: . import { useSlots, useAttrs } from 'vue import { useRouter, useRoute } from 'vue-router' const slots = useSlots() const attrs = useAttrs() const router = useRouter() const route = useRoute() . ",
     "url": "/docs/vue/quick-notes.html#etc",
     "relUrl": "/docs/vue/quick-notes.html#etc"
-  },"322": {
+  },"325": {
     "doc": "ROC Curve",
     "title": "Receiver Operating Characteristic Curve",
     "content": ". | Errors in classfication | ROC Curve . | Area under the curve (AUC) | . | Selecting the threshold | PR Curve using precision | . ",
     "url": "/docs/ai/notes/roc.html#receiver-operating-characteristic-curve",
     "relUrl": "/docs/ai/notes/roc.html#receiver-operating-characteristic-curve"
-  },"323": {
+  },"326": {
     "doc": "ROC Curve",
     "title": "Errors in classfication",
     "content": "In machine learning, classifiers cannot be perfect and there will be errors. Blue64701, CC BY-SA 4.0, via Wikimedia Commons There is usually a trade-off between sensitivity and specificity. You may attempt to reduce as many false negatives in expense of false positives, or reduce false positives in expense of false negatives. However, we’d still like to know the optimal line or threshold that ultimately classifies an observation while minimizing the sacrifice. ",
     "url": "/docs/ai/notes/roc.html#errors-in-classfication",
     "relUrl": "/docs/ai/notes/roc.html#errors-in-classfication"
-  },"324": {
+  },"327": {
     "doc": "ROC Curve",
     "title": "ROC Curve",
     "content": "We can use the ROC curve to help determine that. cmglee, MartinThoma, CC BY-SA 4.0, via Wikimedia Commons The basic idea is, we tweak the classifier’s threshold and plot a point using the $TPR$ (sensitivity, recall) and $FPR$ (fall-out)). \\[TPR \\text{ (recall)} = \\frac{TP}{TP+FN}\\] \\[FPR = \\frac{FP}{FP + TN} = 1 - TNR \\text{ (specificity)}\\] The collection of these points will form a curve for that classifier. Each point on the ROC curve is a performance measure of a threshold. Area under the curve (AUC) . The red dotted line indicates a curve of a random classifier where $TPR = FPR$, which means the number of correctly classfied positive tests and the number of incorrectly classified positive tests are equal. For any classifier above the random classifier, the number of correctly classified positives is greater than the number of incorrectly classified positives. So classifiers with ROC curves higher above have better performances. Area under the curve (AUC) ($\\le 1$) is an aggregate performance measure across all thresholds of a model. Higher AUC indicates higher accuracy of the model. AUC is a useful metric even when the class distributions are highly unbalanced. AUC is for comparing models not thresholds. ",
     "url": "/docs/ai/notes/roc.html#roc-curve",
     "relUrl": "/docs/ai/notes/roc.html#roc-curve"
-  },"325": {
+  },"328": {
     "doc": "ROC Curve",
     "title": "Selecting the threshold",
     "content": "In every classification problem, a business decision must be made. Which of the two are more detrimental? . If the normal/abnormal classification was performed in a medical setting, a False Negative might be a patient who is diagnosed as normal, but is actually sick. Here we prefer to avoid False Negatives (or maximize True Positives) at the expense of more False Positives. In the below figure, think about moving the green bar to the far left. However, if the classification was about whether an email is spam or not, we’d pretty much prefer spam mails occasionally ending up in your inbox rather than having your job offer email sent to spam. In this case, we prefer to avoid False Positives at the expense of more False Negatives. In the below figure, think about moving the green bar to the far right. The business decision at hand is then: . | Maximize True Positive Rate | Minimize False Positive Rate | . Sharpr for svg version. original work by kakau in a png, CC BY-SA 3.0, via Wikimedia Commons The ROC curve is a visual illustration of the impact of different thresholds and helps you make these business decisions. If you increase the threshold towards right, the point on the ROC curve moves towards bottom left. If you decrease the threshold towards left, the point on the ROC curve moves towards top right. ",
     "url": "/docs/ai/notes/roc.html#selecting-the-threshold",
     "relUrl": "/docs/ai/notes/roc.html#selecting-the-threshold"
-  },"326": {
+  },"329": {
     "doc": "ROC Curve",
     "title": "PR Curve using precision",
     "content": "Sometimes the curve is drawn with recall (TPR, sensitivity) and precision (PPV) instead. \\[precision = \\frac{TP}{TP + FP}\\] \\[FPR = \\frac{FP}{N} = \\frac{FP}{TN+FP}\\] Suppose the number of actual Condition Negative ($N$) dominates ($N \\rightarrow \\infty$; high imbalance towards class Negative). As you can see from the equation, while precision is significantly affected by the number of False Positives regardless, FPR does not change as much if $N$ is too large. Therefore, if the class distributions are highly imbalanced, precision may be more sensitive to False Positives than FPR. AUC for ROC curve is sometimes called AUROC and AUC for PR curve is called AUPR. Both AUC metrics bear analogous meaning: higher the better. If you increase the threshold towards right, the point on PR curve moves top left. References: . | Ten quick tips for machine learning in computational biology - Scientific Figure on ResearchGate. Available from: https://www.researchgate.net/figure/a-Example-of-Precision-Recall-curve-with-the-precision-score-on-the-y-axis-and-the_fig1_321672019 [accessed 4 Dec, 2021] | . ",
     "url": "/docs/ai/notes/roc.html#pr-curve-using-precision",
     "relUrl": "/docs/ai/notes/roc.html#pr-curve-using-precision"
-  },"327": {
+  },"330": {
     "doc": "ROC Curve",
     "title": "ROC Curve",
     "content": ". ",
     "url": "/docs/ai/notes/roc.html",
     "relUrl": "/docs/ai/notes/roc.html"
-  },"328": {
+  },"331": {
     "doc": "Storybook UI",
     "title": "Storybook UI",
     "content": ". | Install and add Storybook UI | Start Storybook locally | Error: PostCSS plugin tailwindcss requires PostCSS 8 | . ",
     "url": "/docs/vue/sb.html",
     "relUrl": "/docs/vue/sb.html"
-  },"329": {
+  },"332": {
     "doc": "Storybook UI",
     "title": "Install and add Storybook UI",
     "content": "Inside the Vue project root, . npx sb init . ",
     "url": "/docs/vue/sb.html#install-and-add-storybook-ui",
     "relUrl": "/docs/vue/sb.html#install-and-add-storybook-ui"
-  },"330": {
+  },"333": {
     "doc": "Storybook UI",
     "title": "Start Storybook locally",
     "content": "yarn storybook . ",
     "url": "/docs/vue/sb.html#start-storybook-locally",
     "relUrl": "/docs/vue/sb.html#start-storybook-locally"
-  },"331": {
+  },"334": {
     "doc": "Storybook UI",
     "title": "Error: PostCSS plugin tailwindcss requires PostCSS 8",
     "content": "Tailwind CSS depends on PostCSS 8. As of now, Storybook have not yet been updated to support PostCSS 8. Therefore, you must install a compatibility build of Tailwind to use it with Storybook. See here for detail. If you already have Tailwind installed, remove by . yarn remove tailwindcss postcss autoprefixer . ",
     "url": "/docs/vue/sb.html#error-postcss-plugin-tailwindcss-requires-postcss-8",
     "relUrl": "/docs/vue/sb.html#error-postcss-plugin-tailwindcss-requires-postcss-8"
-  },"332": {
+  },"335": {
     "doc": "Flutter Setup",
     "title": "Flutter Setup",
     "content": ". | Installation . | Xcode | Android Studio / Android SDK | CocoaPods | . | . ",
     "url": "/docs/flutter/setup.html",
     "relUrl": "/docs/flutter/setup.html"
-  },"333": {
+  },"336": {
     "doc": "Flutter Setup",
     "title": "Installation",
     "content": "If you’re using Apple Sillicon Mac, first install Rosetta. Install Flutter via Homebrew: . brew install --cask flutter . Run the following command to see the components installed or missing: . flutter doctor # -v for verbose . You can opt out of analytics and crash reporting by running flutter config --no-analytics. Xcode . Install Xcode from the App Store. Then, run the following commands to configure Xcode command-line tools: . sudo xcode-select --install sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer sudo xcodebuild -runFirstLaunch sudo xcodebuild -license . Android Studio / Android SDK . Install Android Studio via Homebrew: . brew install --cask android-studio . If not already, install Android SDK via Android Studio: . And Android SDK Command-line Tools: . Accept Android SDK licenses: . flutter doctor --android-licenses . CocoaPods . To use Flutter plugins with native iOS code, you need to install CocoaPods: . brew install cocoapods . References: . | Flutter: Get Started | . ",
     "url": "/docs/flutter/setup.html#installation",
     "relUrl": "/docs/flutter/setup.html#installation"
-  },"334": {
+  },"337": {
     "doc": "Sparse Checkout",
     "title": "Sparse Checkout",
     "content": ". | Monorepo | Checkout only the necessary folders | Check the status | . ",
     "url": "/docs/git-hub/git/sparse.html",
     "relUrl": "/docs/git-hub/git/sparse.html"
-  },"335": {
+  },"338": {
     "doc": "Sparse Checkout",
     "title": "Monorepo",
     "content": "A monorepo a single repository that contains multiple logical root directories or microservices (e.g. frontend subfolder and a backend subfolder.) . As a monorepo grows in size, tracking can become slow. However, a frontend developer may not have to consistently pull and push with the changes in a backend folder and vice versa. We don’t need them, so why keep them? . If the logics of difference microservices can be isolated, version control can prune down unnecessary structures. ",
     "url": "/docs/git-hub/git/sparse.html#monorepo",
     "relUrl": "/docs/git-hub/git/sparse.html#monorepo"
-  },"336": {
+  },"339": {
     "doc": "Sparse Checkout",
     "title": "Checkout only the necessary folders",
     "content": "First clone a project without checking them out: . git clone &lt;URL&gt; --no-checkout # For efficient cloning use partial clone git clone &lt;URL&gt; --no-checkout --filter=blob:none # Or if you also don't need the commit history git clone &lt;URL&gt; --no-checkout --depth 1 . cd into the cloned project and init only the root files: . git sparse-checkout init --cone . Yes it is --cone not a typo of --clone. Set subfolders that you’d like to checkout: . git sparse-checkout set backend db/config . Then checkout: . git checkout . ",
     "url": "/docs/git-hub/git/sparse.html#checkout-only-the-necessary-folders",
     "relUrl": "/docs/git-hub/git/sparse.html#checkout-only-the-necessary-folders"
-  },"337": {
+  },"340": {
     "doc": "Sparse Checkout",
     "title": "Check the status",
     "content": "Try: . git status . Now your git status will indicate that you are in sparse checkout mode. You will see that your project is still up to date with the remote even though all the other subfolders are not locally present. References: . | Bring your monorepo down to size with sparse-checkout | . ",
     "url": "/docs/git-hub/git/sparse.html#check-the-status",
     "relUrl": "/docs/git-hub/git/sparse.html#check-the-status"
-  },"338": {
+  },"341": {
     "doc": "Terraform Module",
     "title": "Terraform Module",
     "content": ". | What is a Terraform module | Typical file structure | Module structure | Module input variables | How to call a module | Itty Bitties | . ",
     "url": "/docs/terraform/terraform-module.html",
     "relUrl": "/docs/terraform/terraform-module.html"
-  },"339": {
+  },"342": {
     "doc": "Terraform Module",
     "title": "What is a Terraform module",
     "content": "It is sort of like a class in programming. Given input variables, it can be reused to create multiple instances of the infra described in the module. For example, when you’re creating an AWS lambda resource, there are typically some other resources associated with it, such as the REST API, IAM role, etc. If you think you’re going to be using this pattern often, you can create a module containing all the common resources and only expose some input variables that need to be configured at the top level. ",
     "url": "/docs/terraform/terraform-module.html#what-is-a-terraform-module",
     "relUrl": "/docs/terraform/terraform-module.html#what-is-a-terraform-module"
-  },"340": {
+  },"343": {
     "doc": "Terraform Module",
     "title": "Typical file structure",
     "content": "The main Terraform execution point is called the root module. This is often the main.tf file in the top level driectory. Modules are often placed in a folder called modules. ├── README.md ├── main.tf ├── modules ├── outputs.tf └── variables.tf . ",
     "url": "/docs/terraform/terraform-module.html#typical-file-structure",
     "relUrl": "/docs/terraform/terraform-module.html#typical-file-structure"
-  },"341": {
+  },"344": {
     "doc": "Terraform Module",
     "title": "Module structure",
     "content": "Inside modules directory, create a child directory with a name of your module: e.g. mymodule. ├── main.tf ├── modules │   └── mymodule │      ├── main.tf │      ├── outputs.tf │      └── variables.tf ├── outputs.tf └── variables.tf . The structure inside mymodule is optional. They can be separated as above or smashed into a single file. ",
     "url": "/docs/terraform/terraform-module.html#module-structure",
     "relUrl": "/docs/terraform/terraform-module.html#module-structure"
-  },"342": {
+  },"345": {
     "doc": "Terraform Module",
     "title": "Module input variables",
     "content": "Unless you plan to reuse your module as-is every single time, you typically provide input variables to modules. Any variables defined with variable must be provided by the calling module or an error will be raised. ",
     "url": "/docs/terraform/terraform-module.html#module-input-variables",
     "relUrl": "/docs/terraform/terraform-module.html#module-input-variables"
-  },"343": {
+  },"346": {
     "doc": "Terraform Module",
     "title": "How to call a module",
     "content": "All you need to do is feed the necessary input variables. In main.tf, . # main.tf module \"module_a\" { source = \"./modules/mymodule\" my_input_var = \"Here you go\" } . Notice that the source attribute points the the directory of the module, not any specific files . If you defined any output variables in the module with output, you can access them by: . module.module_a.my_output_var . ",
     "url": "/docs/terraform/terraform-module.html#how-to-call-a-module",
     "relUrl": "/docs/terraform/terraform-module.html#how-to-call-a-module"
-  },"344": {
+  },"347": {
     "doc": "Terraform Module",
     "title": "Itty Bitties",
     "content": ". | Although you can nest your modules in multiple levels, it is recommended to keep the entire Terraform module as flat as possible. | Even if you don’t access them, module output variables is always output after terraform apply. | Think about whether a module is absolutely necessary. Sometimes you may end up feeding in as many input variablesas the original resource. | . ",
     "url": "/docs/terraform/terraform-module.html#itty-bitties",
     "relUrl": "/docs/terraform/terraform-module.html#itty-bitties"
-  },"345": {
+  },"348": {
     "doc": "Provision with Terraform",
     "title": "Provision with Terraform",
     "content": ". | Configuration | . ",
     "url": "/docs/demo/flask-login-app/terraform.html",
     "relUrl": "/docs/demo/flask-login-app/terraform.html"
-  },"346": {
+  },"349": {
     "doc": "Provision with Terraform",
     "title": "Configuration",
     "content": "Folder structure . flask-mongodb ├── backend │   ├── .gitignore │   ├── .dockerignore │   ├── app.py │   ├── back.dev.Dockerfile │   ├── requirements.txt │   └── venv │   └── flaskmongo └── terraform ├── main.tf └── providers.tf . We are going to be using a docker provider. # flask-mongodb/terraform/main.tf terraform { required_providers { docker = { source = \"kreuzwerker/docker\" version = \"~&gt; 2.11.0\" } } required_version = \"~&gt; 0.15.3\" } . # flask-mongodb/terraform/providers.tf provider \"docker\" { host = \"unix:///var/run/docker.sock\" } resource \"docker_container\" \"backend_tf\" { name = \"backend-tf\" image = docker_image.flask_back.latest volumes { container_path = \"/www\" host_path = \"/full/path/to/flask-mongodb/backend\" read_only = true } ports { internal = 5000 external = 5000 } } resource \"docker_image\" \"flask_back\" { name = \"flask-back:latest\" build { path = \"../backend\" dockerfile = \"back.dev.Dockerfile\" force_remove = true } } . Now initialize to download and install providers in .terraform and apply to create . terraform init terraform apply --auto-approve . To verify that docker image has been built and container is running . docker images | grep flask-back docker ps | grep backend-tf . Because volume is mounted, any change in directory backend will be reflected in the container. To destroy all resources created . terraform destroy . ",
     "url": "/docs/demo/flask-login-app/terraform.html#configuration",
     "relUrl": "/docs/demo/flask-login-app/terraform.html#configuration"
-  },"347": {
+  },"350": {
     "doc": "tfenv",
     "title": "tfenv",
     "content": "Much like rbenv, pyenv . | Installation | Usage . | List all versions available | Install and uninstall | List all installed versions | Use a specific version | Print current version | Pin current version to project | . | . ",
     "url": "/docs/terraform/tfenv.html",
     "relUrl": "/docs/terraform/tfenv.html"
-  },"348": {
+  },"351": {
     "doc": "tfenv",
     "title": "Installation",
     "content": "brew install tfenv . tfenv conflicts with terraform, so if you have terraform installed, you need to uninstall it first. ",
     "url": "/docs/terraform/tfenv.html#installation",
     "relUrl": "/docs/terraform/tfenv.html#installation"
-  },"349": {
+  },"352": {
     "doc": "tfenv",
     "title": "Usage",
     "content": "List all versions available . tfenv list-remote . Install and uninstall . tfenv install [version] tfenv uninstall [version] . List all installed versions . tfenv list . Use a specific version . tfenv use [version] . Print current version . tfenv version-name . Pin current version to project . tfenv pin . Command above will create a .terraform-version file in the current directory. References: . | tfenv Github | . ",
     "url": "/docs/terraform/tfenv.html#usage",
     "relUrl": "/docs/terraform/tfenv.html#usage"
-  },"350": {
-    "doc": "Useful Git Commands",
-    "title": "Useful Commands",
-    "content": ". | Configuration . | See current configuration | Global user config | Local user config | Command alias | Global ignore | . | Untrack file | Fix previous commit | Rebase | Cherry Pick | Remove or modify a commit with rebase | Reset status . | To remove all uncommitted changes | Undo last (few) commit(s) without losing changes | . | Prune remote branches | . ",
-    "url": "/docs/git-hub/git/useful.html#useful-commands",
-    "relUrl": "/docs/git-hub/git/useful.html#useful-commands"
-  },"351": {
-    "doc": "Useful Git Commands",
-    "title": "Configuration",
-    "content": "See current configuration . git config --list . Global user config . git config --global user.name \"myname\" git config --global user.email \"myemail@example.com\" . Local user config . Useful when you need to use different identity per project, . git config --local user.name \"anothername\" git config --local user.email \"anotheremail@example.com\" . Command alias . If you’re tired of writing long git commands that you frequently use, . git config --global alias.youralias \"command to shorten (without 'git')\" . Global ignore . First create a ~/.gitignore_global file. Then, . git config --global core.excludeFile ~/.gitignore_global . ",
-    "url": "/docs/git-hub/git/useful.html#configuration",
-    "relUrl": "/docs/git-hub/git/useful.html#configuration"
-  },"352": {
-    "doc": "Useful Git Commands",
-    "title": "Untrack file",
-    "content": "When you have a file that you would like to untrack, . git rm -r --cached &lt;file-or-dir&gt; . ",
-    "url": "/docs/git-hub/git/useful.html#untrack-file",
-    "relUrl": "/docs/git-hub/git/useful.html#untrack-file"
   },"353": {
-    "doc": "Useful Git Commands",
-    "title": "Fix previous commit",
-    "content": "This comes in handy when you make a small change in your code after you’ve committed, but you realize you probably wanted it included in your last commit. # Modify commit message as well git commit --amend . # Keep the commit message git commit --amend --no-edit . If you already pushed the commit to a remote before the ammend, then you need to force push the new changes by git push -f origin master. ",
-    "url": "/docs/git-hub/git/useful.html#fix-previous-commit",
-    "relUrl": "/docs/git-hub/git/useful.html#fix-previous-commit"
-  },"354": {
-    "doc": "Useful Git Commands",
-    "title": "Rebase",
-    "content": "To rebase from a remote, . git fetch git rebase origin/main . Or simply . git pull --rebase . ",
-    "url": "/docs/git-hub/git/useful.html#rebase",
-    "relUrl": "/docs/git-hub/git/useful.html#rebase"
-  },"355": {
-    "doc": "Useful Git Commands",
-    "title": "Cherry Pick",
-    "content": "To cherry pick a single commit from anothe branch, first check the hash of the commit. Then, . git cherry-pick &lt;hash&gt; . ",
-    "url": "/docs/git-hub/git/useful.html#cherry-pick",
-    "relUrl": "/docs/git-hub/git/useful.html#cherry-pick"
-  },"356": {
-    "doc": "Useful Git Commands",
-    "title": "Remove or modify a commit with rebase",
-    "content": "To modify a commit from the past, first check the number of commits you must go back to find the commit you want to modify. Then, . git rebase -i HEAD~&lt;num-commits-to-target-inclusive&gt; . Then you can choose an action for each commit by editing the text editor which looks like: . pick &lt;hash&gt; A Commit Message4 pick &lt;hash&gt; A Commit Message3 pick &lt;hash&gt; A Commit Message2 pick &lt;hash&gt; A Commit Message1 . Modify pick to a command listed in the editor comments. ",
-    "url": "/docs/git-hub/git/useful.html#remove-or-modify-a-commit-with-rebase",
-    "relUrl": "/docs/git-hub/git/useful.html#remove-or-modify-a-commit-with-rebase"
-  },"357": {
-    "doc": "Useful Git Commands",
-    "title": "Reset status",
-    "content": "There are 5 types of reset: --soft, --mixed, --hard, --merge, and --keep. Each type of reset has different effects on the index, working tree, and HEAD. The first three are the most commonly used, and --mixed is the default. | All of them move HEAD to the specified commit. | --soft leaves changes in the staging area. | --mixed keeps the changes in an unstaged state. | --hard discards all changes. | . To remove all uncommitted changes . Changes reset by following commands will be unrecoverable unless you have already pushed to remote. git reset --hard # Reset tracked files to your latest commit git clean -fd # Remove untracked files . Undo last (few) commit(s) without losing changes . git reset HEAD^ # Undo last commit git reset HEAD^^ # Undo last two commits git reset HEAD~3 # Undo last three commits . ",
-    "url": "/docs/git-hub/git/useful.html#reset-status",
-    "relUrl": "/docs/git-hub/git/useful.html#reset-status"
-  },"358": {
-    "doc": "Useful Git Commands",
-    "title": "Prune remote branches",
-    "content": "If you have deleted a remote branch, but it still shows up when you run git branch -a, then you can prune it by, . git remote prune $remote_name # --dry-run to see what will be pruned . If you have a local branch that is still tracking the deleted remote, then you need to delete the local branch first. References: . | Git: Reset | . ",
-    "url": "/docs/git-hub/git/useful.html#prune-remote-branches",
-    "relUrl": "/docs/git-hub/git/useful.html#prune-remote-branches"
-  },"359": {
-    "doc": "Useful Git Commands",
-    "title": "Useful Git Commands",
-    "content": " ",
-    "url": "/docs/git-hub/git/useful.html",
-    "relUrl": "/docs/git-hub/git/useful.html"
-  },"360": {
-    "doc": "Useful Commands",
-    "title": "Useful CLI Commands",
-    "content": ". | lsbom | networksetup | netstat | ifconfig | system_profiler | fzf (+ Oh-My-Zsh) . | Usage example | . | fasd (+ Oh-My-Zsh) | . ",
-    "url": "/docs/learned/useful.html#useful-cli-commands",
-    "relUrl": "/docs/learned/useful.html#useful-cli-commands"
-  },"361": {
-    "doc": "Useful Commands",
-    "title": "lsbom",
-    "content": "Lists the contents of an installer’s bom (bill of materials) file, which contains information on what files were added to the system. My preferred usage: . lsbom -f -l -s -pf /var/db/receipts/&lt;some-package-name&gt;.bom &gt;&gt; package-bom.txt # Inspect manually vim package-bom.txt # Then pipe it to some rm code, etc. # cat package-bom.txt | while read f; do ...; done . ",
-    "url": "/docs/learned/useful.html#lsbom",
-    "relUrl": "/docs/learned/useful.html#lsbom"
-  },"362": {
-    "doc": "Useful Commands",
-    "title": "networksetup",
-    "content": "To see all hardware ports (Wi-Fi, Bluetooth, Thunderbolt, etc.) . networksetup -listallhardwareports . ",
-    "url": "/docs/learned/useful.html#networksetup",
-    "relUrl": "/docs/learned/useful.html#networksetup"
-  },"363": {
-    "doc": "Useful Commands",
-    "title": "netstat",
-    "content": "To see all current in/outbound network connections . netstat -i . ",
-    "url": "/docs/learned/useful.html#netstat",
-    "relUrl": "/docs/learned/useful.html#netstat"
-  },"364": {
-    "doc": "Useful Commands",
-    "title": "ifconfig",
-    "content": "To see all network devices on machine . ifconfig . ",
-    "url": "/docs/learned/useful.html#ifconfig",
-    "relUrl": "/docs/learned/useful.html#ifconfig"
-  },"365": {
-    "doc": "Useful Commands",
-    "title": "system_profiler",
-    "content": "Command line version of the GUI System Profiler on macOS. To list USB devices, . system_profiler SPUSBDataType . ",
-    "url": "/docs/learned/useful.html#system_profiler",
-    "relUrl": "/docs/learned/useful.html#system_profiler"
-  },"366": {
-    "doc": "Useful Commands",
-    "title": "fzf (+ Oh-My-Zsh)",
-    "content": "Usage example . vim $(fzf) . ",
-    "url": "/docs/learned/useful.html#fzf--oh-my-zsh",
-    "relUrl": "/docs/learned/useful.html#fzf--oh-my-zsh"
-  },"367": {
-    "doc": "Useful Commands",
-    "title": "fasd (+ Oh-My-Zsh)",
-    "content": "To be added . ",
-    "url": "/docs/learned/useful.html#fasd--oh-my-zsh",
-    "relUrl": "/docs/learned/useful.html#fasd--oh-my-zsh"
-  },"368": {
-    "doc": "Useful Commands",
-    "title": "Useful Commands",
-    "content": " ",
-    "url": "/docs/learned/useful.html",
-    "relUrl": "/docs/learned/useful.html"
-  },"369": {
     "doc": "Useful Notes",
     "title": "Useful Notes",
     "content": ". | Use multiple GitHub accounts with SSH . | Generate a new SSH key | Add the new SSH key to GitHub account | Modify config | Local config per repository | Add remote | . | . ",
     "url": "/docs/git-hub/github/useful.html",
     "relUrl": "/docs/git-hub/github/useful.html"
-  },"370": {
+  },"354": {
     "doc": "Useful Notes",
     "title": "Use multiple GitHub accounts with SSH",
     "content": "First navigate to ~/.ssh. For organization, create a directory and name it github. All private and public keys for GitHub connection will be placed here. Generate a new SSH key . Follow the ssh-keygen prompt. It will ask you to decide on a name for the file, passphrase, etc. # If Ed25519 algorithm is supported ssh-keygen -t ed25519 -C \"your_github@email.com\" . # Legacy RSA ssh-keygen -t rsa -b 4096 -C \"your_github@email.com\" . Add the new SSH key to GitHub account . Easiest part. Refer to GitHub documentation for step-by-step screencaps. Modify config . Suppose I have two GitHub accounts each associated with personal_email@address.com and work_email@address.com. I’ll assume the private keys are named github-personal and github-work respectively. Now append the following to ~/.ssh/config . Host github-personal HostName github.com User git IdentityFile ~/.ssh/github/github-personal Host github-work HostName github.com User git IdentityFile ~/.ssh/github/github-work . You can define custom host for both as such or have one of them keep the default github.com. Local config per repository . First start a local repo with . git init . Then config local name and email that will be used for that repo . git config --local user.name \"work_name\" git config --local user.email \"work_email@address.com\" . Add remote . Normally you would add an ssh remote by . git remote add origin git@github.com:github_username:repo_name # OR git remote add origin github.com:github_username:repo_name . But this time, . git remote add origin github-work:work_username:repo_name . References: . | GitHub: SSH | . ",
     "url": "/docs/git-hub/github/useful.html#use-multiple-github-accounts-with-ssh",
     "relUrl": "/docs/git-hub/github/useful.html#use-multiple-github-accounts-with-ssh"
+  },"355": {
+    "doc": "Useful Git Commands",
+    "title": "Useful Commands",
+    "content": ". | Configuration . | See current configuration | Global user config | Local user config | Command alias | Global ignore | . | Untrack file | Fix previous commit | Rebase | Cherry Pick | Remove or modify a commit with rebase | Reset status . | To remove all uncommitted changes | Undo last (few) commit(s) without losing changes | . | Prune remote branches | . ",
+    "url": "/docs/git-hub/git/useful.html#useful-commands",
+    "relUrl": "/docs/git-hub/git/useful.html#useful-commands"
+  },"356": {
+    "doc": "Useful Git Commands",
+    "title": "Configuration",
+    "content": "See current configuration . git config --list . Global user config . git config --global user.name \"myname\" git config --global user.email \"myemail@example.com\" . Local user config . Useful when you need to use different identity per project, . git config --local user.name \"anothername\" git config --local user.email \"anotheremail@example.com\" . Command alias . If you’re tired of writing long git commands that you frequently use, . git config --global alias.youralias \"command to shorten (without 'git')\" . Global ignore . First create a ~/.gitignore_global file. Then, . git config --global core.excludeFile ~/.gitignore_global . ",
+    "url": "/docs/git-hub/git/useful.html#configuration",
+    "relUrl": "/docs/git-hub/git/useful.html#configuration"
+  },"357": {
+    "doc": "Useful Git Commands",
+    "title": "Untrack file",
+    "content": "When you have a file that you would like to untrack, . git rm -r --cached &lt;file-or-dir&gt; . ",
+    "url": "/docs/git-hub/git/useful.html#untrack-file",
+    "relUrl": "/docs/git-hub/git/useful.html#untrack-file"
+  },"358": {
+    "doc": "Useful Git Commands",
+    "title": "Fix previous commit",
+    "content": "This comes in handy when you make a small change in your code after you’ve committed, but you realize you probably wanted it included in your last commit. # Modify commit message as well git commit --amend . # Keep the commit message git commit --amend --no-edit . If you already pushed the commit to a remote before the ammend, then you need to force push the new changes by git push -f origin master. ",
+    "url": "/docs/git-hub/git/useful.html#fix-previous-commit",
+    "relUrl": "/docs/git-hub/git/useful.html#fix-previous-commit"
+  },"359": {
+    "doc": "Useful Git Commands",
+    "title": "Rebase",
+    "content": "To rebase from a remote, . git fetch git rebase origin/main . Or simply . git pull --rebase . ",
+    "url": "/docs/git-hub/git/useful.html#rebase",
+    "relUrl": "/docs/git-hub/git/useful.html#rebase"
+  },"360": {
+    "doc": "Useful Git Commands",
+    "title": "Cherry Pick",
+    "content": "To cherry pick a single commit from anothe branch, first check the hash of the commit. Then, . git cherry-pick &lt;hash&gt; . ",
+    "url": "/docs/git-hub/git/useful.html#cherry-pick",
+    "relUrl": "/docs/git-hub/git/useful.html#cherry-pick"
+  },"361": {
+    "doc": "Useful Git Commands",
+    "title": "Remove or modify a commit with rebase",
+    "content": "To modify a commit from the past, first check the number of commits you must go back to find the commit you want to modify. Then, . git rebase -i HEAD~&lt;num-commits-to-target-inclusive&gt; . Then you can choose an action for each commit by editing the text editor which looks like: . pick &lt;hash&gt; A Commit Message4 pick &lt;hash&gt; A Commit Message3 pick &lt;hash&gt; A Commit Message2 pick &lt;hash&gt; A Commit Message1 . Modify pick to a command listed in the editor comments. ",
+    "url": "/docs/git-hub/git/useful.html#remove-or-modify-a-commit-with-rebase",
+    "relUrl": "/docs/git-hub/git/useful.html#remove-or-modify-a-commit-with-rebase"
+  },"362": {
+    "doc": "Useful Git Commands",
+    "title": "Reset status",
+    "content": "There are 5 types of reset: --soft, --mixed, --hard, --merge, and --keep. Each type of reset has different effects on the index, working tree, and HEAD. The first three are the most commonly used, and --mixed is the default. | All of them move HEAD to the specified commit. | --soft leaves changes in the staging area. | --mixed keeps the changes in an unstaged state. | --hard discards all changes. | . To remove all uncommitted changes . Changes reset by following commands will be unrecoverable unless you have already pushed to remote. git reset --hard # Reset tracked files to your latest commit git clean -fd # Remove untracked files . Undo last (few) commit(s) without losing changes . git reset HEAD^ # Undo last commit git reset HEAD^^ # Undo last two commits git reset HEAD~3 # Undo last three commits . ",
+    "url": "/docs/git-hub/git/useful.html#reset-status",
+    "relUrl": "/docs/git-hub/git/useful.html#reset-status"
+  },"363": {
+    "doc": "Useful Git Commands",
+    "title": "Prune remote branches",
+    "content": "If you have deleted a remote branch, but it still shows up when you run git branch -a, then you can prune it by, . git remote prune $remote_name # --dry-run to see what will be pruned . If you have a local branch that is still tracking the deleted remote, then you need to delete the local branch first. References: . | Git: Reset | . ",
+    "url": "/docs/git-hub/git/useful.html#prune-remote-branches",
+    "relUrl": "/docs/git-hub/git/useful.html#prune-remote-branches"
+  },"364": {
+    "doc": "Useful Git Commands",
+    "title": "Useful Git Commands",
+    "content": " ",
+    "url": "/docs/git-hub/git/useful.html",
+    "relUrl": "/docs/git-hub/git/useful.html"
+  },"365": {
+    "doc": "Useful Commands",
+    "title": "Useful CLI Commands",
+    "content": ". | lsbom | networksetup | netstat | ifconfig | system_profiler | fzf (+ Oh-My-Zsh) . | Usage example | . | fasd (+ Oh-My-Zsh) | . ",
+    "url": "/docs/learned/useful.html#useful-cli-commands",
+    "relUrl": "/docs/learned/useful.html#useful-cli-commands"
+  },"366": {
+    "doc": "Useful Commands",
+    "title": "lsbom",
+    "content": "Lists the contents of an installer’s bom (bill of materials) file, which contains information on what files were added to the system. My preferred usage: . lsbom -f -l -s -pf /var/db/receipts/&lt;some-package-name&gt;.bom &gt;&gt; package-bom.txt # Inspect manually vim package-bom.txt # Then pipe it to some rm code, etc. # cat package-bom.txt | while read f; do ...; done . ",
+    "url": "/docs/learned/useful.html#lsbom",
+    "relUrl": "/docs/learned/useful.html#lsbom"
+  },"367": {
+    "doc": "Useful Commands",
+    "title": "networksetup",
+    "content": "To see all hardware ports (Wi-Fi, Bluetooth, Thunderbolt, etc.) . networksetup -listallhardwareports . ",
+    "url": "/docs/learned/useful.html#networksetup",
+    "relUrl": "/docs/learned/useful.html#networksetup"
+  },"368": {
+    "doc": "Useful Commands",
+    "title": "netstat",
+    "content": "To see all current in/outbound network connections . netstat -i . ",
+    "url": "/docs/learned/useful.html#netstat",
+    "relUrl": "/docs/learned/useful.html#netstat"
+  },"369": {
+    "doc": "Useful Commands",
+    "title": "ifconfig",
+    "content": "To see all network devices on machine . ifconfig . ",
+    "url": "/docs/learned/useful.html#ifconfig",
+    "relUrl": "/docs/learned/useful.html#ifconfig"
+  },"370": {
+    "doc": "Useful Commands",
+    "title": "system_profiler",
+    "content": "Command line version of the GUI System Profiler on macOS. To list USB devices, . system_profiler SPUSBDataType . ",
+    "url": "/docs/learned/useful.html#system_profiler",
+    "relUrl": "/docs/learned/useful.html#system_profiler"
   },"371": {
+    "doc": "Useful Commands",
+    "title": "fzf (+ Oh-My-Zsh)",
+    "content": "Usage example . vim $(fzf) . ",
+    "url": "/docs/learned/useful.html#fzf--oh-my-zsh",
+    "relUrl": "/docs/learned/useful.html#fzf--oh-my-zsh"
+  },"372": {
+    "doc": "Useful Commands",
+    "title": "fasd (+ Oh-My-Zsh)",
+    "content": "To be added . ",
+    "url": "/docs/learned/useful.html#fasd--oh-my-zsh",
+    "relUrl": "/docs/learned/useful.html#fasd--oh-my-zsh"
+  },"373": {
+    "doc": "Useful Commands",
+    "title": "Useful Commands",
+    "content": " ",
+    "url": "/docs/learned/useful.html",
+    "relUrl": "/docs/learned/useful.html"
+  },"374": {
     "doc": "venv",
     "title": "venv",
     "content": ". | What is venv | Basic usage . | Create environment | Activate environment | Deactivate environment | . | . ",
     "url": "/docs/python/envs/venv.html",
     "relUrl": "/docs/python/envs/venv.html"
-  },"372": {
+  },"375": {
     "doc": "venv",
     "title": "What is venv",
     "content": "venv is Python’s default virtual environment tool. ",
     "url": "/docs/python/envs/venv.html#what-is-venv",
     "relUrl": "/docs/python/envs/venv.html#what-is-venv"
-  },"373": {
+  },"376": {
     "doc": "venv",
     "title": "Basic usage",
     "content": "Create environment . venv creates a virtual environment for the Python version used to invoke it. # If you only need one environment for the project python -m venv venv # If you are going to need multiple environments python -m venv venv/myenv # Creates a nested dir . python -m venv &lt;name-of-env&gt; creates a directory in cwd. The &lt;name-of-env&gt; can be anything you like, but venv is used the most by convention. Just like node_modules, because venv exists within the project root, it is almost always added to .gitignore. Activate environment . Assuming cwd is project root where venv directory exists, . source venv/bin/activate . Once activated, which python will point to . /Path/To/Project/venv/bin/python . Deactivate environment . deactivate . ",
     "url": "/docs/python/envs/venv.html#basic-usage",
     "relUrl": "/docs/python/envs/venv.html#basic-usage"
-  },"374": {
+  },"377": {
     "doc": "vim-plug",
     "title": "vim-plug",
     "content": "To be added . vim-plug Tutorial . ",
     "url": "/docs/others/vim/vim-plug.html",
     "relUrl": "/docs/others/vim/vim-plug.html"
-  },"375": {
+  },"378": {
     "doc": "Docker Volumes",
     "title": "Docker Volumes",
     "content": ". | What is a Docker volume | Cases where Docker volume comes in handy . | You want some live-reloading features | You want to persist data upon container shutdown | . | . ",
     "url": "/docs/docker/volumes.html",
     "relUrl": "/docs/docker/volumes.html"
-  },"376": {
+  },"379": {
     "doc": "Docker Volumes",
     "title": "What is a Docker volume",
     "content": "In short, it maps the volume inside a container with some local directory on your computer. If you set the volume to read-only, every change in local directory will be reflected in the container but not vice versa. If you set read-only to false, the contents inside the container and the local directory will remain same throughout the container execution. ",
     "url": "/docs/docker/volumes.html#what-is-a-docker-volume",
     "relUrl": "/docs/docker/volumes.html#what-is-a-docker-volume"
-  },"377": {
+  },"380": {
     "doc": "Docker Volumes",
     "title": "Cases where Docker volume comes in handy",
     "content": "You want some live-reloading features . During development, it is really painful if you have to rebuild or rerun everytime you make a change. By mapping your container volume to a local build context, the container will update itself everytime you make a change to your local code. You want to persist data upon container shutdown . For example if you’re running a DB as a container without a volume mapped, each time the container restarts, the contents of the DB will be erased. However, if you map your container volume to a local directory, the data will be kept even after shutdown. ",
     "url": "/docs/docker/volumes.html#cases-where-docker-volume-comes-in-handy",
     "relUrl": "/docs/docker/volumes.html#cases-where-docker-volume-comes-in-handy"
-  },"378": {
+  },"381": {
     "doc": "Homebrew x86_64",
     "title": "Homebrew x86_64",
     "content": ". | Installing Homebrew for both arm and x86 . | Install for x86 | Set alias | Opt out of analytics (Optional) | . | . ",
     "url": "/docs/others/homebrew/x86.html",
     "relUrl": "/docs/others/homebrew/x86.html"
-  },"379": {
+  },"382": {
     "doc": "Homebrew x86_64",
     "title": "Installing Homebrew for both arm and x86",
     "content": "Install for x86 . After having installed Homebrew natively, install for x86: . arch -x86_64 /bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\" . x86 Homebrew will be located in /usr/local/Homebrew while native Homebrew is in /opt/homebrew. Set alias . In your .zshrc, . # .zshrc alias xbrew='arch -x86_64 /usr/local/Homebrew/bin/brew' . Opt out of analytics (Optional) . xbrew analytics off . ",
