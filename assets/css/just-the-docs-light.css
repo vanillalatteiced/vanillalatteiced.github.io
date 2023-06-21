@@ -1550,4 +1550,8 @@ figure.highlight pre, figure.highlight code { padding: 0; margin: 0; border: 0; 
 
 .danger::before { color: #dd2e2e; content: "DANGER"; display: block; font-weight: bold; font-size: .75em; padding-bottom: .125rem; }
 
+.callout { background: rgba(65, 214, 147, 0.2); border-left: 4px solid #026e57; border-radius: 4px; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 3px 10px rgba(0, 0, 0, 0.08); padding: .8rem; }
+
+.callout::before { color: #026e57; content: ""; display: block; font-weight: bold; font-size: .75em; padding-bottom: .125rem; }
+
 /*# sourceMappingURL=just-the-docs-light.css.map */
